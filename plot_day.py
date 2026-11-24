@@ -48,7 +48,8 @@ def draw_panel(svg, index, title, series, unit, fixed_range=None):
         y = chart_top + fraction * chart_height
         element(svg, "line", x1=left, y1=y, x2=left + width, y2=y,
                 stroke="#dbe2ea", stroke_width=1)
-        label(svg, left - 8, y + 4, f"{value:.1f}", text_anchor="end",
+        tick = f"{value:.2f}" if high - low < 1 else f"{value:.1f}"
+        label(svg, left - 8, y + 4, tick, text_anchor="end",
               font_size=11, fill="#576579")
     label(svg, 12, chart_top + 12, unit, font_size=11, fill="#576579")
 
@@ -87,7 +88,8 @@ def collect_day(day, seed, policy):
     return config, rows
 
 
-def save_chart(path, day, seed, policy_name, rows, config, title=None):
+def save_chart(path, day, seed, policy_name, rows, config, title=None,
+               spot_prices=None):
     root = ET.Element(f"{{{SVG}}}svg", {
         "viewBox": "0 0 1040 875", "width": "1040", "height": "875",
         "role": "img", "aria-label": "One-day SolarAlpha simulation chart",
@@ -110,10 +112,16 @@ def save_chart(path, day, seed, policy_name, rows, config, title=None):
         ("Solar", "#d18a00", [obs.solar_kw for obs in observations]),
         ("Load", "#2563a6", [obs.load_kw for obs in observations]),
     ], "kW")
-    draw_panel(root, 1, "Electricity prices", [
-        ("Buy", "#c34848", [obs.buy_price for obs in observations]),
-        ("Sell", "#29836c", [obs.sell_price for obs in observations]),
-    ], "AUD/kWh")
+    price_series = []
+    if spot_prices is not None:
+        price_series.append(("AEMO spot", "#555b68", spot_prices))
+    price_series.extend([
+        ("Buy (model)", "#c34848", [obs.buy_price for obs in observations]),
+        ("Sell (model)", "#29836c", [obs.sell_price for obs in observations]),
+    ])
+    price_title = ("Wholesale spot and illustrative household prices"
+                   if spot_prices is not None else "Electricity prices")
+    draw_panel(root, 1, price_title, price_series, "AUD/kWh")
     draw_panel(root, 2, "Battery and grid power (+charge/import, -discharge/export)", [
         ("Battery", "#7555b2", [info["power_kw"] for info in infos]),
         ("Grid", "#3a677e", [(info["import_kwh"] - info["export_kwh"]) / config.dt

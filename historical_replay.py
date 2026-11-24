@@ -1,7 +1,7 @@
 """Replay one January 2025 Sydney week with historical prices and weather.
 
 Inputs: AEMO NSW1 wholesale prices, Open-Meteo hourly irradiance, synthetic
-household load, and illustrative wholesale-linked buy/sell price adjustments.
+household load, and two illustrative per-kWh household tariffs.
 Run fetch_historical_sample.py first to obtain the local raw snapshots.
 """
 
@@ -11,10 +11,12 @@ import json
 from dataclasses import replace
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from statistics import median
 
 from fetch_historical_sample import PRICE_FILE, WEATHER_FILE
 from plot_day import save_chart
 from solar_sim import BatteryEnv, Config, Observation, evaluate, make_data, self_consumption, threshold_trader
+from tariffs import EXAMPLE_TARIFFS, ILLUSTRATIVE_SPOT_LINKED
 
 
 AEST = timezone(timedelta(hours=10), "AEST")  # AEMO market time, no DST
@@ -25,8 +27,6 @@ END_LOCAL = datetime(2025, 1, 20, tzinfo=AEDT)
 STEP = timedelta(minutes=5)
 DAYS = 7
 LOAD_SEED = 42
-BUY_ADDER = 0.17   # AUD/kWh; illustrative, not a retailer tariff
-SELL_ADDER = -0.01  # AUD/kWh; illustrative, not a retailer tariff
 SOLAR_DERATE = 0.83  # horizontal irradiance to AC solar proxy
 
 
@@ -66,7 +66,7 @@ def load_hourly_irradiance():
             for hour, value in zip(hours, values)}
 
 
-def build_observations(config):
+def build_observations(config, tariff=ILLUSTRATIVE_SPOT_LINKED):
     prices_mwh = load_wholesale_prices()
     irradiance = load_hourly_irradiance()
     synthetic_load = make_data(config, days=DAYS, seed=LOAD_SEED, weather_variation=False)
@@ -81,9 +81,10 @@ def build_observations(config):
         solar_kw = min(config.solar_kw, config.solar_kw * SOLAR_DERATE
                        * irradiance[hour_end] / 1000.0)
         spot_aud_kwh = prices_mwh[interval_start_utc] / 1000.0
+        buy_price, sell_price = tariff.prices(spot_aud_kwh)
         observations.append(Observation(
             interval_start_utc.astimezone(AEDT), solar_kw, load_record.load_kw,
-            spot_aud_kwh + BUY_ADDER, spot_aud_kwh + SELL_ADDER,
+            buy_price, sell_price,
         ))
     return observations, prices_mwh
 
@@ -106,7 +107,7 @@ def lagged_threshold_policy():
     return policy
 
 
-def plot_policy_day(config, data, day):
+def plot_policy_day(config, data, prices_mwh, day, tariff):
     env = BatteryEnv(config, data)
     policy = lagged_threshold_policy()
     obs, soc = env.reset()
@@ -119,10 +120,14 @@ def plot_policy_day(config, data, day):
             break
         obs, soc = next_obs
     date = rows[0][0].time.date().isoformat()
-    output = Path(__file__).resolve().parent / "plots" / f"hybrid_{date}_lagged_threshold.svg"
+    output = (Path(__file__).resolve().parent / "plots"
+              / f"hybrid_{date}_{tariff.name}_lagged_threshold.svg")
     output.parent.mkdir(exist_ok=True)
+    spot_prices = [prices_mwh[obs.time.astimezone(UTC)] / 1000.0
+                   for obs, _, _ in rows]
     save_chart(output, day, LOAD_SEED, "lagged threshold", rows, config,
-               title=f"Hybrid replay {date} | AEMO NSW1 + Open-Meteo | lagged threshold")
+               title=f"Hybrid replay {date} | {tariff.name} tariff | lagged threshold",
+               spot_prices=spot_prices)
     return output
 
 
@@ -133,22 +138,35 @@ def main():
     if not 1 <= args.plot_day <= DAYS:
         parser.error("--plot-day must be between 1 and 7")
     config = Config()
-    data, prices_mwh = build_observations(config)
+    reference_data, prices_mwh = build_observations(config)
     print(f"Hybrid replay: {START_LOCAL.date()} through {(END_LOCAL - timedelta(days=1)).date()} "
           "Sydney time (2,016 intervals).")
     print(f"AEMO NSW1 spot: {min(prices_mwh.values()):.2f} to {max(prices_mwh.values()):.2f} AUD/MWh")
-    print(f"Solar proxy: {sum(obs.solar_kw for obs in data) * config.dt / DAYS:.1f} kWh/day; "
-          f"synthetic load: {sum(obs.load_kw for obs in data) * config.dt / DAYS:.1f} kWh/day")
-    for name, policy in (("self_consumption", self_consumption),
-                         ("lagged_threshold", lagged_threshold_policy())):
-        result = evaluate(policy, config, data)
-        print(f"{name}: import {result['import_kwh']:.2f} kWh, "
-              f"export {result['export_kwh']:.2f} kWh, net ${result['reward']:.2f}, "
-              f"adjusted ${result['adjusted_reward']:.2f}, "
-              f"minimum SOC {100 * result['min_soc']:.1f}%, "
-              f"final SOC {100 * result['final_soc']:.1f}%")
-    print("Buy/sell prices use illustrative spot-price adjustments; no household tariff is modeled.")
-    print(f"Wrote {plot_policy_day(config, data, args.plot_day)}")
+    selected_date = START_LOCAL.date() + timedelta(days=args.plot_day - 1)
+    selected_spot = [prices_mwh[obs.time.astimezone(UTC)] / 1000.0
+                     for obs in reference_data if obs.time.date() == selected_date]
+    print(f"{selected_date} wholesale spot median ${median(selected_spot):.3f}/kWh; "
+          f"peak ${max(selected_spot):.2f}/kWh")
+    print(f"Solar proxy: {sum(obs.solar_kw for obs in reference_data) * config.dt / DAYS:.1f} kWh/day; "
+          f"synthetic load: {sum(obs.load_kw for obs in reference_data) * config.dt / DAYS:.1f} kWh/day")
+    print("Both tariffs are illustrative; money values are AUD for the seven-day episode.")
+    print("Fixed: buy $0.30, sell $0.05/kWh. Spot-linked: buy spot + $0.17, sell spot - $0.01/kWh.")
+    print(f"{'Tariff':<13} {'Policy':<18} {'Import':>8} {'Export':>8} {'Cash':>9} "
+          f"{'Wear':>8} {'Net':>9} {'Adjusted':>10} {'Final SOC':>10}")
+    plots = []
+    for tariff in EXAMPLE_TARIFFS:
+        data, _ = build_observations(config, tariff)
+        for name, policy in (("self_consumption", self_consumption),
+                             ("lagged_threshold", lagged_threshold_policy())):
+            result = evaluate(policy, config, data)
+            cash = result["export_revenue"] - result["import_cost"]
+            print(f"{tariff.name:<13} {name:<18} {result['import_kwh']:8.2f} "
+                  f"{result['export_kwh']:8.2f} {cash:9.2f} {result['wear']:8.2f} "
+                  f"{result['reward']:9.2f} {result['adjusted_reward']:10.2f} "
+                  f"{100 * result['final_soc']:9.1f}%")
+        plots.append(plot_policy_day(config, data, prices_mwh, args.plot_day, tariff))
+    for plot in plots:
+        print(f"Wrote {plot}")
 
 
 if __name__ == "__main__":

@@ -64,4 +64,18 @@ The user reviewed the storm plots and requested a small historical price/weather
 - Real NSW1 spot prices in this week range from -$48.29 to $17,500.00/MWh. Hybrid replay: self-consumption net $19.21, lagged threshold net $21.35; both results depend on the illustrative retail mapping and are not bill estimates. Generated spike-day and lower-irradiance day SVGs in `plots/`.
 - Ten tests pass, including the full five-minute grid, price time/unit conversion, hourly solar mapping, and lagged price signal. Earlier candidate-week snapshots and hindsight plots were placed in ignored exploratory folders.
 
-Awaiting review of the historical input replay before expanding the dataset or replacing synthetic demand.
+The user reviewed the historical replay, approved the solar proxy for now, and authorized an illustrative tariff comparison.
+
+## 2026-11-24 — illustrative tariff modeling
+
+- Added `tariffs.py` with fixed buy/sell rates ($0.30/$0.05 per kWh) and a spot-linked example (`spot + $0.17` / `spot - $0.01` per kWh). Both are explicitly hypothetical; the spot-linked example preserves the previous replay mapping.
+- `historical_replay.py` now runs self-consumption and the lagged threshold policy under both tariffs on identical physical inputs and initial SOC. For the seven-day sample, fixed-tariff net reward is $3.03 for either policy; spot-linked net reward is $19.21 for self-consumption and $21.35 for lagged threshold. These are illustrative outcomes, not bill estimates.
+- Added tariff calculation and fair-input tests; 13 tests pass. The replay writes tariff-labelled plots to `plots/`. Source notes and excluded tariff features are in `data/README.md`.
+
+Awaiting the user's review before adding actual tariff terms or another simulator milestone.
+
+## 2026-11-24 — clarified wholesale and modeled tariff prices
+
+- Checked the 15 January AEMO source: median wholesale spot $0.096235/kWh; $17.50/kWh for three intervals (14:55–15:10 Sydney time). Immediately before the spike, at 14:45, spot was $0.0875/kWh while the illustrative spot-linked buy/sell rates were $0.2575/$0.0775/kWh.
+- The historical SVG price panel now labels separate AEMO spot, modeled buy, and modeled sell traces. Replay output prints the selected day's wholesale median and peak plus the illustrative tariff formulas. The spike compresses ordinary values on the full-range axis.
+- Added a fixture check for typical and spike prices. Fourteen tests pass; no tariff or reward calculations changed.

@@ -1,6 +1,6 @@
 # Historical input slice
 
-The offline replay covers **13–19 January 2025**, Sydney local time (AEDT): 2,016 five-minute intervals. Run `python historical_replay.py --plot-day 3` from the project root. `python fetch_historical_sample.py` downloads the two source snapshots if they are absent.
+The offline replay covers **13–19 January 2025**, Sydney local time (AEDT): 2,016 five-minute intervals. Run `python historical_replay.py --plot-day 3` from the project root to compare both example tariffs and write two SVG plots. `python fetch_historical_sample.py` downloads the two source snapshots if they are absent.
 
 | Input | Local snapshot | Source and interpretation |
 | --- | --- | --- |
@@ -11,6 +11,17 @@ The loader converts AEMO interval-end labels to interval starts, then to AEDT (U
 
 The replay derives a **solar proxy**, not measured rooftop generation: `min(10 kW, 10 kW × 0.83 × hourly shortwave radiation / 1000 W/m²)`. It repeats each hourly radiation mean over twelve five-minute intervals. Panel tilt, shading, temperature losses, and fast within-hour changes are not represented. The stored cloud-cover and temperature fields are not yet used.
 
-Household demand remains seeded synthetic data. Buy and sell prices are illustrative mappings from the actual wholesale spot series: `buy = spot + 0.17` and `sell = spot - 0.01` AUD/kWh. These are **not retailer tariffs or bill estimates**. The replay's threshold policy sees the previous completed interval's price; the current interval's recorded price is used for reward. This one-interval signal is still idealized, and the weather series is an ex-post reconstruction, so the replay is not a deployable backtest.
+Household demand remains seeded synthetic data. `tariffs.py` contains two **illustrative** per-kWh examples:
+
+| Example | Buy price (AUD/kWh) | Sell price (AUD/kWh) |
+| --- | ---: | ---: |
+| Fixed | `0.30` | `0.05` |
+| Spot linked | `spot + 0.17` | `spot - 0.01` |
+
+Here `spot` is the AEMO price after conversion to AUD/kWh. The spot-linked example preserves the replay's earlier price mapping. These are **not the user's retailer tariffs or bill estimates**. The first model excludes daily supply charges, time-of-use windows, retailer price floors or caps, and export fees; the actual contract rules can be added when available.
+
+The replay's threshold policy sees the previous completed interval's tariff-derived price; the current interval's recorded price is used for reward. This one-interval signal is still idealized, and the weather series is an ex-post reconstruction, so the replay is not a deployable backtest.
 
 The fixed AEST/AEDT offsets are correct for this January slice. A year-round loader will need daylight-saving-aware timezone handling.
+
+Historical replay plots now show **AEMO wholesale spot**, **modeled household buy**, and **modeled household sell** as separate price lines. On 15 January the wholesale median is about $0.096/kWh (9.6 cents), while the $17.50/kWh peak spans three intervals from 14:55 to 15:10 Sydney time. A single full-range chart compresses ordinary prices when a spike this large occurs; the console replay prints the day's median and peak for context.

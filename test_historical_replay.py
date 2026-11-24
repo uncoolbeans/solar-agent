@@ -2,9 +2,11 @@
 
 import unittest
 from datetime import datetime, timedelta, timezone
+from statistics import median
 
 from historical_replay import AEDT, STEP, UTC, build_observations, lagged_threshold_policy
-from solar_sim import BatteryEnv, Config, Observation
+from solar_sim import BatteryEnv, Config, Observation, evaluate, self_consumption
+from tariffs import ILLUSTRATIVE_FIXED
 
 
 class HistoricalReplayTests(unittest.TestCase):
@@ -28,6 +30,12 @@ class HistoricalReplayTests(unittest.TestCase):
         self.assertAlmostEqual(self.data[0].sell_price, 144.88 / 1000 - 0.01)
         self.assertAlmostEqual(max(self.prices_mwh.values()), 17500.0)
 
+    def test_typical_wholesale_price_and_spike_are_distinct(self):
+        day = [self.prices_mwh[obs.time.astimezone(UTC)] / 1000.0
+               for obs in self.data if obs.time.date() == datetime(2025, 1, 15).date()]
+        self.assertAlmostEqual(median(day), 0.096235)
+        self.assertEqual(sum(price == 17.50 for price in day), 3)
+
     def test_hourly_irradiance_is_a_bounded_solar_proxy(self):
         noon_index = 2 * 288 + 12 * 12  # 15 January, 12:00 Sydney time
         expected_kw = 10.0 * 0.83 * 1014.0 / 1000.0
@@ -35,6 +43,17 @@ class HistoricalReplayTests(unittest.TestCase):
         self.assertTrue(all(self.data[noon_index + i].solar_kw == self.data[noon_index].solar_kw
                             for i in range(12)))
         self.assertTrue(all(0 <= obs.solar_kw <= self.config.solar_kw for obs in self.data))
+
+    def test_tariff_comparison_keeps_physical_inputs_identical(self):
+        fixed, _ = build_observations(self.config, ILLUSTRATIVE_FIXED)
+        for fixed_obs, spot_obs in zip(fixed, self.data):
+            self.assertEqual((fixed_obs.time, fixed_obs.solar_kw, fixed_obs.load_kw),
+                             (spot_obs.time, spot_obs.solar_kw, spot_obs.load_kw))
+            self.assertEqual((fixed_obs.buy_price, fixed_obs.sell_price), (0.30, 0.05))
+        self_result = evaluate(self_consumption, self.config, fixed)
+        trader_result = evaluate(lagged_threshold_policy(), self.config, fixed)
+        self.assertAlmostEqual(self_result["reward"], trader_result["reward"])
+        self.assertAlmostEqual(self_result["adjusted_reward"], trader_result["adjusted_reward"])
 
     def test_threshold_sees_previous_completed_price(self):
         now = datetime(2025, 1, 13, tzinfo=AEDT)
