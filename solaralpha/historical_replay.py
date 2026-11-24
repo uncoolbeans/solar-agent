@@ -16,7 +16,9 @@ from statistics import median
 
 from solaralpha.fetch_historical_sample import PRICE_FILE, WEATHER_FILE
 from solaralpha.plot_day import save_chart
-from solaralpha.solar_sim import BatteryEnv, Config, Observation, bump, evaluate, self_consumption, threshold_trader
+from solaralpha.solar_sim import (BatteryEnv, Config, Observation, bump,
+                                  evening_export_schedule, evaluate,
+                                  self_consumption, threshold_trader)
 from solaralpha.tariffs import EXAMPLE_TARIFFS, ILLUSTRATIVE_SPOT_LINKED
 
 
@@ -129,9 +131,8 @@ def lagged_threshold_policy():
     return policy
 
 
-def plot_policy_day(config, data, prices_mwh, day, tariff):
+def plot_policy_day(config, data, prices_mwh, day, tariff, policy_name, policy):
     env = BatteryEnv(config, data)
-    policy = lagged_threshold_policy()
     obs, soc = env.reset()
     rows = []
     for index in range(len(data)):
@@ -143,12 +144,13 @@ def plot_policy_day(config, data, prices_mwh, day, tariff):
         obs, soc = next_obs
     date = rows[0][0].time.date().isoformat()
     output = (Path(__file__).resolve().parent.parent / "plots"
-              / f"hybrid_{date}_{tariff.name}_lagged_threshold.svg")
+              / f"hybrid_{date}_{tariff.name}_{policy_name}.svg")
     output.parent.mkdir(exist_ok=True)
     spot_prices = [prices_mwh[obs.time.astimezone(UTC)] / 1000.0
                    for obs, _, _ in rows]
-    save_chart(output, day, LOAD_SEED, "lagged threshold", rows, config,
-               title=f"Hybrid replay {date} | {tariff.name} tariff | lagged threshold",
+    readable_name = policy_name.replace("_", " ")
+    save_chart(output, day, LOAD_SEED, readable_name, rows, config,
+               title=f"Hybrid replay {date} | {tariff.name} tariff | {readable_name}",
                spot_prices=spot_prices)
     return output
 
@@ -184,20 +186,25 @@ def main():
               f"{sum(obs.solar_kw for obs in records) * config.dt:9.1f} kWh")
     print("Both tariffs are illustrative; money values are AUD for the seven-day episode.")
     print("Fixed: buy $0.30, sell $0.05/kWh. Spot-linked: buy spot + $0.17, sell spot - $0.01/kWh.")
+    print("Evening schedule: full discharge request 17:00-20:00 Sydney time; otherwise self-consumption.")
     print(f"{'Tariff':<13} {'Policy':<18} {'Import':>8} {'Export':>8} {'Cash':>9} "
           f"{'Wear':>8} {'Net':>9} {'Adjusted':>10} {'Final SOC':>10}")
     plots = []
     for tariff in EXAMPLE_TARIFFS:
         data, _ = build_observations(config, tariff)
         for name, policy in (("self_consumption", self_consumption),
-                             ("lagged_threshold", lagged_threshold_policy())):
+                             ("lagged_threshold", lagged_threshold_policy()),
+                             ("evening_schedule", evening_export_schedule)):
             result = evaluate(policy, config, data)
             cash = result["export_revenue"] - result["import_cost"]
             print(f"{tariff.name:<13} {name:<18} {result['import_kwh']:8.2f} "
                   f"{result['export_kwh']:8.2f} {cash:9.2f} {result['wear']:8.2f} "
                   f"{result['reward']:9.2f} {result['adjusted_reward']:10.2f} "
                   f"{100 * result['final_soc']:9.1f}%")
-        plots.append(plot_policy_day(config, data, prices_mwh, args.plot_day, tariff))
+        for name, policy in (("lagged_threshold", lagged_threshold_policy()),
+                             ("evening_schedule", evening_export_schedule)):
+            plots.append(plot_policy_day(config, data, prices_mwh, args.plot_day,
+                                         tariff, name, policy))
     for plot in plots:
         print(f"Wrote {plot}")
 

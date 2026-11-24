@@ -159,6 +159,13 @@ def threshold_trader(obs, soc, c):
     return self_consumption(obs, soc, c)
 
 
+def evening_export_schedule(obs, soc, c):
+    """Price-blind benchmark: request full discharge from 17:00 to 20:00 local time."""
+    if 17 <= obs.time.hour < 20:
+        return -c.discharge_kw
+    return self_consumption(obs, soc, c)
+
+
 def evaluate(policy, c, data, terminal_value_per_kwh=0.20):
     env = BatteryEnv(c, data)
     obs, soc = env.reset()

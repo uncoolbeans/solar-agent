@@ -28,3 +28,5 @@ python -m solaralpha.plot_load_comparison
 ```
 
 The historical replay reads local files in `data/raw/`. If they are missing, run `python -m solaralpha.fetch_historical_sample` to download the pinned sample described in [data/README.md](data/README.md). Charts continue to be saved in `plots/`.
+
+The replay compares self-consumption, a threshold rule using the previous completed price, and a price-blind evening export schedule (17:00–20:00 Sydney time). Its tariffs, solar generation, and household demand are still illustrative or modeled as described in [data/README.md](data/README.md).

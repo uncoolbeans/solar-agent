@@ -8,6 +8,7 @@ from solaralpha.solar_sim import (
     BatteryEnv,
     Config,
     Observation,
+    evening_export_schedule,
     evaluate,
     make_data,
     self_consumption,
@@ -25,6 +26,16 @@ class SolarSimTests(unittest.TestCase):
         self.assertEqual(len(first), 288)
         self.assertEqual(first, make_data(self.c, days=1, seed=42))
         self.assertNotEqual(first, make_data(self.c, days=1, seed=43))
+
+    def test_evening_schedule_uses_clock_and_ignores_prices(self):
+        base = Observation(self.time, 2.0, 1.0, 0.20, 0.05)
+        for hour, expected in ((16, 1.0), (17, -self.c.discharge_kw),
+                               (19, -self.c.discharge_kw), (20, 1.0)):
+            with self.subTest(hour=hour):
+                obs = replace(base, time=self.time.replace(hour=hour))
+                expensive = replace(obs, buy_price=20.0, sell_price=20.0)
+                self.assertEqual(evening_export_schedule(obs, 0.50, self.c), expected)
+                self.assertEqual(evening_export_schedule(expensive, 0.50, self.c), expected)
 
     def test_weather_varies_solar_within_a_day_without_changing_load_or_prices(self):
         old = make_data(self.c, days=14, seed=42, weather_variation=False)
@@ -101,6 +112,7 @@ class SolarSimTests(unittest.TestCase):
         policies = (
             self_consumption,
             threshold_trader,
+            evening_export_schedule,
             lambda obs, soc, c: 100.0,
             lambda obs, soc, c: -100.0,
         )

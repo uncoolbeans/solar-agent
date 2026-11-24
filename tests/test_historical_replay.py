@@ -5,7 +5,8 @@ from datetime import datetime, timedelta, timezone
 from statistics import median
 
 from solaralpha.historical_replay import AEDT, STEP, UTC, build_observations, lagged_threshold_policy, modeled_load_kw
-from solaralpha.solar_sim import BatteryEnv, Config, Observation, evaluate, self_consumption
+from solaralpha.solar_sim import (BatteryEnv, Config, Observation,
+                                  evening_export_schedule, evaluate, self_consumption)
 from solaralpha.tariffs import ILLUSTRATIVE_FIXED
 
 
@@ -68,6 +69,10 @@ class HistoricalReplayTests(unittest.TestCase):
         trader_result = evaluate(lagged_threshold_policy(), self.config, fixed)
         self.assertAlmostEqual(self_result["reward"], trader_result["reward"])
         self.assertAlmostEqual(self_result["adjusted_reward"], trader_result["adjusted_reward"])
+        fixed_schedule = evaluate(evening_export_schedule, self.config, fixed)
+        spot_schedule = evaluate(evening_export_schedule, self.config, self.data)
+        for key in ("import_kwh", "export_kwh", "final_soc"):
+            self.assertAlmostEqual(fixed_schedule[key], spot_schedule[key])
 
     def test_threshold_sees_previous_completed_price(self):
         now = datetime(2025, 1, 13, tzinfo=AEDT)

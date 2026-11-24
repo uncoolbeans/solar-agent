@@ -98,3 +98,12 @@ The user noted that the load difference was hard to see in the combined solar/lo
 - Earlier progress entries record commands as they existed at the time. Use the commands in `README.md` for the current layout.
 
 Awaiting review before another simulator milestone.
+
+## 2026-11-24 — price-blind evening schedule benchmark
+
+- Added `evening_export_schedule`: request up to 5 kW discharge from 17:00 to 20:00 local time; otherwise follow self-consumption. It never reads prices or future observations. The environment still clips requested power at battery reserve, capacity, and grid export limits.
+- The seven-day historical replay now compares this schedule with self-consumption and the lagged threshold trader under identical weather, demand, tariffs, initial SOC, and terminal valuation. For the illustrative fixed tariff, adjusted rewards are $4.41 for self-consumption and -$5.41 for the evening schedule. For the illustrative spot-linked tariff, they are $19.75 for self-consumption, $22.66 for lagged threshold, and $17.64 for the evening schedule.
+- The schedule increases exports from 127.80 to 170.32 kWh but also causes 21.35 kWh of imports and ends at 39.1% SOC rather than 82.8%. Its spot-linked unadjusted net reward is $18.26 versus self-consumption's $17.88; the terminal adjustment reverses that comparison. The assumed $0.20/kWh terminal value remains a sensitivity, and the seven-day sample is too short for a general profitability claim.
+- Added a clock/price-independence test and included this policy in the full energy balance test. Sixteen tests pass. Generated 15 and 17 January schedule plots under both illustrative tariffs.
+
+Awaiting review before another simulator milestone.
