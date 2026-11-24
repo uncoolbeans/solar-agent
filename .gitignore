@@ -1,2 +1,4 @@
 AGENTS.md
 __pycache__/
+data/raw/exploratory/
+plots/exploratory/

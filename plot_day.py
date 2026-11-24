@@ -87,14 +87,15 @@ def collect_day(day, seed, policy):
     return config, rows
 
 
-def save_chart(path, day, seed, policy_name, rows, config):
+def save_chart(path, day, seed, policy_name, rows, config, title=None):
     root = ET.Element(f"{{{SVG}}}svg", {
         "viewBox": "0 0 1040 875", "width": "1040", "height": "875",
         "role": "img", "aria-label": "One-day SolarAlpha simulation chart",
     })
     element(root, "rect", x=0, y=0, width=1040, height=875, fill="white")
     date = rows[0][0].time.date().isoformat()
-    label(root, 82, 30, f"SolarAlpha simulated day {day}: {date} | {policy_name} | seed {seed}",
+    heading = title or f"SolarAlpha simulated day {day}: {date} | {policy_name} | seed {seed}"
+    label(root, 82, 30, heading,
           font_size=20, font_weight="bold", fill="#172339")
 
     observations = [obs for obs, _, _ in rows]
