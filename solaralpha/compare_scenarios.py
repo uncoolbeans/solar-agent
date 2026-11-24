@@ -6,7 +6,7 @@ scarcity without pretending to model real weather or a different tariff.
 
 from dataclasses import replace
 
-from solar_sim import Config, evaluate, make_data, self_consumption, threshold_trader
+from solaralpha.solar_sim import Config, evaluate, make_data, self_consumption, threshold_trader
 
 
 DAYS = 14

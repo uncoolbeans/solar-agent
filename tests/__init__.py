@@ -1,0 +1,1 @@
+"""SolarAlpha unit tests."""

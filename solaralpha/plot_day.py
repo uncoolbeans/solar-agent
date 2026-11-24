@@ -1,13 +1,13 @@
 """Plot one synthetic day as SVG using only the Python standard library.
 
-Example: python plot_day.py --day 1 --policy threshold
+Example: python -m solaralpha.plot_day --day 1 --policy threshold
 """
 
 import argparse
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
-from solar_sim import BatteryEnv, Config, make_data, self_consumption, threshold_trader
+from solaralpha.solar_sim import BatteryEnv, Config, make_data, self_consumption, threshold_trader
 
 
 SVG = "http://www.w3.org/2000/svg"
@@ -158,7 +158,7 @@ def main():
     filename = args.output or f"day_{args.day:02d}_{args.policy}.svg"
     if Path(filename).name != filename or not filename.lower().endswith(".svg"):
         parser.error("--output must be an SVG filename, not a path")
-    output = Path(__file__).resolve().parent / "plots" / filename
+    output = Path(__file__).resolve().parent.parent / "plots" / filename
     output.parent.mkdir(exist_ok=True)
     config, rows = collect_day(args.day, args.seed, policy)
     summary = save_chart(output, args.day, args.seed, args.policy, rows, config)

@@ -7,7 +7,7 @@ Values below are probes, not calibrated ranges or real savings estimates.
 from dataclasses import dataclass, replace
 from statistics import mean
 
-from solar_sim import Config, evaluate, make_data, self_consumption, threshold_trader
+from solaralpha.solar_sim import Config, evaluate, make_data, self_consumption, threshold_trader
 
 
 DAYS = 14

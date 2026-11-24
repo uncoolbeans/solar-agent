@@ -1,6 +1,6 @@
 # Historical input slice
 
-The offline replay covers **13–19 January 2025**, Sydney local time (AEDT): 2,016 five-minute intervals. Run `python historical_replay.py --plot-day 3` from the project root to compare both example tariffs and write two SVG plots. `python fetch_historical_sample.py` downloads the two source snapshots if they are absent.
+The offline replay covers **13–19 January 2025**, Sydney local time (AEDT): 2,016 five-minute intervals. Run `python -m solaralpha.historical_replay --plot-day 3` from the project root to compare both example tariffs and write two SVG plots. `python -m solaralpha.fetch_historical_sample` downloads the two source snapshots if they are absent.
 
 | Input | Local snapshot | Source and interpretation |
 | --- | --- | --- |
@@ -9,9 +9,11 @@ The offline replay covers **13–19 January 2025**, Sydney local time (AEDT): 2,
 
 The loader converts AEMO interval-end labels to interval starts, then to AEDT (UTC+11) for this January week. It divides `RRP` by 1,000 to obtain AUD/kWh. The seven local days are continuous and have 288 intervals each.
 
-The replay derives a **solar proxy**, not measured rooftop generation: `min(10 kW, 10 kW × 0.83 × hourly shortwave radiation / 1000 W/m²)`. It repeats each hourly radiation mean over twelve five-minute intervals. Panel tilt, shading, temperature losses, and fast within-hour changes are not represented. The stored cloud-cover and temperature fields are not yet used.
+The replay derives a **solar proxy**, not measured rooftop generation: `min(10 kW, 10 kW × 0.83 × hourly shortwave radiation / 1000 W/m²)`. It repeats each hourly radiation mean over twelve five-minute intervals. Panel tilt, shading, temperature losses, and fast within-hour changes are not represented. The stored cloud-cover field is not yet used.
 
-Household demand remains seeded synthetic data. `tariffs.py` contains two **illustrative** per-kWh examples:
+Household demand is still **modeled**, now using the most recent hourly reanalysis temperature. At local hour `h` and temperature `T` in °C, its cooling term is `max(0, T - 24) × 0.25 × bump(h, 16, 4)` kW, where `bump` is the simulator's smooth Gaussian peak. That term is added to a 0.60 kW base, morning and evening peaks, and seeded five-minute noise (seed 42). The result is floored at 0.15 kW. These coefficients are illustrative, not fitted to the user's home. No future hourly temperature is used for the current five-minute load estimate.
+
+`tariffs.py` contains two **illustrative** per-kWh examples:
 
 | Example | Buy price (AUD/kWh) | Sell price (AUD/kWh) |
 | --- | ---: | ---: |

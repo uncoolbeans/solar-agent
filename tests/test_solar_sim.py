@@ -4,7 +4,7 @@ import unittest
 from dataclasses import replace
 from datetime import datetime, timezone
 
-from solar_sim import (
+from solaralpha.solar_sim import (
     BatteryEnv,
     Config,
     Observation,

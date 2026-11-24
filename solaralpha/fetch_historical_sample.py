@@ -1,6 +1,6 @@
 """Download a fixed public price and weather snapshot for an offline replay.
 
-Run once: python fetch_historical_sample.py
+Run once: python -m solaralpha.fetch_historical_sample
 The replay itself reads local files and makes no network requests.
 """
 
@@ -10,7 +10,7 @@ from pathlib import Path
 from urllib.request import Request, urlopen
 
 
-RAW_DIR = Path(__file__).resolve().parent / "data" / "raw"
+RAW_DIR = Path(__file__).resolve().parent.parent / "data" / "raw"
 PRICE_FILE = RAW_DIR / "PRICE_AND_DEMAND_202501_NSW1.CSV"
 WEATHER_FILE = RAW_DIR / "sydney_weather_2025-01-12_20.json"
 PRICE_URL = ("https://www.nemweb.com.au/Reports/CURRENT/WebData/NEM/PRICEANDDEMAND/"

@@ -72,10 +72,29 @@ The user reviewed the historical replay, approved the solar proxy for now, and a
 - `historical_replay.py` now runs self-consumption and the lagged threshold policy under both tariffs on identical physical inputs and initial SOC. For the seven-day sample, fixed-tariff net reward is $3.03 for either policy; spot-linked net reward is $19.21 for self-consumption and $21.35 for lagged threshold. These are illustrative outcomes, not bill estimates.
 - Added tariff calculation and fair-input tests; 13 tests pass. The replay writes tariff-labelled plots to `plots/`. Source notes and excluded tariff features are in `data/README.md`.
 
-Awaiting the user's review before adding actual tariff terms or another simulator milestone.
+The user reviewed the tariff model and later approved temperature-responsive modeled demand for the historical replay.
 
 ## 2026-11-24 — clarified wholesale and modeled tariff prices
 
 - Checked the 15 January AEMO source: median wholesale spot $0.096235/kWh; $17.50/kWh for three intervals (14:55–15:10 Sydney time). Immediately before the spike, at 14:45, spot was $0.0875/kWh while the illustrative spot-linked buy/sell rates were $0.2575/$0.0775/kWh.
 - The historical SVG price panel now labels separate AEMO spot, modeled buy, and modeled sell traces. Replay output prints the selected day's wholesale median and peak plus the illustrative tariff formulas. The spike compresses ordinary values on the full-range axis.
 - Added a fixture check for typical and spike prices. Fourteen tests pass; no tariff or reward calculations changed.
+
+## 2026-11-24 — temperature-responsive household demand
+
+- Historical replay demand now combines a 0.60 kW base, morning/evening peaks, seeded five-minute noise, and afternoon cooling that rises above 24°C using the stored Open-Meteo hourly temperature. Coefficients are illustrative; the default synthetic `make_data` demand is unchanged.
+- For the seven-day sample, modeled demand averages 24.4 kWh/day. The warmer 15 January (28.2°C max) uses 28.9 kWh; the cooler 17 January (21.2°C max) uses 22.0 kWh. Hot-day and cool-day SVGs were regenerated.
+- Fixed-tariff net reward is $2.54 for both policies. Spot-linked net reward is $17.88 for self-consumption and $20.79 for the lagged threshold policy. These remain illustrative because household load and tariff terms are modeled.
+- Added reproducibility and temperature-response checks; all 15 tests pass.
+
+Awaiting review before another simulator milestone.
+
+The user noted that the load difference was hard to see in the combined solar/load panels. Added `plot_load_comparison.py`, which overlays the 15 and 17 January five-minute modeled loads on a shared load-only scale and labels daily energy. The underlying replay and policy results are unchanged.
+
+## 2026-11-24 — package layout
+
+- Moved simulator, tariff, replay, plotting, and analysis modules into `solaralpha/`; moved the three test modules into `tests/`. Root `data/` and `plots/` remain in place. Added a root README with the new `python -m solaralpha.<module>` commands.
+- Updated imports and project-root paths for historical inputs and chart output. The synthetic simulator, historical replay, scenario comparison, and sensitivity command outputs match the pre-move results exactly. All 15 tests pass; both plot commands run.
+- Earlier progress entries record commands as they existed at the time. Use the commands in `README.md` for the current layout.
+
+Awaiting review before another simulator milestone.

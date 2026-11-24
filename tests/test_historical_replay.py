@@ -4,9 +4,9 @@ import unittest
 from datetime import datetime, timedelta, timezone
 from statistics import median
 
-from historical_replay import AEDT, STEP, UTC, build_observations, lagged_threshold_policy
-from solar_sim import BatteryEnv, Config, Observation, evaluate, self_consumption
-from tariffs import ILLUSTRATIVE_FIXED
+from solaralpha.historical_replay import AEDT, STEP, UTC, build_observations, lagged_threshold_policy, modeled_load_kw
+from solaralpha.solar_sim import BatteryEnv, Config, Observation, evaluate, self_consumption
+from solaralpha.tariffs import ILLUSTRATIVE_FIXED
 
 
 class HistoricalReplayTests(unittest.TestCase):
@@ -43,6 +43,20 @@ class HistoricalReplayTests(unittest.TestCase):
         self.assertTrue(all(self.data[noon_index + i].solar_kw == self.data[noon_index].solar_kw
                             for i in range(12)))
         self.assertTrue(all(0 <= obs.solar_kw <= self.config.solar_kw for obs in self.data))
+
+    def test_cooling_load_responds_to_temperature(self):
+        afternoon = datetime(2025, 1, 15, 16, tzinfo=AEDT)
+        cool = modeled_load_kw(afternoon, 20.0)
+        self.assertAlmostEqual(modeled_load_kw(afternoon, 24.0), cool)
+        self.assertAlmostEqual(modeled_load_kw(afternoon, 28.0) - cool, 1.0)
+
+        hot_day = self.data[2 * 288:3 * 288]
+        cool_day = self.data[4 * 288:5 * 288]
+        self.assertGreater(sum(obs.load_kw for obs in hot_day) * self.config.dt,
+                           sum(obs.load_kw for obs in cool_day) * self.config.dt + 5.0)
+        repeated, _ = build_observations(self.config)
+        self.assertEqual([obs.load_kw for obs in self.data],
+                         [obs.load_kw for obs in repeated])
 
     def test_tariff_comparison_keeps_physical_inputs_identical(self):
         fixed, _ = build_observations(self.config, ILLUSTRATIVE_FIXED)

@@ -2,7 +2,7 @@
 
 import unittest
 
-from tariffs import ILLUSTRATIVE_FIXED, ILLUSTRATIVE_SPOT_LINKED
+from solaralpha.tariffs import ILLUSTRATIVE_FIXED, ILLUSTRATIVE_SPOT_LINKED
 
 
 class TariffTests(unittest.TestCase):

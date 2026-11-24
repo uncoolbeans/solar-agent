@@ -1,8 +1,8 @@
 """Replay one January 2025 Sydney week with historical prices and weather.
 
-Inputs: AEMO NSW1 wholesale prices, Open-Meteo hourly irradiance, synthetic
-household load, and two illustrative per-kWh household tariffs.
-Run fetch_historical_sample.py first to obtain the local raw snapshots.
+Inputs: AEMO NSW1 wholesale prices, Open-Meteo hourly irradiance and
+temperature, temperature-responsive modeled load, and two illustrative tariffs.
+Run python -m solaralpha.fetch_historical_sample first to obtain the local raw snapshots.
 """
 
 import argparse
@@ -11,12 +11,13 @@ import json
 from dataclasses import replace
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from random import Random
 from statistics import median
 
-from fetch_historical_sample import PRICE_FILE, WEATHER_FILE
-from plot_day import save_chart
-from solar_sim import BatteryEnv, Config, Observation, evaluate, make_data, self_consumption, threshold_trader
-from tariffs import EXAMPLE_TARIFFS, ILLUSTRATIVE_SPOT_LINKED
+from solaralpha.fetch_historical_sample import PRICE_FILE, WEATHER_FILE
+from solaralpha.plot_day import save_chart
+from solaralpha.solar_sim import BatteryEnv, Config, Observation, bump, evaluate, self_consumption, threshold_trader
+from solaralpha.tariffs import EXAMPLE_TARIFFS, ILLUSTRATIVE_SPOT_LINKED
 
 
 AEST = timezone(timedelta(hours=10), "AEST")  # AEMO market time, no DST
@@ -32,7 +33,7 @@ SOLAR_DERATE = 0.83  # horizontal irradiance to AC solar proxy
 
 def load_wholesale_prices():
     if not PRICE_FILE.exists():
-        raise FileNotFoundError(f"Run python fetch_historical_sample.py first: {PRICE_FILE}")
+        raise FileNotFoundError(f"Run python -m solaralpha.fetch_historical_sample first: {PRICE_FILE}")
     start_utc, end_utc = START_LOCAL.astimezone(UTC), END_LOCAL.astimezone(UTC)
     prices = {}
     with PRICE_FILE.open(encoding="utf-8-sig", newline="") as source:
@@ -52,38 +53,59 @@ def load_wholesale_prices():
     return prices
 
 
-def load_hourly_irradiance():
+def load_hourly_weather_field(field):
     if not WEATHER_FILE.exists():
-        raise FileNotFoundError(f"Run python fetch_historical_sample.py first: {WEATHER_FILE}")
+        raise FileNotFoundError(f"Run python -m solaralpha.fetch_historical_sample first: {WEATHER_FILE}")
     payload = json.loads(WEATHER_FILE.read_text(encoding="utf-8"))
     if payload["timezone"] != "GMT" or payload["utc_offset_seconds"] != 0:
         raise ValueError("Expected UTC weather timestamps")
     hours = payload["hourly"]["time"]
-    values = payload["hourly"]["shortwave_radiation"]  # preceding-hour mean, W/m²
-    if len(hours) != len(values) or any(value is None or value < 0 for value in values):
-        raise ValueError("Missing or invalid hourly irradiance")
+    values = payload["hourly"][field]
+    if len(hours) != len(values) or any(value is None for value in values):
+        raise ValueError(f"Missing hourly {field}")
     return {datetime.fromisoformat(hour).replace(tzinfo=UTC): float(value)
             for hour, value in zip(hours, values)}
+
+
+def load_hourly_irradiance():
+    irradiance = load_hourly_weather_field("shortwave_radiation")  # preceding-hour mean, W/m²
+    if any(value < 0 for value in irradiance.values()):
+        raise ValueError("Negative hourly irradiance")
+    return irradiance
+
+
+def modeled_load_kw(local_time, temperature_c, noise_kw=0.0):
+    """Illustrative household load; cooling rises above 24°C in the afternoon."""
+    hour = local_time.hour + local_time.minute / 60
+    cooling_kw = max(0.0, temperature_c - 24.0) * 0.25 * bump(hour, 16.0, 4.0)
+    return max(0.15, 0.60 + bump(hour, 7.5, 1.15)
+               + 1.05 * bump(hour, 19.0, 1.8) + cooling_kw + noise_kw)
 
 
 def build_observations(config, tariff=ILLUSTRATIVE_SPOT_LINKED):
     prices_mwh = load_wholesale_prices()
     irradiance = load_hourly_irradiance()
-    synthetic_load = make_data(config, days=DAYS, seed=LOAD_SEED, weather_variation=False)
+    temperature = load_hourly_weather_field("temperature_2m")
+    load_rng = Random(LOAD_SEED)
     start_utc = START_LOCAL.astimezone(UTC)
     observations = []
-    for index, load_record in enumerate(synthetic_load):
+    for index in range(DAYS * 24 * 12):
         interval_start_utc = start_utc + index * STEP
+        hour_start = interval_start_utc.replace(minute=0, second=0, microsecond=0)
         hour_end = interval_start_utc.replace(minute=0, second=0, microsecond=0) + timedelta(hours=1)
-        if interval_start_utc not in prices_mwh or hour_end not in irradiance:
+        if (interval_start_utc not in prices_mwh or hour_end not in irradiance
+                or hour_start not in temperature):
             raise ValueError(f"Missing historical input at {interval_start_utc}")
         # The hourly mean is repeated over its twelve five-minute intervals.
         solar_kw = min(config.solar_kw, config.solar_kw * SOLAR_DERATE
                        * irradiance[hour_end] / 1000.0)
         spot_aud_kwh = prices_mwh[interval_start_utc] / 1000.0
         buy_price, sell_price = tariff.prices(spot_aud_kwh)
+        local_time = interval_start_utc.astimezone(AEDT)
+        load_kw = modeled_load_kw(local_time, temperature[hour_start],
+                                  load_rng.gauss(0.0, 0.10))
         observations.append(Observation(
-            interval_start_utc.astimezone(AEDT), solar_kw, load_record.load_kw,
+            local_time, solar_kw, load_kw,
             buy_price, sell_price,
         ))
     return observations, prices_mwh
@@ -120,7 +142,7 @@ def plot_policy_day(config, data, prices_mwh, day, tariff):
             break
         obs, soc = next_obs
     date = rows[0][0].time.date().isoformat()
-    output = (Path(__file__).resolve().parent / "plots"
+    output = (Path(__file__).resolve().parent.parent / "plots"
               / f"hybrid_{date}_{tariff.name}_lagged_threshold.svg")
     output.parent.mkdir(exist_ok=True)
     spot_prices = [prices_mwh[obs.time.astimezone(UTC)] / 1000.0
@@ -148,7 +170,18 @@ def main():
     print(f"{selected_date} wholesale spot median ${median(selected_spot):.3f}/kWh; "
           f"peak ${max(selected_spot):.2f}/kWh")
     print(f"Solar proxy: {sum(obs.solar_kw for obs in reference_data) * config.dt / DAYS:.1f} kWh/day; "
-          f"synthetic load: {sum(obs.load_kw for obs in reference_data) * config.dt / DAYS:.1f} kWh/day")
+          f"temperature-responsive modeled load: "
+          f"{sum(obs.load_kw for obs in reference_data) * config.dt / DAYS:.1f} kWh/day")
+    temperature = load_hourly_weather_field("temperature_2m")
+    print(f"{'Sydney day':<12} {'Max temp (C)':>12} {'Load':>10} {'Solar':>10}")
+    for day in range(DAYS):
+        records = reference_data[day * 288:(day + 1) * 288]
+        temperatures = [temperature[obs.time.astimezone(UTC).replace(minute=0, second=0,
+                                                                      microsecond=0)]
+                        for obs in records]
+        print(f"{records[0].time.date()!s:<12} {max(temperatures):12.1f} "
+              f"{sum(obs.load_kw for obs in records) * config.dt:9.1f} kWh "
+              f"{sum(obs.solar_kw for obs in records) * config.dt:9.1f} kWh")
     print("Both tariffs are illustrative; money values are AUD for the seven-day episode.")
     print("Fixed: buy $0.30, sell $0.05/kWh. Spot-linked: buy spot + $0.17, sell spot - $0.01/kWh.")
     print(f"{'Tariff':<13} {'Policy':<18} {'Import':>8} {'Export':>8} {'Cash':>9} "
