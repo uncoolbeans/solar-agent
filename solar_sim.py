@@ -36,9 +36,14 @@ def bump(hour, center, width):
     return exp(-0.5 * ((hour - center) / width) ** 2)
 
 
-def make_data(config, days=14, seed=42):
-    """Synthetic summer profiles, not measured prices or weather."""
+def make_data(config, days=14, seed=42, weather_variation=True):
+    """Synthetic summer profiles, with seeded solar weather regimes and storms.
+
+    Set weather_variation=False to reproduce the earlier solar profile. Weather
+    uses a separate random stream, so load and prices are identical either way.
+    """
     rng = Random(seed)
+    weather_rng = Random(seed + 1_000_003)
     # January has no Sydney DST transition. Use UTC for later year-round datasets.
     start = datetime(2027, 1, 1, tzinfo=timezone(timedelta(hours=11), 'AEDT'))
     minutes = round(config.dt * 60)
@@ -46,7 +51,25 @@ def make_data(config, days=14, seed=42):
     records = []
     noise = 0.0
     cloud = 1.0
+    storm_factor = 1.0
+    regime = 'clear'
+    regimes = ('clear', 'mixed', 'overcast')
+    transition_weights = {
+        'clear': (0.70, 0.25, 0.05),
+        'mixed': (0.25, 0.55, 0.20),
+        'overcast': (0.10, 0.35, 0.55),
+    }
+    daily_solar_factors = {'clear': 1.0, 'mixed': 0.70, 'overcast': 0.40}
+    storm_chances = {'clear': 0.15, 'mixed': 0.40, 'overcast': 0.75}
     for day in range(days):
+        if weather_variation:
+            regime = weather_rng.choices(regimes, weights=transition_weights[regime])[0]
+            daily_solar_factor = daily_solar_factors[regime]
+            if weather_rng.random() < storm_chances[regime]:
+                storm_start = weather_rng.uniform(9.0, 17.0)
+                storm_end = storm_start + weather_rng.uniform(0.75, 3.0)
+            else:
+                storm_start = storm_end = -1.0
         sunshine = rng.uniform(0.40, 1.0)
         hot = rng.random() < 0.40
         spike = rng.random() < 0.18
@@ -58,6 +81,12 @@ def make_data(config, days=14, seed=42):
             cloud = max(0.60, min(1.0, 0.85 * cloud + 0.15 * rng.uniform(0.60, 1.0)))
             sunlight = max(0.0, sin(pi * (h - 5.75) / 14.25)) if 5.75 < h < 20 else 0.0
             solar = config.solar_kw * 0.83 * sunshine * cloud * sunlight ** 1.5
+            if weather_variation:
+                in_storm = storm_start <= h < storm_end
+                target = 0.08 if in_storm else 1.0
+                response = 0.55 if in_storm else 0.08  # fast onset, slower recovery
+                storm_factor += response * (target - storm_factor)
+                solar *= daily_solar_factor * storm_factor
             load = max(0.15, 0.52 + 1.0 * bump(h, 7.5, 1.15)
                        + 1.05 * bump(h, 19, 1.8)
                        + (0.80 if hot else 0.18) * bump(h, 15.5, 3.0)
@@ -130,7 +159,7 @@ def threshold_trader(obs, soc, c):
     return self_consumption(obs, soc, c)
 
 
-def evaluate(policy, c, data):
+def evaluate(policy, c, data, terminal_value_per_kwh=0.20):
     env = BatteryEnv(c, data)
     obs, soc = env.reset()
     min_soc = soc
@@ -146,8 +175,9 @@ def evaluate(policy, c, data):
     totals['final_soc'] = env.energy / c.capacity_kwh
     totals['min_soc'] = min_soc
     # Approximate terminal inventory value to avoid rewarding an empty battery.
-    # Compare sensitivity to this assumed value in later experiments.
-    totals['adjusted_reward'] = totals['reward'] + (env.energy - c.initial_soc * c.capacity_kwh) * c.eta_discharge * 0.20
+    totals['adjusted_reward'] = (totals['reward']
+                                 + (env.energy - c.initial_soc * c.capacity_kwh)
+                                 * c.eta_discharge * terminal_value_per_kwh)
     return totals
 
 

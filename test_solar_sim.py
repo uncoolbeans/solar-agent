@@ -8,6 +8,7 @@ from solar_sim import (
     BatteryEnv,
     Config,
     Observation,
+    evaluate,
     make_data,
     self_consumption,
     threshold_trader,
@@ -24,6 +25,26 @@ class SolarSimTests(unittest.TestCase):
         self.assertEqual(len(first), 288)
         self.assertEqual(first, make_data(self.c, days=1, seed=42))
         self.assertNotEqual(first, make_data(self.c, days=1, seed=43))
+
+    def test_weather_varies_solar_within_a_day_without_changing_load_or_prices(self):
+        old = make_data(self.c, days=14, seed=42, weather_variation=False)
+        variable = make_data(self.c, days=14, seed=42)
+        rapid_drop = False
+        for day in range(14):
+            ratios = []
+            for before, after in zip(old[day * 288:(day + 1) * 288],
+                                     variable[day * 288:(day + 1) * 288]):
+                self.assertEqual((before.time, before.load_kw, before.buy_price, before.sell_price),
+                                 (after.time, after.load_kw, after.buy_price, after.sell_price))
+                self.assertGreaterEqual(after.solar_kw, 0.0)
+                self.assertLessEqual(after.solar_kw, before.solar_kw + 1e-9)
+                ratios.append(after.solar_kw / before.solar_kw if before.solar_kw > 1 else None)
+            rapid_drop |= any(
+                ratios[i] is not None and ratios[i + 6] is not None
+                and ratios[i] > 0.3 and ratios[i + 6] < 0.5 * ratios[i]
+                for i in range(len(ratios) - 6)
+            )
+        self.assertTrue(rapid_drop, "Expected a substantial within-day storm drop")
 
     def test_executed_power_sign_and_efficiency(self):
         obs = Observation(self.time, 0.0, 0.0, 0.20, 0.10)
@@ -61,6 +82,19 @@ class SolarSimTests(unittest.TestCase):
         self.assertEqual(info["power_kw"], 0.0)
         self.assertAlmostEqual(info["export_kwh"], self.c.export_kw * self.c.dt)
         self.assertAlmostEqual(info["curtailed_kwh"], 5.0 * self.c.dt)
+
+    def test_terminal_value_only_adjusts_end_inventory(self):
+        obs = Observation(self.time, 0.0, 0.0, 0.20, 0.10)
+        charge = lambda observation, soc, config: config.charge_kw
+        no_terminal_value = evaluate(charge, self.c, [obs], terminal_value_per_kwh=0.0)
+        high_terminal_value = evaluate(charge, self.c, [obs], terminal_value_per_kwh=0.40)
+        self.assertAlmostEqual(no_terminal_value["adjusted_reward"], no_terminal_value["reward"])
+        self.assertAlmostEqual(no_terminal_value["reward"], high_terminal_value["reward"])
+        stored_gain = (high_terminal_value["final_soc"] - self.c.initial_soc) * self.c.capacity_kwh
+        self.assertAlmostEqual(
+            high_terminal_value["adjusted_reward"] - no_terminal_value["adjusted_reward"],
+            stored_gain * self.c.eta_discharge * 0.40,
+        )
 
     def test_energy_balance_and_reward_on_shared_scenario(self):
         data = make_data(self.c, days=1, seed=42)
