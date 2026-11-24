@@ -101,6 +101,34 @@ def make_data(config, days=14, seed=42, weather_variation=True):
     return records
 
 
+def battery_transition(c, energy_kwh, obs, action_kw):
+    """One physical step shared by the environment and a planning agent."""
+    surplus = obs.solar_kw - obs.load_kw
+    reserve_kwh = c.capacity_kwh * c.reserve
+    max_charge = min(c.charge_kw, max(0.0, (c.capacity_kwh - energy_kwh) / (c.eta_charge * c.dt)))
+    max_discharge = min(c.discharge_kw, max(0.0, (energy_kwh - reserve_kwh) * c.eta_discharge / c.dt),
+                        max(0.0, c.export_kw - surplus))
+    power = max(-max_discharge, min(max_charge, float(action_kw)))
+    charge, discharge = max(power, 0.0), max(-power, 0.0)
+    energy_kwh += (charge * c.eta_charge - discharge / c.eta_discharge) * c.dt
+    net_grid_kw = obs.load_kw - obs.solar_kw + power
+    imports = max(0.0, net_grid_kw) * c.dt
+    exports = min(c.export_kw, max(0.0, -net_grid_kw)) * c.dt
+    curtailed = max(0.0, -net_grid_kw - c.export_kw) * c.dt
+    import_cost = imports * obs.buy_price
+    export_revenue = exports * obs.sell_price
+    wear = discharge * c.dt * c.wear_per_kwh
+    reward = export_revenue - import_cost - wear
+    assert reserve_kwh - 1e-8 <= energy_kwh <= c.capacity_kwh + 1e-8
+    assert abs(obs.solar_kw * c.dt + imports + discharge * c.dt
+               - obs.load_kw * c.dt - exports - charge * c.dt - curtailed) < 1e-8
+    assert not (imports > 0 and exports > 0)
+    info = dict(import_kwh=imports, export_kwh=exports, curtailed_kwh=curtailed,
+                import_cost=import_cost, export_revenue=export_revenue, wear=wear,
+                reward=reward, power_kw=power, soc=energy_kwh / c.capacity_kwh)
+    return energy_kwh, info
+
+
 class BatteryEnv:
     """Action: requested battery AC power (positive charge, negative discharge)."""
     def __init__(self, config, data):
@@ -113,37 +141,14 @@ class BatteryEnv:
         return self.data[0], self.energy / self.c.capacity_kwh
 
     def step(self, action_kw):
-        c = self.c
         if self.i >= len(self.data):
             raise RuntimeError('Episode ended; call reset().')
         obs = self.data[self.i]
-        surplus = obs.solar_kw - obs.load_kw
-        reserve_kwh = c.capacity_kwh * c.reserve
-        max_charge = min(c.charge_kw, max(0.0, (c.capacity_kwh - self.energy) / (c.eta_charge * c.dt)))
-        max_discharge = min(c.discharge_kw, max(0.0, (self.energy - reserve_kwh) * c.eta_discharge / c.dt),
-                            max(0.0, c.export_kw - surplus))
-        power = max(-max_discharge, min(max_charge, float(action_kw)))
-        charge, discharge = max(power, 0.0), max(-power, 0.0)
-        self.energy += (charge * c.eta_charge - discharge / c.eta_discharge) * c.dt
-        net_grid_kw = obs.load_kw - obs.solar_kw + power
-        imports = max(0.0, net_grid_kw) * c.dt
-        exports = min(c.export_kw, max(0.0, -net_grid_kw)) * c.dt
-        curtailed = max(0.0, -net_grid_kw - c.export_kw) * c.dt
-        import_cost = imports * obs.buy_price
-        export_revenue = exports * obs.sell_price
-        wear = discharge * c.dt * c.wear_per_kwh
-        reward = export_revenue - import_cost - wear
-        assert reserve_kwh - 1e-8 <= self.energy <= c.capacity_kwh + 1e-8
-        assert abs(obs.solar_kw * c.dt + imports + discharge * c.dt
-                   - obs.load_kw * c.dt - exports - charge * c.dt - curtailed) < 1e-8
-        assert not (imports > 0 and exports > 0)
+        self.energy, info = battery_transition(self.c, self.energy, obs, action_kw)
         self.i += 1
         done = self.i == len(self.data)
-        next_obs = None if done else (self.data[self.i], self.energy / c.capacity_kwh)
-        info = dict(import_kwh=imports, export_kwh=exports, curtailed_kwh=curtailed,
-                    import_cost=import_cost, export_revenue=export_revenue, wear=wear,
-                    reward=reward, power_kw=power, soc=self.energy / c.capacity_kwh)
-        return next_obs, reward, done, info
+        next_obs = None if done else (self.data[self.i], self.energy / self.c.capacity_kwh)
+        return next_obs, info['reward'], done, info
 
 
 def self_consumption(obs, soc, c):

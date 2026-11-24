@@ -7,6 +7,7 @@ from statistics import median
 from solaralpha.historical_replay import AEDT, STEP, UTC, build_observations, lagged_threshold_policy, modeled_load_kw
 from solaralpha.solar_sim import (BatteryEnv, Config, Observation,
                                   evening_export_schedule, evaluate, self_consumption)
+from solaralpha.spike_sensitivity import cap_spot_prices, score_policies
 from solaralpha.tariffs import ILLUSTRATIVE_FIXED
 
 
@@ -87,6 +88,25 @@ class HistoricalReplayTests(unittest.TestCase):
         self.assertEqual(first["power_kw"], 0.0)
         self.assertEqual(second["power_kw"], -self.config.discharge_kw)
         self.assertEqual(second["export_revenue"], 0.0)
+
+    def test_spike_cap_changes_only_prices_and_preserves_dispatch(self):
+        capped = cap_spot_prices(self.data, self.prices_mwh, 1.10)
+        changed = 0
+        for original, counterfactual in zip(self.data, capped):
+            self.assertEqual((original.time, original.solar_kw, original.load_kw),
+                             (counterfactual.time, counterfactual.solar_kw,
+                              counterfactual.load_kw))
+            changed += (original.buy_price, original.sell_price) != (
+                counterfactual.buy_price, counterfactual.sell_price)
+        self.assertEqual(changed, 3)
+
+        observed_scores = score_policies(self.config, self.data)
+        capped_scores = score_policies(self.config, capped)
+        for name in observed_scores:
+            with self.subTest(policy=name):
+                for key in ("import_kwh", "export_kwh", "final_soc"):
+                    self.assertAlmostEqual(observed_scores[name][key],
+                                           capped_scores[name][key])
 
 
 if __name__ == "__main__":

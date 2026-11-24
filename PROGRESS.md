@@ -107,3 +107,72 @@ Awaiting review before another simulator milestone.
 - Added a clock/price-independence test and included this policy in the full energy balance test. Sixteen tests pass. Generated 15 and 17 January schedule plots under both illustrative tariffs.
 
 Awaiting review before another simulator milestone.
+
+## 2026-11-24 — historical spike sensitivity
+
+- After review of the evening schedule, added `solaralpha/spike_sensitivity.py`. Its default $1.10/kWh counterfactual wholesale cap changes only the three $17.50/kWh intervals on 15 January. Both modeled buy and sell prices are recalculated; the raw AEMO snapshot, solar proxy, load, and battery setup remain unchanged.
+- With the illustrative spot-linked tariff, terminal-adjusted rewards in the observed replay are $19.75 for self-consumption, $22.66 for lagged threshold, and $17.64 for the evening schedule. With the cap they fall to $0.78, $2.16, and -$1.34. The threshold advantage over self-consumption shrinks from $2.91 to $1.38.
+- Physical import/export totals and final SOC remain identical across the observed and capped runs for each policy, so the difference here comes from price settlement. This is a controlled sensitivity check, not a historical correction or household bill prediction.
+- Added a test for unchanged physical observations and dispatch plus exactly three price changes; all 17 tests pass.
+
+Awaiting review before another simulator milestone.
+
+## 2026-11-24 — decision-time agent view
+
+- Added `solaralpha/decision_time.py` with an immutable `DecisionView` and a filtered evaluator. Policies receive current interval start time and SOC, plus solar, load, and modeled prices from the previous completed five-minute interval. They cannot read the current raw `Observation` through this runner; the existing `BatteryEnv` still settles energy and reward using the current interval's actual values.
+- Added two small decision-time rules for demonstration: previous-interval self-consumption and the previous-price threshold with a previous-power fallback. Existing replay policies and outputs are preserved as reference benchmarks; some of those references use current recorded solar/load.
+- On the seven-day illustrative spot-linked replay, terminal-adjusted rewards are $19.75 for the existing same-interval self-consumption reference, $18.12 for decision-time self-consumption, and $21.11 for the decision-time threshold. These are still modeled outcomes, not home bill estimates. The assumed one-interval price availability and historical five-minute power averages are limitations.
+- Added tests showing that changing a hidden current interval leaves its action unchanged, becomes visible at the next decision, and changes settlement reward. The filtered runner reuses the existing physical accounting. All 19 tests pass.
+
+Awaiting review before the model predictive trading-agent milestone.
+
+## 2026-11-24 — first simulated model predictive controller
+
+- Added `solaralpha/mpc_agent.py`: a one-hour (12 five-minute step) receding-horizon controller using persistence forecasts from the filtered decision-time view. It considers hold, forecast solar-minus-load power, full charge, and full discharge requests; its dynamic program merges battery states into 0.25 kWh bins. The objective sums modeled export revenue minus import cost and wear, plus `0.95 × $0.20 × ending battery kWh`. It executes only the first request and replans at every interval.
+- Extracted `battery_transition` from `BatteryEnv.step` so the planner and physical environment use identical capacity, reserve, efficiency, export, curtailment, and reward calculations. The synthetic simulator, historical replay, and decision-time demonstration outputs matched their pre-refactor output exactly.
+- On the seven-day illustrative spot-linked replay, adjusted reward is $15.29 for persistence MPC, $18.12 for decision-time self-consumption, and $21.11 for the decision-time threshold. MPC imports 39.93 kWh versus 8.55/8.50 kWh for the two rules. With the three extreme spot intervals counterfactually capped at $1.10/kWh, the corresponding adjusted rewards are -$4.50, -$0.85, and $0.61. The simple persistence forecast and assumed terminal energy value need scrutiny; this result is not a home savings estimate.
+- Generated `plots/hybrid_2025-01-15_spot_linked_persistence_mpc.svg` for review. Tests cover forecast timing, initial missing history, action tradeoffs, and the hidden-current-price boundary. All 22 tests pass.
+
+Awaiting review before improving forecasts or the controller.
+
+## 2026-11-24 — offline forecast-oracle diagnostic
+
+- Added a `ForecastProvider` interface and kept `mpc_action` wired to the original persistence forecast. Its seven-day output is unchanged. Only `oracle_diagnostic.py` can combine recorded future observations with persistence; ordinary policies still receive the filtered decision-time view.
+- Compared decision-time self-consumption and threshold rules with MPC using persistence for everything, perfect future household buy/sell prices only, perfect future solar/load only, or all recorded future values. Every run uses the same seven-day episode, tariff, initial 50% SOC, battery parameters, one-hour horizon, 0.25 kWh planning bins, candidate actions, wear cost, and $0.20/kWh terminal value.
+
+| Policy | Observed adjusted reward | Capped adjusted reward | Observed imports |
+| --- | ---: | ---: | ---: |
+| Decision-time self-consumption | $18.12 | -$0.85 | 8.55 kWh |
+| Decision-time threshold | $21.11 | $0.61 | 8.50 kWh |
+| Persistence MPC | $15.29 | -$4.50 | 39.93 kWh |
+| Oracle prices | $15.98 | -$3.82 | 43.45 kWh |
+| Oracle solar/load | $17.03 | -$3.47 | 37.93 kWh |
+| Oracle all | $17.67 | -$2.83 | 38.06 kWh |
+
+- In the observed replay, perfect prices alone add $0.69 adjusted reward to persistence MPC; perfect solar/load alone add $1.74; all perfect values add $2.38. Even all-perfect one-hour MPC trails the decision-time threshold by $3.44. Its 38.06 kWh of imports versus 8.50 kWh for the threshold rule, despite only $1.24 more export revenue, is a concrete source of the financial gap. Forecast error is therefore not the only issue; the short planning horizon, fixed terminal value, candidate actions, and energy-bin approximation remain possible contributors, not yet isolated causes.
+- Repeated the experiment with the existing $1.10/kWh spot cap, changing only three spike intervals and recalculating the illustrative tariff. The policy ranking persists. The large fall in all rewards shows dependence on the extreme spike for absolute returns; it is not a prediction of actual household bills.
+- The runner reports cash flow, net and terminal-adjusted reward, import/export energy, executed AC charge-plus-discharge throughput, discharge wear cost, and final SOC. Generated `plots/oracle_comparison_2025-01-15_observed.svg` and `plots/oracle_comparison_2025-01-15_capped.svg` with price, SOC, executed action, and cumulative daily reward panels. Parsed both SVGs successfully. All 27 tests pass, including forecast-field isolation, no future-data leak to persistence, benchmark agreement, and accounting checks.
+- Limitations: the week is short; solar is a weather-derived proxy, load is modeled, and the spot-linked tariff, wear cost, and terminal value are illustrative. Partial-oracle cases hold at the first interval because there is no completed reading for their persistence fields. Forecast steps beyond the recorded episode fall back to persistence, and the all-oracle case is still an approximate, finite-horizon MPC rather than a whole-episode optimum.
+
+Awaiting user review before another milestone.
+
+## 2026-11-25 — all-oracle planning-horizon sensitivity
+
+- Made the offline oracle comparison accept an explicit planning horizon while retaining 12 five-minute steps (one hour) as its default. Added `horizon_sensitivity.py` to compare 1, 3, 6, and 12 hours on the unchanged 13–19 January historical replay and the existing three-interval $1.10/kWh spot-cap counterfactual. Every case uses the same initial SOC, battery physics, candidate actions, 0.25 kWh state bins, spot-linked illustrative tariff, wear cost, and $0.20/kWh internal and evaluation terminal values. Ordinary `mpc_action` still uses decision-time persistence; recorded future data is accessible only in the offline oracle provider.
+
+| Policy | Observed adjusted reward | Capped adjusted reward | Imports | Mean planning ms/decision observed / capped | Episode runtime observed / capped |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Decision-time self | $18.12 | -$0.85 | 8.55 kWh | <0.01 / <0.01 | 0.02 / 0.02 s |
+| Decision-time threshold | $21.11 | $0.61 | 8.50 kWh | <0.01 / <0.01 | 0.02 / 0.03 s |
+| All-oracle MPC, 1 h | $17.67 | -$2.83 | 38.06 kWh | 1.09 / 1.57 | 2.22 / 3.20 s |
+| All-oracle MPC, 3 h | $19.42 | -$1.08 | 31.73 kWh | 13.79 / 14.08 | 27.87 / 28.46 s |
+| All-oracle MPC, 6 h | $21.66 | $1.16 | 25.17 kWh | 28.64 / 27.78 | 57.78 / 56.04 s |
+| All-oracle MPC, 12 h | $24.38 | $3.88 | 23.18 kWh | 75.44 / 81.90 | 152.13 / 165.18 s |
+
+- The 12-hour oracle beats the threshold rule by $3.27 adjusted reward in both scenarios; the one-hour oracle trails it by $3.44. Longer planning reduces imports but increases battery throughput and wear. At 12 hours, throughput is 271.34 kWh and wear $6.19, compared with 160.89 kWh and $3.57 at one hour. Minimum SOC falls from 32.3% to 20.2%, still above the 20% reserve.
+- Import attribution uses executed battery power, not requested action. At one hour, 17.31 kWh of imports occur in charge intervals, of which 15.16 kWh are incremental grid draw caused by charging; 20.75 kWh occur while holding. At 12 hours, those figures are 6.66, 5.84, and 16.52 kWh. No oracle imports occur while discharging, at the reserve, or while a discharge request is clipped in these replays. Thus depletion does not explain the excess; charging and hold decisions do. The household demand portion of imports during charging is separated from the charging increment.
+- Full 24-hour runs were not completed because of the unchanged Python dynamic-programming search cost. Thirty-two spread-out decisions at fixed 50% SOC averaged 176.78 ms observed and 183.80 ms capped, suggesting roughly 356–371 s per 2,016-decision episode. This estimate is uncertain: full observed 12-hour runs varied from 152 to 230 s on this machine. These are runtime probes, not 24-hour financial backtests. The planner expands up to four action candidates across reachable 0.25 kWh battery bins at every forecast step, at every decision; no action, resolution, valuation, or optimization algorithm was changed to reduce runtime.
+- Beyond the recorded week, forecast slots use persistence rather than unseen data. This affects the final 11, 35, 71, and 143 decisions for 1, 3, 6, and 12 hours respectively; the 24-hour case would affect 287 decisions. The oracle is perfect only for recorded intervals and remains an approximate finite-horizon planner, not a whole-week optimum. The single week, modeled solar/load, illustrative tariff, terminal value, and machine-dependent runtimes limit generalization.
+- Generated `plots/horizon_sensitivity_2025-01-15_observed.svg` and its capped counterpart with daily cumulative net reward, SOC, imports, exports, and whole-week adjusted reward versus horizon. Both SVGs parsed successfully. All 32 tests pass, including horizon conversion, dataset-edge padding, unchanged one-hour benchmark, import attribution, and runtime sampling.
+
+Awaiting user review before another milestone.
