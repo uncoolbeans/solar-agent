@@ -133,15 +133,18 @@ def threshold_trader(obs, soc, c):
 def evaluate(policy, c, data):
     env = BatteryEnv(c, data)
     obs, soc = env.reset()
+    min_soc = soc
     totals = {k: 0.0 for k in ('import_kwh', 'export_kwh', 'curtailed_kwh', 'import_cost', 'export_revenue', 'wear', 'reward')}
     while True:
         next_obs, reward, done, info = env.step(policy(obs, soc, c))
+        min_soc = min(min_soc, info['soc'])
         for key in totals:
             totals[key] += info[key]
         if done:
             break
         obs, soc = next_obs
     totals['final_soc'] = env.energy / c.capacity_kwh
+    totals['min_soc'] = min_soc
     # Approximate terminal inventory value to avoid rewarding an empty battery.
     # Compare sensitivity to this assumed value in later experiments.
     totals['adjusted_reward'] = totals['reward'] + (env.energy - c.initial_soc * c.capacity_kwh) * c.eta_discharge * 0.20
