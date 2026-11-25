@@ -17,6 +17,8 @@ Simulation-first solar and battery trading experiments for a Sydney household. T
 | `solaralpha/forecasting.py` | Forecast provider interface and persistence benchmark |
 | `solaralpha/oracle_diagnostic.py` | Offline forecast-oracle comparison and private future-data provider |
 | `solaralpha/horizon_sensitivity.py` | Offline all-oracle planning-horizon and runtime comparison |
+| `solaralpha/terminal_sensitivity.py`, `solaralpha/inspect_terminal_holds.py` | Offline terminal-value sweep and interval diagnostics |
+| `solaralpha/perfect_foresight.py`, `solaralpha/perfect_foresight_experiment.py` | Offline whole-episode MILP and six-policy comparison |
 | `solaralpha/fetch_historical_sample.py` | Fetches the fixed historical input snapshots if absent |
 | `tests/` | Standard-library unit tests |
 | `data/`, `plots/` | Historical inputs and generated SVG charts |
@@ -37,6 +39,9 @@ python -m solaralpha.mpc_agent --plot-day 3
 python -m solaralpha.oracle_diagnostic --plot-day 3
 python -m solaralpha.horizon_sensitivity --hours 1 3 6 12 --plot-day 3
 python -m solaralpha.horizon_sensitivity --hours 24 --scenario observed --timing-samples 32
+python -m solaralpha.terminal_sensitivity --scenario observed
+python -m solaralpha.plot_terminal_sensitivity
+python -m solaralpha.inspect_terminal_holds --hours 1 --value 0.40
 ```
 
 The historical replay reads local files in `data/raw/`. If they are missing, run `python -m solaralpha.fetch_historical_sample` to download the pinned sample described in [data/README.md](data/README.md). Charts continue to be saved in `plots/`.
@@ -64,3 +69,24 @@ The console reports cash flow, net and terminal-adjusted reward, grid imports an
 The output includes mean and 95th-percentile wall-clock planning time per decision, whole-episode runtime, and an import breakdown. Imports during battery charging include both household demand and charging; the separate "charging increment" estimates the additional grid draw caused by charging. Imports while holding or discharging supply remaining household demand. At the end of the seven-day snapshot, oracle forecasts use recorded data only through the last interval and persistence beyond it. The `--timing-samples N` option times spread-out decisions at a fixed 50% SOC without running a financial backtest, useful for estimating the cost of longer horizons.
 
 The default horizon comparison runs 1, 3, 6, and 12 hours. A full 24-hour run remains available with `--hours 24`, but was not run for this milestone because the unchanged dynamic program's timing sample suggests roughly six minutes per seven-day scenario, with substantial wall-clock variability. No 24-hour financial result is inferred from that sample; details are in [PROGRESS.md](PROGRESS.md).
+
+## Internal terminal-value diagnostic
+
+The planner's internal battery value can now vary independently of evaluation. The planner adds `0.95 × internal_value × ending stored kWh` to its forecast reward; the evaluation adjustment always uses `$0.20/kWh` and the change in stored energy over the whole episode. `mpc_agent` and `oracle_diagnostic` accept `--internal-terminal-value` while retaining the earlier `$0.20/kWh` default. This changes decisions, not the physical transition or evaluation formula.
+
+`solaralpha.terminal_sensitivity` runs all-oracle MPC at 1, 6, and 12 hours for six internal values from `$0.00` to `$0.40/kWh`. It writes each result and a selected-day trace to `data/derived/terminal_sensitivity_results.json` as it completes, so an interrupted sweep resumes without rerunning completed settings. Identical `$0.20` cases reuse the rounded, input-hash-checked results in `data/derived/horizon_reference.json`. Use `--no-reference --pairs 1:0.20` to recompute a reference case when an exact trace is needed. The plots include reward and import heatmaps, SOC/action comparisons, and adjusted reward versus battery throughput. These are diagnostics on the same seven-day replay, not a separate validation set for choosing a final controller.
+
+## Whole-episode perfect-foresight benchmark
+
+This offline experiment uses HiGHS through `highspy` (an optional pinned dependency; it brings NumPy). Create a local virtual environment and run:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements-optimizer.txt
+.\.venv\Scripts\python.exe -m unittest -v
+.\.venv\Scripts\python.exe -m solaralpha.perfect_foresight
+```
+
+The runner solves a mixed-integer linear program over all 2,016 recorded five-minute intervals for observed and capped prices. It allows continuous battery power, enforces the simulator's energy balance, efficiencies, limits, exclusive battery and grid directions, and forced-only solar curtailment. It includes discharge wear and the same **single** $0.20/kWh final-minus-initial battery energy adjustment used by evaluation. It replays the proposed actions through `BatteryEnv`, reports solver status, objective bound, gap, runtime, and replay error, and compares the six policies. Exact prior 12-hour $0.10 MPC results are reused only after input hashes are checked; they are recomputed if that optional checkpoint is absent. The rounded $0.20 reference is always recomputed. Results are saved to `data/derived/perfect_foresight_results.json`, with selected-day SVGs in `plots/`.
+
+The optimiser reads the complete replay and is not a deployable agent. These seven days are a development diagnostic, and the solar proxy, load, tariff, wear, and terminal value remain illustrative.

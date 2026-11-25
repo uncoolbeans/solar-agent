@@ -50,7 +50,8 @@ def draw_panel(root, top, title, series, unit, limits=None, clip=False,
                 stroke_width=2, stroke_linejoin="round", stroke_linecap="round")
 
 
-def save_comparison(scenario, day, episode, results, config, horizon_steps=12):
+def save_comparison(scenario, day, episode, results, config, horizon_steps=12,
+                    internal_terminal_value_per_kwh=0.20):
     intervals_per_day = round(24 / config.dt)
     start, end = (day - 1) * intervals_per_day, day * intervals_per_day
     selected = episode[start:end]
@@ -65,7 +66,8 @@ def save_comparison(scenario, day, episode, results, config, horizon_steps=12):
     })
     element(root, "rect", x=0, y=0, width=1200, height=1200, fill="white")
     label(root, 90, 34,
-          f"Forecast-oracle comparison | {date} | {scenario} | {horizon_steps} steps",
+          f"Forecast-oracle comparison | {date} | {scenario} | {horizon_steps} steps"
+          f" | value ${internal_terminal_value_per_kwh:.2f}/kWh",
           font_size=21, font_weight="bold", fill="#172339")
     price_note = ("Recorded spot-linked prices" if scenario == "observed"
                   else "Counterfactual spot-linked prices, spot capped at $1.10/kWh")
@@ -104,6 +106,8 @@ def save_comparison(scenario, day, episode, results, config, horizon_steps=12):
           "Daily reward starts at zero; seven-day terminal-adjusted results are in the console table.",
           font_size=12, fill="#576579")
     suffix = "" if horizon_steps == 12 else f"_{horizon_steps}step"
+    if internal_terminal_value_per_kwh != 0.20:
+        suffix += f"_{internal_terminal_value_per_kwh:.2f}value"
     output = (Path(__file__).resolve().parent.parent / "plots"
               / f"oracle_comparison_{date}_{scenario}{suffix}.svg")
     output.parent.mkdir(exist_ok=True)

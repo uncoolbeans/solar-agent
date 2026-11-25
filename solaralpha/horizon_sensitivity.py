@@ -37,12 +37,14 @@ def horizon_steps(hours, config):
     return steps
 
 
-def oracle_controller(episode, horizon):
-    """Create an offline-only controller with a fixed planning horizon."""
+def oracle_controller(episode, horizon,
+                      internal_terminal_value_per_kwh=DEFAULT_TERMINAL_VALUE):
+    """Create an offline-only controller with a fixed horizon and salvage value."""
     def controller(view, config, index):
         provider = _OfflineOracleForecaster(episode, index, ALL_ORACLE)
         return forecast_action(view, config, provider, horizon,
-                               DEFAULT_ENERGY_BIN_KWH, DEFAULT_TERMINAL_VALUE)
+                               DEFAULT_ENERGY_BIN_KWH,
+                               internal_terminal_value_per_kwh)
     return controller
 
 

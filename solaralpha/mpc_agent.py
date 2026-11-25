@@ -81,15 +81,22 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--horizon", type=int, default=DEFAULT_HORIZON,
                         help="number of five-minute intervals to plan (default: 12)")
+    parser.add_argument("--internal-terminal-value", type=float,
+                        default=DEFAULT_TERMINAL_VALUE,
+                        help="planner value of future discharged energy in AUD/kWh (default: 0.20)")
     parser.add_argument("--plot-day", type=int, choices=range(1, 8),
                         metavar="1-7", help="also save a Sydney day SVG to plots/")
     args = parser.parse_args()
     if args.horizon < 1:
         parser.error("--horizon must be at least one interval")
+    if not isfinite(args.internal_terminal_value) or args.internal_terminal_value < 0:
+        parser.error("--internal-terminal-value must be nonnegative and finite")
 
     config = Config()
     observations, prices_mwh = build_observations(config)
-    policy = lambda view, c: mpc_action(view, c, horizon=args.horizon)
+    policy = lambda view, c: mpc_action(
+        view, c, horizon=args.horizon,
+        terminal_value_per_kwh=args.internal_terminal_value)
     results = (
         ("decision-time self", evaluate_decision_policy(
             last_observed_self_consumption, config, observations)),
@@ -99,7 +106,8 @@ def main():
     )
     print(f"Seven-day historical replay; illustrative spot-linked tariff; {args.horizon}-step horizon")
     print("MPC repeats the last completed solar, load, and prices across its forecast horizon.")
-    print("Adjusted net includes $0.20/kWh value for terminal stored energy.")
+    print(f"Planner terminal value: ${args.internal_terminal_value:.2f}/kWh; "
+          "evaluation terminal value: $0.20/kWh.")
     print(f"{'Policy':<25} {'Net':>9} {'Adjusted':>10} {'Import':>9} "
           f"{'Export':>9} {'Wear':>8} {'Min SOC':>9} {'Final SOC':>10}")
     for name, result in results:

@@ -1,0 +1,18 @@
+{
+  "source": "Completed 2026-11-25 planning-horizon sensitivity run; metrics rounded as previously reported in PROGRESS.md and its console output",
+  "config_sha256": "5eba9cf7eb602cdbbbc68ce4be97231ac30cb0009e50ce50f1c9e0b8b2e4d24e",
+  "episode_sha256": {
+    "observed": "66c8a5f46a35ebaf01f5d1d641a0a5dd7dfd855789c6c7cab05bef94891b9cb9",
+    "capped": "9ed00074a2b0d31ca5e03f25b6e2c3843bff2d82601ce12a9777ee419f32be42"
+  },
+  "evaluation_terminal_value_per_kwh": 0.2,
+  "internal_terminal_value_per_kwh": 0.2,
+  "results": {
+    "observed:1": {"cash_flow": 19.34, "reward": 15.77, "adjusted_reward": 17.67, "import_kwh": 38.06, "export_kwh": 168.14, "import_due_to_charging_kwh": 15.16, "import_while_charging_kwh": 17.31, "import_while_holding_kwh": 20.75, "throughput_kwh": 160.89, "wear": 3.57, "final_soc": 0.834, "min_soc": 0.323, "decision_mean_ms": 1.091, "simulation_runtime_s": 2.218},
+    "observed:6": {"cash_flow": 24.12, "reward": 19.76, "adjusted_reward": 21.66, "import_kwh": 25.17, "export_kwh": 158.01, "import_due_to_charging_kwh": 4.91, "import_while_charging_kwh": 5.73, "import_while_holding_kwh": 19.44, "throughput_kwh": 194.44, "wear": 4.36, "final_soc": 0.834, "min_soc": 0.310, "decision_mean_ms": 28.635, "simulation_runtime_s": 57.776},
+    "observed:12": {"cash_flow": 28.66, "reward": 22.47, "adjusted_reward": 24.38, "import_kwh": 23.18, "export_kwh": 159.17, "import_due_to_charging_kwh": 5.84, "import_while_charging_kwh": 6.66, "import_while_holding_kwh": 16.52, "throughput_kwh": 271.34, "wear": 6.19, "final_soc": 0.834, "min_soc": 0.202, "decision_mean_ms": 75.435, "simulation_runtime_s": 152.128},
+    "capped:1": {"cash_flow": -1.16, "reward": -4.73, "adjusted_reward": -2.83, "import_kwh": 38.06, "export_kwh": 168.14, "import_due_to_charging_kwh": 15.16, "import_while_charging_kwh": 17.31, "import_while_holding_kwh": 20.75, "throughput_kwh": 160.89, "wear": 3.57, "final_soc": 0.834, "min_soc": 0.323, "decision_mean_ms": 1.572, "simulation_runtime_s": 3.199},
+    "capped:6": {"cash_flow": 3.62, "reward": -0.74, "adjusted_reward": 1.16, "import_kwh": 25.17, "export_kwh": 158.01, "import_due_to_charging_kwh": 4.91, "import_while_charging_kwh": 5.73, "import_while_holding_kwh": 19.44, "throughput_kwh": 194.44, "wear": 4.36, "final_soc": 0.834, "min_soc": 0.310, "decision_mean_ms": 27.778, "simulation_runtime_s": 56.041},
+    "capped:12": {"cash_flow": 8.16, "reward": 1.97, "adjusted_reward": 3.88, "import_kwh": 23.18, "export_kwh": 159.17, "import_due_to_charging_kwh": 5.84, "import_while_charging_kwh": 6.66, "import_while_holding_kwh": 16.52, "throughput_kwh": 271.34, "wear": 6.19, "final_soc": 0.834, "min_soc": 0.202, "decision_mean_ms": 81.898, "simulation_runtime_s": 165.182}
+  }
+}

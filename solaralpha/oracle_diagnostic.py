@@ -8,7 +8,7 @@ None of its oracle providers belong in a deployable agent or live control path.
 import argparse
 from dataclasses import dataclass, replace
 from datetime import timedelta
-from math import ceil
+from math import ceil, isfinite
 from time import perf_counter
 
 from solaralpha.decision_time import (decision_view,
@@ -149,7 +149,8 @@ def run_episode(config, episode, controller, terminal_value_per_kwh=DEFAULT_TERM
     return totals, rows
 
 
-def run_comparison(config, episode, horizon=DEFAULT_HORIZON):
+def run_comparison(config, episode, horizon=DEFAULT_HORIZON,
+                   internal_terminal_value_per_kwh=DEFAULT_TERMINAL_VALUE):
     """Evaluate the same baseline policies and four MPC forecasts on one episode."""
     results = {}
     for name, policy in (("decision_self", last_observed_self_consumption),
@@ -158,12 +159,15 @@ def run_comparison(config, episode, horizon=DEFAULT_HORIZON):
                                     lambda view, c, index, policy=policy: policy(view, c))
     for case in FORECAST_CASES:
         if case == FORECAST_CASES[0]:
-            controller = lambda view, c, index: mpc_action(view, c, horizon=horizon)
+            controller = lambda view, c, index: mpc_action(
+                view, c, horizon=horizon,
+                terminal_value_per_kwh=internal_terminal_value_per_kwh)
         else:
             def controller(view, c, index, case=case):
                 provider = _OfflineOracleForecaster(episode, index, case)
                 return forecast_action(view, c, provider, horizon,
-                                       DEFAULT_ENERGY_BIN_KWH, DEFAULT_TERMINAL_VALUE)
+                                       DEFAULT_ENERGY_BIN_KWH,
+                                       internal_terminal_value_per_kwh)
         results[case.name] = run_episode(config, episode, controller)
     return results
 
@@ -183,25 +187,33 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--horizon", type=int, default=DEFAULT_HORIZON,
                         help="five-minute planning steps (default: 12, one hour)")
+    parser.add_argument("--internal-terminal-value", type=float,
+                        default=DEFAULT_TERMINAL_VALUE,
+                        help="planner terminal value in AUD/kWh (default: 0.20)")
     parser.add_argument("--plot-day", type=int, choices=range(1, 8), default=3,
                         metavar="1-7", help="Sydney day to compare in SVG plots (default: 3)")
     args = parser.parse_args()
     if args.horizon < 1:
         parser.error("--horizon must be at least one interval")
+    if not isfinite(args.internal_terminal_value) or args.internal_terminal_value < 0:
+        parser.error("--internal-terminal-value must be nonnegative and finite")
     config = Config()
     observed, prices_mwh = build_observations(config)
     capped = cap_spot_prices(observed, prices_mwh, 1.10)
     print("Offline oracle forecast diagnostic; illustrative spot-linked tariff")
-    print("All policies start at 50% SOC with the same battery physics and $0.20/kWh terminal value.")
+    print("All policies start at 50% SOC with the same battery physics.")
+    print(f"Planner terminal value: ${args.internal_terminal_value:.2f}/kWh; "
+          "evaluation terminal value: $0.20/kWh.")
     print(f"MPC: {args.horizon} five-minute steps, 0.25 kWh energy bins, unchanged candidate actions.")
     print("Throughput = executed AC charge + discharge kWh; wear = discharged AC kWh x $0.05.")
     print("Oracle fields use recorded future values only inside this diagnostic.")
     for name, episode in (("observed", observed), ("capped", capped)):
-        results = run_comparison(config, episode, args.horizon)
+        results = run_comparison(config, episode, args.horizon,
+                                 args.internal_terminal_value)
         print_comparison(name, results)
         from solaralpha.plot_oracle_comparison import save_comparison
         path = save_comparison(name, args.plot_day, episode, results, config,
-                               args.horizon)
+                               args.horizon, args.internal_terminal_value)
         print(f"Wrote {path}")
 
 

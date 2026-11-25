@@ -1,0 +1,2 @@
+# Optional: whole-episode perfect-foresight MILP solved by HiGHS.
+highspy==1.16.0
