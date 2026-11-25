@@ -1,0 +1,53 @@
+{
+  "files": {
+    "data/raw/PRICE_AND_DEMAND_202412_NSW1.CSV": {
+      "bytes": 412737,
+      "kind": "aemo_price_and_demand",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T22:55:27.535635+00:00",
+      "response_headers": {
+        "Content-Type": "text/csv",
+        "ETag": null,
+        "Last-Modified": "Thu, 19 Nov 2026 02:22:17 GMT"
+      },
+      "retrieved_at_utc": "2026-11-25T22:55:27.535654+00:00",
+      "sha256": "071b3aed47e626902171a0c8394d5c841345b9877a8666197f2334eda40ab7aa",
+      "url": "https://www.nemweb.com.au/Reports/CURRENT/WebData/NEM/PRICEANDDEMAND/PRICE_AND_DEMAND_202412_NSW1.CSV"
+    },
+    "data/raw/PRICE_AND_DEMAND_202501_NSW1.CSV": {
+      "bytes": 409875,
+      "kind": "aemo_price_and_demand",
+      "origin": "preexisting_local",
+      "recorded_at_utc": "2026-11-25T22:55:27.537601+00:00",
+      "response_headers": {},
+      "retrieved_at_utc": null,
+      "sha256": "975e8603457f1370f818c880e18a8a7f0c09794410a04d83a0b6f677dca9906a",
+      "url": "https://www.nemweb.com.au/Reports/CURRENT/WebData/NEM/PRICEANDDEMAND/PRICE_AND_DEMAND_202501_NSW1.CSV"
+    },
+    "data/raw/open_meteo_era5_sydney_local_202501.json": {
+      "bytes": 25065,
+      "kind": "open_meteo_reanalysis",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T22:55:29.907628+00:00",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": null,
+        "Last-Modified": null
+      },
+      "retrieved_at_utc": "2026-11-25T22:55:29.907652+00:00",
+      "sha256": "8ff173139dc933c3c56a4a695b47c8c96f2d1bdefebd7771895e9fa1dda95758",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-33.87&longitude=151.21&start_date=2024-12-31&end_date=2025-01-31&hourly=shortwave_radiation%2Ccloud_cover%2Ctemperature_2m&timezone=GMT&models=era5"
+    },
+    "data/raw/sydney_weather_2025-01-12_20.json": {
+      "bytes": 7362,
+      "kind": "open_meteo_reanalysis",
+      "origin": "preexisting_local",
+      "recorded_at_utc": "2026-11-25T22:58:34.595650+00:00",
+      "response_headers": {},
+      "retrieved_at_utc": null,
+      "sha256": "3c6ddae4e6c7b59339a8b29be180944c05500ba12ccbe93d6256f57b4b45f853",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-33.87&longitude=151.21&start_date=2025-01-12&end_date=2025-01-20&hourly=shortwave_radiation,cloud_cover,temperature_2m&timezone=GMT"
+    }
+  },
+  "schema_version": 1
+}

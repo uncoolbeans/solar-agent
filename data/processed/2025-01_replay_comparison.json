@@ -1,0 +1,49 @@
+{
+  "benchmark_inputs_modified": false,
+  "comparison": {
+    "cloud_cover": {
+      "exact_matches": 336,
+      "max_absolute_difference": 93.0,
+      "mean_absolute_difference": 18.80952380952381
+    },
+    "illustrative_buy_aud_per_kwh": {
+      "exact_matches": 2016,
+      "max_absolute_difference": 0.0,
+      "mean_absolute_difference": 0.0
+    },
+    "illustrative_sell_aud_per_kwh": {
+      "exact_matches": 2016,
+      "max_absolute_difference": 0.0,
+      "mean_absolute_difference": 0.0
+    },
+    "modeled_household_load_kw": {
+      "exact_matches": 0,
+      "max_absolute_difference": 1.4853389632269096,
+      "mean_absolute_difference": 0.205806877492035
+    },
+    "shortwave_radiation": {
+      "exact_matches": 840,
+      "max_absolute_difference": 470.0,
+      "mean_absolute_difference": 50.601190476190474
+    },
+    "solar_proxy_kw": {
+      "exact_matches": 840,
+      "max_absolute_difference": 3.901,
+      "mean_absolute_difference": 0.41998988095238093
+    },
+    "spot_aud_per_kwh": {
+      "exact_matches": 2016,
+      "max_absolute_difference": 0.0,
+      "mean_absolute_difference": 0.0
+    },
+    "temperature_2m": {
+      "exact_matches": 132,
+      "max_absolute_difference": 5.300000000000001,
+      "mean_absolute_difference": 1.0452380952380953
+    }
+  },
+  "intervals": 2016,
+  "noise_note": "The same seed and load equation now start at January 1 rather than January 13, so the noise sequence differs.",
+  "source_note": "New January weather is explicit ERA5; the earlier nine-day snapshot used Open-Meteo's unpinned default. Both are reanalysis, not decision-time forecasts.",
+  "timestamps_match": true
+}

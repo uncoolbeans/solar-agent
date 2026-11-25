@@ -19,6 +19,7 @@ Simulation-first solar and battery trading experiments for a Sydney household. T
 | `solaralpha/horizon_sensitivity.py` | Offline all-oracle planning-horizon and runtime comparison |
 | `solaralpha/terminal_sensitivity.py`, `solaralpha/inspect_terminal_holds.py` | Offline terminal-value sweep and interval diagnostics |
 | `solaralpha/perfect_foresight.py`, `solaralpha/perfect_foresight_experiment.py` | Offline whole-episode MILP and six-policy comparison |
+| `solaralpha/historical_pipeline.py`, `solaralpha/pipeline_diagnostics.py` | Resumable historical ingestion, validation, and development-week diagnostics |
 | `solaralpha/fetch_historical_sample.py` | Fetches the fixed historical input snapshots if absent |
 | `tests/` | Standard-library unit tests |
 | `data/`, `plots/` | Historical inputs and generated SVG charts |
@@ -90,3 +91,17 @@ python -m venv .venv
 The runner solves a mixed-integer linear program over all 2,016 recorded five-minute intervals for observed and capped prices. It allows continuous battery power, enforces the simulator's energy balance, efficiencies, limits, exclusive battery and grid directions, and forced-only solar curtailment. It includes discharge wear and the same **single** $0.20/kWh final-minus-initial battery energy adjustment used by evaluation. It replays the proposed actions through `BatteryEnv`, reports solver status, objective bound, gap, runtime, and replay error, and compares the six policies. Exact prior 12-hour $0.10 MPC results are reused only after input hashes are checked; they are recomputed if that optional checkpoint is absent. The rounded $0.20 reference is always recomputed. Results are saved to `data/derived/perfect_foresight_results.json`, with selected-day SVGs in `plots/`.
 
 The optimiser reads the complete replay and is not a deployable agent. These seven days are a development diagnostic, and the solar proxy, load, tariff, wear, and terminal value remain illustrative.
+
+## Historical data pipeline (January 2025 smoke test)
+
+The default downloader fetches and processes **only Sydney-local January 2025**. It uses AEMO's December 2024 boundary file and January 2025 NSW1 monthly price/demand file, plus one explicitly pinned Open-Meteo ERA5 hourly response. Existing raw bytes are never overwritten; `data/raw/source_manifest.json` records source URLs, SHA-256 checksums, sizes, and download metadata. Repeated runs verify cached bytes and make no network requests. It uses the standard library plus `tzdata` on Windows for `zoneinfo` daylight-saving rules; install the pinned package with:
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install -r requirements-data.txt
+.\.venv\Scripts\python.exe -m solaralpha.historical_pipeline --plan
+.\.venv\Scripts\python.exe -m solaralpha.historical_pipeline
+.\.venv\Scripts\python.exe -m solaralpha.historical_pipeline --process-only
+.\.venv\Scripts\python.exe -m solaralpha.pipeline_diagnostics
+```
+
+The processed UTC-ordered five-minute CSV, quality report, summary statistics and old-replay comparison are in `data/processed/`. The two diagnostic SVGs are in `plots/`. See [data/DATA_DICTIONARY.md](data/DATA_DICTIONARY.md) for units, availability and chronological train/validation/test boundaries, and [data/SOURCE_RESEARCH.md](data/SOURCE_RESEARCH.md) for possible future renewable and issued-forecast feeds. To plan the eventual collection window without downloading it, run `python -m solaralpha.historical_pipeline --start-month 2023-01 --end-month 2026-02 --plan`. Only the January 2025 smoke test was run in this milestone; no models were trained.

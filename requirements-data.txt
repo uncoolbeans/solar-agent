@@ -1,0 +1,2 @@
+# zoneinfo needs an IANA time-zone database on Windows; the rest uses stdlib.
+tzdata==2026.5
