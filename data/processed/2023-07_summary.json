@@ -1,0 +1,156 @@
+{
+  "cloud_cover_pct": {
+    "max": 100.0,
+    "mean": 24.201612903225808,
+    "min": 0.0
+  },
+  "derivation": {
+    "illustrative_tariff": "spot_linked",
+    "modeled_load_seed": 42,
+    "solar_derate": 0.83,
+    "weather_model": "era5"
+  },
+  "derived_csv_sha256": "4686ce0f8c2c6a6f3a8f7a72567c3d1848b72623bff33568e21fde51520efc50",
+  "development_week_intervals": 0,
+  "intervals": 8928,
+  "month": "2023-07",
+  "partition_counts": {
+    "held_out_test": 0,
+    "train": 8928,
+    "validation": 0
+  },
+  "price_extreme_events": {
+    "highest": [
+      {
+        "aud_per_kwh": 1.18832,
+        "interval_start_sydney": "2023-07-26T17:50:00+10:00",
+        "interval_start_utc": "2023-07-26T07:50:00Z"
+      },
+      {
+        "aud_per_kwh": 0.64776,
+        "interval_start_sydney": "2023-07-26T17:55:00+10:00",
+        "interval_start_utc": "2023-07-26T07:55:00Z"
+      },
+      {
+        "aud_per_kwh": 0.44158,
+        "interval_start_sydney": "2023-07-26T17:45:00+10:00",
+        "interval_start_utc": "2023-07-26T07:45:00Z"
+      },
+      {
+        "aud_per_kwh": 0.4135,
+        "interval_start_sydney": "2023-07-03T17:25:00+10:00",
+        "interval_start_utc": "2023-07-03T07:25:00Z"
+      },
+      {
+        "aud_per_kwh": 0.37097,
+        "interval_start_sydney": "2023-07-03T17:40:00+10:00",
+        "interval_start_utc": "2023-07-03T07:40:00Z"
+      },
+      {
+        "aud_per_kwh": 0.3633,
+        "interval_start_sydney": "2023-07-03T17:20:00+10:00",
+        "interval_start_utc": "2023-07-03T07:20:00Z"
+      },
+      {
+        "aud_per_kwh": 0.36075,
+        "interval_start_sydney": "2023-07-03T17:15:00+10:00",
+        "interval_start_utc": "2023-07-03T07:15:00Z"
+      },
+      {
+        "aud_per_kwh": 0.34763,
+        "interval_start_sydney": "2023-07-03T17:30:00+10:00",
+        "interval_start_utc": "2023-07-03T07:30:00Z"
+      },
+      {
+        "aud_per_kwh": 0.34554,
+        "interval_start_sydney": "2023-07-06T17:35:00+10:00",
+        "interval_start_utc": "2023-07-06T07:35:00Z"
+      },
+      {
+        "aud_per_kwh": 0.33646,
+        "interval_start_sydney": "2023-07-03T17:35:00+10:00",
+        "interval_start_utc": "2023-07-03T07:35:00Z"
+      }
+    ],
+    "lowest": [
+      {
+        "aud_per_kwh": -0.061689999999999995,
+        "interval_start_sydney": "2023-07-30T11:25:00+10:00",
+        "interval_start_utc": "2023-07-30T01:25:00Z"
+      },
+      {
+        "aud_per_kwh": -0.061259999999999995,
+        "interval_start_sydney": "2023-07-30T11:30:00+10:00",
+        "interval_start_utc": "2023-07-30T01:30:00Z"
+      },
+      {
+        "aud_per_kwh": -0.0608,
+        "interval_start_sydney": "2023-07-30T11:55:00+10:00",
+        "interval_start_utc": "2023-07-30T01:55:00Z"
+      },
+      {
+        "aud_per_kwh": -0.06054,
+        "interval_start_sydney": "2023-07-30T12:05:00+10:00",
+        "interval_start_utc": "2023-07-30T02:05:00Z"
+      },
+      {
+        "aud_per_kwh": -0.060450000000000004,
+        "interval_start_sydney": "2023-07-30T12:30:00+10:00",
+        "interval_start_utc": "2023-07-30T02:30:00Z"
+      },
+      {
+        "aud_per_kwh": -0.06035,
+        "interval_start_sydney": "2023-07-30T11:45:00+10:00",
+        "interval_start_utc": "2023-07-30T01:45:00Z"
+      },
+      {
+        "aud_per_kwh": -0.06019,
+        "interval_start_sydney": "2023-07-30T12:00:00+10:00",
+        "interval_start_utc": "2023-07-30T02:00:00Z"
+      },
+      {
+        "aud_per_kwh": -0.06018,
+        "interval_start_sydney": "2023-07-30T12:25:00+10:00",
+        "interval_start_utc": "2023-07-30T02:25:00Z"
+      },
+      {
+        "aud_per_kwh": -0.06,
+        "interval_start_sydney": "2023-07-08T12:20:00+10:00",
+        "interval_start_utc": "2023-07-08T02:20:00Z"
+      },
+      {
+        "aud_per_kwh": -0.06,
+        "interval_start_sydney": "2023-07-30T11:40:00+10:00",
+        "interval_start_utc": "2023-07-30T01:40:00Z"
+      }
+    ]
+  },
+  "regional_demand_mw": {
+    "max": 11501.56,
+    "mean": 8197.766125672042,
+    "min": 4890.02
+  },
+  "schema_version": 1,
+  "shortwave_radiation_w_m2": {
+    "max": 602.0,
+    "mean": 125.20295698924731,
+    "min": 0.0
+  },
+  "spot_aud_per_kwh": {
+    "above_1_aud_per_kwh_intervals": 1,
+    "max": 1.18832,
+    "mean": 0.0841474059139785,
+    "median": 0.074695,
+    "min": -0.061689999999999995,
+    "negative_frequency": 0.05040322580645161,
+    "negative_intervals": 450,
+    "p95": 0.20219,
+    "p99": 0.29999000000000003
+  },
+  "temperature_c": {
+    "max": 25.9,
+    "mean": 12.09260752688172,
+    "min": 0.2
+  },
+  "validation_score_eligible_intervals": 0
+}

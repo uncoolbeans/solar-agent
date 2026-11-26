@@ -1,0 +1,2 @@
+# Baseline forecast diagnostic plots; supports Python 3.14 on Windows.
+matplotlib==3.11.2

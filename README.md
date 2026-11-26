@@ -20,6 +20,7 @@ Simulation-first solar and battery trading experiments for a Sydney household. T
 | `solaralpha/terminal_sensitivity.py`, `solaralpha/inspect_terminal_holds.py` | Offline terminal-value sweep and interval diagnostics |
 | `solaralpha/perfect_foresight.py`, `solaralpha/perfect_foresight_experiment.py` | Offline whole-episode MILP and six-policy comparison |
 | `solaralpha/historical_pipeline.py`, `solaralpha/pipeline_diagnostics.py` | Resumable historical ingestion, validation, and development-week diagnostics |
+| `solaralpha/price_forecasting/` | Offline one-hour price features, simple forecasting baselines, and validation plots |
 | `solaralpha/fetch_historical_sample.py` | Fetches the fixed historical input snapshots if absent |
 | `tests/` | Standard-library unit tests |
 | `data/`, `plots/` | Historical inputs and generated SVG charts |
@@ -43,7 +44,11 @@ python -m solaralpha.horizon_sensitivity --hours 24 --scenario observed --timing
 python -m solaralpha.terminal_sensitivity --scenario observed
 python -m solaralpha.plot_terminal_sensitivity
 python -m solaralpha.inspect_terminal_holds --hours 1 --value 0.40
+python -m solaralpha.historical_pipeline --start-month 2023-01 --end-month 2025-11 --process-only
+python -m solaralpha.price_forecasting.run
 ```
+
+The forecasting command requires the expanded 2023–November 2025 historical cache and optional Matplotlib from `requirements-forecast.txt` (`python -m pip install -r requirements-forecast.txt`). It produces train/validation CSV.gz files and baseline metrics in `data/features/`, plus PNG plots in `plots/forecasting/`. It never reads the held-out December 2025–February 2026 dates. Feature timing and the publication-delay assumption are documented in [data/FEATURE_DICTIONARY.md](data/FEATURE_DICTIONARY.md), with results in [data/README.md](data/README.md). This offline package is not connected to MPC.
 
 The historical replay reads local files in `data/raw/`. If they are missing, run `python -m solaralpha.fetch_historical_sample` to download the pinned sample described in [data/README.md](data/README.md). Charts continue to be saved in `plots/`.
 
@@ -92,7 +97,7 @@ The runner solves a mixed-integer linear program over all 2,016 recorded five-mi
 
 The optimiser reads the complete replay and is not a deployable agent. These seven days are a development diagnostic, and the solar proxy, load, tariff, wear, and terminal value remain illustrative.
 
-## Historical data pipeline (January 2025 smoke test)
+## Historical data pipeline (earlier January 2025 smoke test)
 
 The default downloader fetches and processes **only Sydney-local January 2025**. It uses AEMO's December 2024 boundary file and January 2025 NSW1 monthly price/demand file, plus one explicitly pinned Open-Meteo ERA5 hourly response. Existing raw bytes are never overwritten; `data/raw/source_manifest.json` records source URLs, SHA-256 checksums, sizes, and download metadata. Repeated runs verify cached bytes and make no network requests. It uses the standard library plus `tzdata` on Windows for `zoneinfo` daylight-saving rules; install the pinned package with:
 
@@ -104,4 +109,4 @@ The default downloader fetches and processes **only Sydney-local January 2025**.
 .\.venv\Scripts\python.exe -m solaralpha.pipeline_diagnostics
 ```
 
-The processed UTC-ordered five-minute CSV, quality report, summary statistics and old-replay comparison are in `data/processed/`. The two diagnostic SVGs are in `plots/`. See [data/DATA_DICTIONARY.md](data/DATA_DICTIONARY.md) for units, availability and chronological train/validation/test boundaries, and [data/SOURCE_RESEARCH.md](data/SOURCE_RESEARCH.md) for possible future renewable and issued-forecast feeds. To plan the eventual collection window without downloading it, run `python -m solaralpha.historical_pipeline --start-month 2023-01 --end-month 2026-02 --plan`. Only the January 2025 smoke test was run in this milestone; no models were trained.
+The processed UTC-ordered five-minute CSV, quality report, summary statistics and old-replay comparison are in `data/processed/`. The two diagnostic SVGs are in `plots/`. See [data/DATA_DICTIONARY.md](data/DATA_DICTIONARY.md) for units, availability and chronological train/validation/test boundaries, and [data/SOURCE_RESEARCH.md](data/SOURCE_RESEARCH.md) for possible future renewable and issued-forecast feeds. This section documents the earlier smoke test; the train/validation expansion and first baselines are described above and in [data/FORECASTING_RESULTS.md](data/FORECASTING_RESULTS.md).

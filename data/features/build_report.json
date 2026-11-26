@@ -1,0 +1,41 @@
+{
+  "counts": {
+    "cross_partition_targets_excluded": 12,
+    "insufficient_weekly_history_excluded": 1716,
+    "train": 208800,
+    "validation": 96180,
+    "validation_development_excluded": 2028,
+    "validation_scored": 94152
+  },
+  "decision_price_assumption": "At decision interval start t, the interval ending at t (start t-5 minutes) is assumed published with zero additional delay. Revised monthly AEMO files are hindsight values.",
+  "feature_count": 41,
+  "files": {
+    "train": {
+      "bytes": 28605143,
+      "path": "data/features/train_one_hour_price.csv.gz",
+      "sha256": "5718a363f345ac9dd584140cc8773311195f060775ebac3a2b0a5f96defc2e06"
+    },
+    "validation": {
+      "bytes": 13522315,
+      "path": "data/features/validation_one_hour_price.csv.gz",
+      "sha256": "d606e2c0c465576eb38ae26548c0cf8d399ee9fc7212e1df7b71749e1980f58b"
+    }
+  },
+  "forecast_horizon_minutes": 60,
+  "schema_version": 1,
+  "source_coverage": {
+    "at_or_above_one_aud_per_kwh_intervals": 782,
+    "first_interval_start_utc": "2022-12-31T13:00:00+00:00",
+    "last_interval_start_utc": "2025-11-30T12:55:00+00:00",
+    "maximum_price_aud_per_kwh": 20.3,
+    "minimum_price_aud_per_kwh": -1.0,
+    "negative_price_intervals": 27998,
+    "processed_intervals": 306720,
+    "sydney_repeated_hour_fold_intervals": 36,
+    "train_intervals": 210528,
+    "validation_intervals": 96192
+  },
+  "warmup_intervals": 288,
+  "warmup_local_date": "2022-12-31",
+  "weekly_history_note": "A one-day source warm-up fills the 24-hour lags. The target-aligned previous-week feature requires seven days; early January 2023 origins without it are excluded."
+}

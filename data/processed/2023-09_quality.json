@@ -1,0 +1,21 @@
+{
+  "aemo_duplicate_intervals": 0,
+  "examples": {
+    "aemo_duplicates": [],
+    "invalid_aemo": [],
+    "invalid_weather": [],
+    "missing_aemo": [],
+    "missing_weather": [],
+    "weather_duplicates": []
+  },
+  "expected_intervals": 8640,
+  "first_interval_utc": "2023-08-31T14:00:00Z",
+  "invalid_aemo_rows": 0,
+  "invalid_weather_rows": 0,
+  "last_interval_utc": "2023-09-30T13:55:00Z",
+  "missing_aemo_intervals": 0,
+  "missing_weather_intervals": 0,
+  "month": "2023-09",
+  "present_aemo_intervals": 8640,
+  "weather_duplicate_hours": 0
+}

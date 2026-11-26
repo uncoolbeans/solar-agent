@@ -1,0 +1,90 @@
+{
+  "fit_train_targets": 208800,
+  "fitted_training_median_aud_per_kwh": 0.08353000000000001,
+  "models": {
+    "daily_seasonal_aud_per_kwh": {
+      "bias_aud_per_kwh": -5.7638924292632814e-05,
+      "count": 94152,
+      "mae_aud_per_kwh": 0.0766902534200017,
+      "median_absolute_error_aud_per_kwh": 0.027655,
+      "negative_price": {
+        "actual_count": 12742,
+        "conditional_mae_aud_per_kwh": 0.04826515068278135,
+        "false_positive": 5412,
+        "precision": 0.5760946189394532,
+        "predicted_count": 12767,
+        "recall": 0.5772249254434155,
+        "true_positive": 7355
+      },
+      "price_spike": {
+        "actual_count": 237,
+        "conditional_mae_aud_per_kwh": 7.429151434599156,
+        "false_positive": 197,
+        "precision": 0.16877637130801687,
+        "predicted_count": 237,
+        "recall": 0.16877637130801687,
+        "true_positive": 40
+      },
+      "rmse_aud_per_kwh": 0.6527581674427644
+    },
+    "persistence_aud_per_kwh": {
+      "bias_aud_per_kwh": -4.352536324241625e-06,
+      "count": 94152,
+      "mae_aud_per_kwh": 0.05718880087518056,
+      "median_absolute_error_aud_per_kwh": 0.01655,
+      "negative_price": {
+        "actual_count": 12742,
+        "conditional_mae_aud_per_kwh": 0.034370191492701305,
+        "false_positive": 3661,
+        "precision": 0.7126824674305446,
+        "predicted_count": 12742,
+        "recall": 0.7126824674305446,
+        "true_positive": 9081
+      },
+      "price_spike": {
+        "actual_count": 237,
+        "conditional_mae_aud_per_kwh": 5.5786505907173,
+        "false_positive": 147,
+        "precision": 0.379746835443038,
+        "predicted_count": 237,
+        "recall": 0.379746835443038,
+        "true_positive": 90
+      },
+      "rmse_aud_per_kwh": 0.561042872791833
+    },
+    "train_median_aud_per_kwh": {
+      "bias_aud_per_kwh": -0.022926451057863874,
+      "count": 94152,
+      "mae_aud_per_kwh": 0.07253092276319144,
+      "median_absolute_error_aud_per_kwh": 0.03735999999999999,
+      "negative_price": {
+        "actual_count": 12742,
+        "conditional_mae_aud_per_kwh": 0.1023943556741485,
+        "false_positive": 0,
+        "precision": null,
+        "predicted_count": 0,
+        "recall": 0.0,
+        "true_positive": 0
+      },
+      "price_spike": {
+        "actual_count": 237,
+        "conditional_mae_aud_per_kwh": 7.637595021097047,
+        "false_positive": 0,
+        "precision": null,
+        "predicted_count": 0,
+        "recall": 0.0,
+        "true_positive": 0
+      },
+      "rmse_aud_per_kwh": 0.4874196824697187
+    }
+  },
+  "negative_event_definition": "actual or forecast price < 0 AUD/kWh",
+  "predictions_file": {
+    "bytes": 1192734,
+    "path": "data/features/validation_baseline_predictions.csv.gz",
+    "sha256": "10fa16b8fb5f9e4c3def1dc89f8c813b5448b30b6ae63861468f5e2f86036bb7"
+  },
+  "scored_validation_origins": 94152,
+  "spike_event_definition": "actual or forecast price >= 1.00 AUD/kWh (fixed before validation scoring)",
+  "target": "NSW1 wholesale AUD/kWh at interval start t+60 minutes"
+}

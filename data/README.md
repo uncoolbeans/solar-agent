@@ -1,5 +1,7 @@
 # Historical input slice
 
+**Current expansion:** the January 2023–November 2025 train/validation cache and one-hour forecasting baseline are documented in [FORECASTING_RESULTS.md](FORECASTING_RESULTS.md). The section below records the earlier seven-day replay and January 2025 smoke test.
+
 The offline replay covers **13–19 January 2025**, Sydney local time (AEDT): 2,016 five-minute intervals. Run `python -m solaralpha.historical_replay --plot-day 3` from the project root to compare both example tariffs and write four SVG plots. `python -m solaralpha.fetch_historical_sample` downloads the two source snapshots if they are absent.
 
 | Input | Local snapshot | Source and interpretation |
@@ -38,9 +40,9 @@ Historical replay plots now show **AEMO wholesale spot**, **modeled household bu
 
 `derived/horizon_reference.json` records rounded `$0.20/kWh` all-oracle results from the completed horizon experiment, with hashes of the battery configuration and both replay episodes. The terminal-value sweep checks those hashes before reusing the results. `derived/terminal_sensitivity_results.json` is an incremental checkpoint containing newly computed metrics and one selected day's SOC/action trace per setting; reused references are labeled `prior_rounded` and have no trace. These files are outputs of the fixed historical replay, not additional independent observations or training data.
 
-## January 2025 pipeline smoke test
+## January 2025 pipeline smoke test (earlier milestone)
 
-`python -m solaralpha.historical_pipeline` downloads only the sources required for the **Sydney-local January 2025** month. It reuses the existing January AEMO file and adds the December 2024 AEMO boundary file plus a full-month Open-Meteo ERA5 reanalysis snapshot. `--plan` shows URLs without network access; `--process-only` verifies cached raw files and reprocesses without network access. Specify `--start-month` and `--end-month` for other months later. The planned full range is January 2023 through February 2026, but it has **not** been downloaded.
+`python -m solaralpha.historical_pipeline` defaults to the **Sydney-local January 2025** month. The approved expansion used `--start-month 2023-01 --end-month 2025-11`. `--plan` shows URLs without network access; `--process-only` verifies cached raw files and reprocesses without network access. The December 2025 through February 2026 held-out months were **not** downloaded.
 
 Raw bytes remain in `raw/`. `raw/source_manifest.json` records URLs, SHA-256, byte counts, source type and response metadata. The old nine-day weather file and January AEMO file are marked as preexisting because their exact retrieval times are unknown. Re-running the downloader validates hashes and does not replace them. The new ERA5 request pins `models=era5`, latitude/longitude, hourly variables and GMT; historical API contents could still be revised upstream, so the local checksum and immutable snapshot establish reproducibility.
 
@@ -48,4 +50,4 @@ Raw bytes remain in `raw/`. `raw/source_manifest.json` records URLs, SHA-256, by
 
 `python -m solaralpha.pipeline_diagnostics` writes `processed/2025-01_replay_comparison.json` and two SVGs in `plots/`. All **2,016** 13–19 January timestamps, AEMO spot prices and illustrative buy/sell rates match the frozen seven-day replay exactly. The solar proxy differs by **0.420 kW mean absolute difference** because the new weather source is explicitly ERA5 while the old response used Open-Meteo's unpinned default. Modeled load differs by **0.206 kW mean absolute difference** because temperature differs and the identical seed's random sequence now begins on January 1 instead of January 13. Prior benchmarks remain untouched; the new dataset should not be substituted into their recorded results without a separate, labeled experiment.
 
-The processed `realised_*` fields are outcomes or ex-post reanalysis. Only calendar fields are marked known at interval start. The development week is labeled validation by date but excluded from future reported validation scores. The December 2025–February 2026 held-out test has not been downloaded or explored. Column definitions and source timing notes are in [DATA_DICTIONARY.md](DATA_DICTIONARY.md) and [SOURCE_RESEARCH.md](SOURCE_RESEARCH.md).
+The processed `realised_*` fields are outcomes or ex-post reanalysis. The forecasting dataset selectively uses lagged historical price and regional-demand observations under the explicit availability assumption in [FEATURE_DICTIONARY.md](FEATURE_DICTIONARY.md). The January 13?19 development week is excluded from reported validation scores; the held-out test period remains untouched. See [FORECASTING_RESULTS.md](FORECASTING_RESULTS.md) for current coverage and results, [DATA_DICTIONARY.md](DATA_DICTIONARY.md) for realised fields, and [SOURCE_RESEARCH.md](SOURCE_RESEARCH.md) for source timing.

@@ -1,0 +1,156 @@
+{
+  "cloud_cover_pct": {
+    "max": 100.0,
+    "mean": 40.240591397849464,
+    "min": 0.0
+  },
+  "derivation": {
+    "illustrative_tariff": "spot_linked",
+    "modeled_load_seed": 42,
+    "solar_derate": 0.83,
+    "weather_model": "era5"
+  },
+  "derived_csv_sha256": "8ffcb0bf391359de7bf16f607764f11494183b3ed1698d2bf096ae84a2977dfa",
+  "development_week_intervals": 0,
+  "intervals": 8928,
+  "month": "2025-07",
+  "partition_counts": {
+    "held_out_test": 0,
+    "train": 0,
+    "validation": 8928
+  },
+  "price_extreme_events": {
+    "highest": [
+      {
+        "aud_per_kwh": 0.6581699999999999,
+        "interval_start_sydney": "2025-07-08T18:25:00+10:00",
+        "interval_start_utc": "2025-07-08T08:25:00Z"
+      },
+      {
+        "aud_per_kwh": 0.65075,
+        "interval_start_sydney": "2025-07-08T18:20:00+10:00",
+        "interval_start_utc": "2025-07-08T08:20:00Z"
+      },
+      {
+        "aud_per_kwh": 0.42211000000000004,
+        "interval_start_sydney": "2025-07-08T18:10:00+10:00",
+        "interval_start_utc": "2025-07-08T08:10:00Z"
+      },
+      {
+        "aud_per_kwh": 0.41905000000000003,
+        "interval_start_sydney": "2025-07-29T17:50:00+10:00",
+        "interval_start_utc": "2025-07-29T07:50:00Z"
+      },
+      {
+        "aud_per_kwh": 0.39772,
+        "interval_start_sydney": "2025-07-01T17:55:00+10:00",
+        "interval_start_utc": "2025-07-01T07:55:00Z"
+      },
+      {
+        "aud_per_kwh": 0.39488999999999996,
+        "interval_start_sydney": "2025-07-29T17:20:00+10:00",
+        "interval_start_utc": "2025-07-29T07:20:00Z"
+      },
+      {
+        "aud_per_kwh": 0.39175,
+        "interval_start_sydney": "2025-07-29T17:25:00+10:00",
+        "interval_start_utc": "2025-07-29T07:25:00Z"
+      },
+      {
+        "aud_per_kwh": 0.38289999999999996,
+        "interval_start_sydney": "2025-07-29T17:35:00+10:00",
+        "interval_start_utc": "2025-07-29T07:35:00Z"
+      },
+      {
+        "aud_per_kwh": 0.3802,
+        "interval_start_sydney": "2025-07-29T17:30:00+10:00",
+        "interval_start_utc": "2025-07-29T07:30:00Z"
+      },
+      {
+        "aud_per_kwh": 0.38,
+        "interval_start_sydney": "2025-07-29T17:40:00+10:00",
+        "interval_start_utc": "2025-07-29T07:40:00Z"
+      }
+    ],
+    "lowest": [
+      {
+        "aud_per_kwh": -0.028829999999999998,
+        "interval_start_sydney": "2025-07-11T12:15:00+10:00",
+        "interval_start_utc": "2025-07-11T02:15:00Z"
+      },
+      {
+        "aud_per_kwh": -0.027899999999999998,
+        "interval_start_sydney": "2025-07-11T12:10:00+10:00",
+        "interval_start_utc": "2025-07-11T02:10:00Z"
+      },
+      {
+        "aud_per_kwh": -0.02622,
+        "interval_start_sydney": "2025-07-11T11:40:00+10:00",
+        "interval_start_utc": "2025-07-11T01:40:00Z"
+      },
+      {
+        "aud_per_kwh": -0.025929999999999998,
+        "interval_start_sydney": "2025-07-11T12:05:00+10:00",
+        "interval_start_utc": "2025-07-11T02:05:00Z"
+      },
+      {
+        "aud_per_kwh": -0.02535,
+        "interval_start_sydney": "2025-07-14T13:35:00+10:00",
+        "interval_start_utc": "2025-07-14T03:35:00Z"
+      },
+      {
+        "aud_per_kwh": -0.02509,
+        "interval_start_sydney": "2025-07-14T13:20:00+10:00",
+        "interval_start_utc": "2025-07-14T03:20:00Z"
+      },
+      {
+        "aud_per_kwh": -0.0248,
+        "interval_start_sydney": "2025-07-19T12:55:00+10:00",
+        "interval_start_utc": "2025-07-19T02:55:00Z"
+      },
+      {
+        "aud_per_kwh": -0.02444,
+        "interval_start_sydney": "2025-07-14T12:05:00+10:00",
+        "interval_start_utc": "2025-07-14T02:05:00Z"
+      },
+      {
+        "aud_per_kwh": -0.02435,
+        "interval_start_sydney": "2025-07-19T12:45:00+10:00",
+        "interval_start_utc": "2025-07-19T02:45:00Z"
+      },
+      {
+        "aud_per_kwh": -0.02432,
+        "interval_start_sydney": "2025-07-19T12:50:00+10:00",
+        "interval_start_utc": "2025-07-19T02:50:00Z"
+      }
+    ]
+  },
+  "regional_demand_mw": {
+    "max": 13159.46,
+    "mean": 8844.15553763441,
+    "min": 5327.93
+  },
+  "schema_version": 1,
+  "shortwave_radiation_w_m2": {
+    "max": 584.0,
+    "mean": 113.68145161290323,
+    "min": 0.0
+  },
+  "spot_aud_per_kwh": {
+    "above_1_aud_per_kwh_intervals": 0,
+    "max": 0.6581699999999999,
+    "mean": 0.09694684699820788,
+    "median": 0.08406,
+    "min": -0.028829999999999998,
+    "negative_frequency": 0.05253136200716846,
+    "negative_intervals": 469,
+    "p95": 0.23613,
+    "p99": 0.29999000000000003
+  },
+  "temperature_c": {
+    "max": 21.9,
+    "mean": 11.498655913978494,
+    "min": 0.9
+  },
+  "validation_score_eligible_intervals": 8928
+}

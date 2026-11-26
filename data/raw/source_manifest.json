@@ -1,5 +1,341 @@
 {
   "files": {
+    "data/raw/PRICE_AND_DEMAND_202212_NSW1.CSV": {
+      "bytes": 411418,
+      "kind": "aemo_price_and_demand",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:39:47.082032+00:00",
+      "response_headers": {
+        "Content-Type": "text/csv",
+        "ETag": null,
+        "Last-Modified": "Thu, 19 Nov 2026 02:21:43 GMT"
+      },
+      "retrieved_at_utc": "2026-11-25T23:39:47.082044+00:00",
+      "sha256": "6f8449bb3667770de46a62a960657f37573acdc5e9669c14f33ba3ef9c9d72d9",
+      "url": "https://www.nemweb.com.au/Reports/CURRENT/WebData/NEM/PRICEANDDEMAND/PRICE_AND_DEMAND_202212_NSW1.CSV"
+    },
+    "data/raw/PRICE_AND_DEMAND_202301_NSW1.CSV": {
+      "bytes": 411790,
+      "kind": "aemo_price_and_demand",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:39:47.599024+00:00",
+      "response_headers": {
+        "Content-Type": "text/csv",
+        "ETag": null,
+        "Last-Modified": "Thu, 19 Nov 2026 02:21:45 GMT"
+      },
+      "retrieved_at_utc": "2026-11-25T23:39:47.599041+00:00",
+      "sha256": "352682f90a89c9220e17435f060cff68ebeba75c565f0b4365e17c3dd266590e",
+      "url": "https://www.nemweb.com.au/Reports/CURRENT/WebData/NEM/PRICEANDDEMAND/PRICE_AND_DEMAND_202301_NSW1.CSV"
+    },
+    "data/raw/PRICE_AND_DEMAND_202302_NSW1.CSV": {
+      "bytes": 370872,
+      "kind": "aemo_price_and_demand",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:39:49.197564+00:00",
+      "response_headers": {
+        "Content-Type": "text/csv",
+        "ETag": null,
+        "Last-Modified": "Thu, 19 Nov 2026 02:21:46 GMT"
+      },
+      "retrieved_at_utc": "2026-11-25T23:39:49.197578+00:00",
+      "sha256": "1061637963c9c803aefb70b1d92bdd1eaf6c20d1be45e8d046bd497bb9d0356f",
+      "url": "https://www.nemweb.com.au/Reports/CURRENT/WebData/NEM/PRICEANDDEMAND/PRICE_AND_DEMAND_202302_NSW1.CSV"
+    },
+    "data/raw/PRICE_AND_DEMAND_202303_NSW1.CSV": {
+      "bytes": 410911,
+      "kind": "aemo_price_and_demand",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:39:50.806734+00:00",
+      "response_headers": {
+        "Content-Type": "text/csv",
+        "ETag": null,
+        "Last-Modified": "Thu, 19 Nov 2026 02:21:47 GMT"
+      },
+      "retrieved_at_utc": "2026-11-25T23:39:50.806755+00:00",
+      "sha256": "e0ba4451c28236fbef544f133a0424ce440a415bf8342da85f1eaa69859e6363",
+      "url": "https://www.nemweb.com.au/Reports/CURRENT/WebData/NEM/PRICEANDDEMAND/PRICE_AND_DEMAND_202303_NSW1.CSV"
+    },
+    "data/raw/PRICE_AND_DEMAND_202304_NSW1.CSV": {
+      "bytes": 399312,
+      "kind": "aemo_price_and_demand",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:39:52.601225+00:00",
+      "response_headers": {
+        "Content-Type": "text/csv",
+        "ETag": null,
+        "Last-Modified": "Thu, 19 Nov 2026 02:21:49 GMT"
+      },
+      "retrieved_at_utc": "2026-11-25T23:39:52.601246+00:00",
+      "sha256": "b88a9abb9dab57b8c14a3b5ce601e59d53d37160ce966daaa99cdc7e1a3f69a0",
+      "url": "https://www.nemweb.com.au/Reports/CURRENT/WebData/NEM/PRICEANDDEMAND/PRICE_AND_DEMAND_202304_NSW1.CSV"
+    },
+    "data/raw/PRICE_AND_DEMAND_202305_NSW1.CSV": {
+      "bytes": 415243,
+      "kind": "aemo_price_and_demand",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:39:54.193701+00:00",
+      "response_headers": {
+        "Content-Type": "text/csv",
+        "ETag": null,
+        "Last-Modified": "Thu, 19 Nov 2026 02:21:50 GMT"
+      },
+      "retrieved_at_utc": "2026-11-25T23:39:54.193716+00:00",
+      "sha256": "4d4add87e1d07e28ed9b281c66f9e33356c304ee280950b4463208fc7f90d450",
+      "url": "https://www.nemweb.com.au/Reports/CURRENT/WebData/NEM/PRICEANDDEMAND/PRICE_AND_DEMAND_202305_NSW1.CSV"
+    },
+    "data/raw/PRICE_AND_DEMAND_202306_NSW1.CSV": {
+      "bytes": 398198,
+      "kind": "aemo_price_and_demand",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:39:55.798599+00:00",
+      "response_headers": {
+        "Content-Type": "text/csv",
+        "ETag": null,
+        "Last-Modified": "Thu, 19 Nov 2026 02:21:51 GMT"
+      },
+      "retrieved_at_utc": "2026-11-25T23:39:55.798615+00:00",
+      "sha256": "78fb40819ec6ce45a342315a22b7d23b15396204e302fc09734e317e4739dcfc",
+      "url": "https://www.nemweb.com.au/Reports/CURRENT/WebData/NEM/PRICEANDDEMAND/PRICE_AND_DEMAND_202306_NSW1.CSV"
+    },
+    "data/raw/PRICE_AND_DEMAND_202307_NSW1.CSV": {
+      "bytes": 410186,
+      "kind": "aemo_price_and_demand",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:39:57.328395+00:00",
+      "response_headers": {
+        "Content-Type": "text/csv",
+        "ETag": null,
+        "Last-Modified": "Thu, 19 Nov 2026 02:21:53 GMT"
+      },
+      "retrieved_at_utc": "2026-11-25T23:39:57.328410+00:00",
+      "sha256": "3b263f2ef0e04366439d028b9526614aeec2ff5c34323aa0cb8ebeaaa6110665",
+      "url": "https://www.nemweb.com.au/Reports/CURRENT/WebData/NEM/PRICEANDDEMAND/PRICE_AND_DEMAND_202307_NSW1.CSV"
+    },
+    "data/raw/PRICE_AND_DEMAND_202308_NSW1.CSV": {
+      "bytes": 410715,
+      "kind": "aemo_price_and_demand",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:39:59.726132+00:00",
+      "response_headers": {
+        "Content-Type": "text/csv",
+        "ETag": null,
+        "Last-Modified": "Thu, 19 Nov 2026 02:21:55 GMT"
+      },
+      "retrieved_at_utc": "2026-11-25T23:39:59.726154+00:00",
+      "sha256": "e9f79f18fff08200c444be2f35a336dd3dce091c63a63bde57da06d8e45c0f18",
+      "url": "https://www.nemweb.com.au/Reports/CURRENT/WebData/NEM/PRICEANDDEMAND/PRICE_AND_DEMAND_202308_NSW1.CSV"
+    },
+    "data/raw/PRICE_AND_DEMAND_202309_NSW1.CSV": {
+      "bytes": 394632,
+      "kind": "aemo_price_and_demand",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:02.229678+00:00",
+      "response_headers": {
+        "Content-Type": "text/csv",
+        "ETag": null,
+        "Last-Modified": "Thu, 19 Nov 2026 02:21:56 GMT"
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:02.229694+00:00",
+      "sha256": "9727ad6634f1bdefa26f254adf71c8a2f2d9fbe96a32a43fc9e9222452a7c170",
+      "url": "https://www.nemweb.com.au/Reports/CURRENT/WebData/NEM/PRICEANDDEMAND/PRICE_AND_DEMAND_202309_NSW1.CSV"
+    },
+    "data/raw/PRICE_AND_DEMAND_202310_NSW1.CSV": {
+      "bytes": 406568,
+      "kind": "aemo_price_and_demand",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:04.218858+00:00",
+      "response_headers": {
+        "Content-Type": "text/csv",
+        "ETag": null,
+        "Last-Modified": "Thu, 19 Nov 2026 02:21:58 GMT"
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:04.218881+00:00",
+      "sha256": "e9a201071965867e2d85f241dfe19a7b78fe65549ff29f6a52143d4afd1d9d42",
+      "url": "https://www.nemweb.com.au/Reports/CURRENT/WebData/NEM/PRICEANDDEMAND/PRICE_AND_DEMAND_202310_NSW1.CSV"
+    },
+    "data/raw/PRICE_AND_DEMAND_202311_NSW1.CSV": {
+      "bytes": 395418,
+      "kind": "aemo_price_and_demand",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:05.791861+00:00",
+      "response_headers": {
+        "Content-Type": "text/csv",
+        "ETag": null,
+        "Last-Modified": "Thu, 19 Nov 2026 02:21:59 GMT"
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:05.791876+00:00",
+      "sha256": "991dd64960edfeafaf246210cb259e7894ea2a6fc07662bf802a62d38cd8fd66",
+      "url": "https://www.nemweb.com.au/Reports/CURRENT/WebData/NEM/PRICEANDDEMAND/PRICE_AND_DEMAND_202311_NSW1.CSV"
+    },
+    "data/raw/PRICE_AND_DEMAND_202312_NSW1.CSV": {
+      "bytes": 408663,
+      "kind": "aemo_price_and_demand",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:07.652707+00:00",
+      "response_headers": {
+        "Content-Type": "text/csv",
+        "ETag": null,
+        "Last-Modified": "Thu, 19 Nov 2026 02:22:00 GMT"
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:07.652730+00:00",
+      "sha256": "bf2c620849988a7b5a4b1318a944310540429f033bc3530177b9ef06b7b1846e",
+      "url": "https://www.nemweb.com.au/Reports/CURRENT/WebData/NEM/PRICEANDDEMAND/PRICE_AND_DEMAND_202312_NSW1.CSV"
+    },
+    "data/raw/PRICE_AND_DEMAND_202401_NSW1.CSV": {
+      "bytes": 407785,
+      "kind": "aemo_price_and_demand",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:09.258890+00:00",
+      "response_headers": {
+        "Content-Type": "text/csv",
+        "ETag": null,
+        "Last-Modified": "Thu, 19 Nov 2026 02:22:02 GMT"
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:09.258906+00:00",
+      "sha256": "f2c6b208d9ffd1fcf4b29fbbbcdb221b4747784bc3b079c20e73f071c8a7d2e4",
+      "url": "https://www.nemweb.com.au/Reports/CURRENT/WebData/NEM/PRICEANDDEMAND/PRICE_AND_DEMAND_202401_NSW1.CSV"
+    },
+    "data/raw/PRICE_AND_DEMAND_202402_NSW1.CSV": {
+      "bytes": 382131,
+      "kind": "aemo_price_and_demand",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:12.190272+00:00",
+      "response_headers": {
+        "Content-Type": "text/csv",
+        "ETag": null,
+        "Last-Modified": "Thu, 19 Nov 2026 02:22:02 GMT"
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:12.190287+00:00",
+      "sha256": "1dec93ee822657093565d8f6d29d6335782ed394833d92cc880bb4bc2efc2471",
+      "url": "https://www.nemweb.com.au/Reports/CURRENT/WebData/NEM/PRICEANDDEMAND/PRICE_AND_DEMAND_202402_NSW1.CSV"
+    },
+    "data/raw/PRICE_AND_DEMAND_202403_NSW1.CSV": {
+      "bytes": 407878,
+      "kind": "aemo_price_and_demand",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:13.958098+00:00",
+      "response_headers": {
+        "Content-Type": "text/csv",
+        "ETag": null,
+        "Last-Modified": "Thu, 19 Nov 2026 02:22:03 GMT"
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:13.958112+00:00",
+      "sha256": "b951315bcd7457361de0a91ea7d1f04b4ef35c60f5dbe1934eae9b20cccadc20",
+      "url": "https://www.nemweb.com.au/Reports/CURRENT/WebData/NEM/PRICEANDDEMAND/PRICE_AND_DEMAND_202403_NSW1.CSV"
+    },
+    "data/raw/PRICE_AND_DEMAND_202404_NSW1.CSV": {
+      "bytes": 396511,
+      "kind": "aemo_price_and_demand",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:15.647854+00:00",
+      "response_headers": {
+        "Content-Type": "text/csv",
+        "ETag": null,
+        "Last-Modified": "Thu, 19 Nov 2026 02:22:06 GMT"
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:15.647868+00:00",
+      "sha256": "363834f7f4a8d65872dca455197998497981f0b53d39b348f91a13da5acdb2c3",
+      "url": "https://www.nemweb.com.au/Reports/CURRENT/WebData/NEM/PRICEANDDEMAND/PRICE_AND_DEMAND_202404_NSW1.CSV"
+    },
+    "data/raw/PRICE_AND_DEMAND_202405_NSW1.CSV": {
+      "bytes": 412804,
+      "kind": "aemo_price_and_demand",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:17.454086+00:00",
+      "response_headers": {
+        "Content-Type": "text/csv",
+        "ETag": null,
+        "Last-Modified": "Thu, 19 Nov 2026 02:22:06 GMT"
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:17.454097+00:00",
+      "sha256": "06032aec8e949fc4d896563e1e3bc15a51af613e6d7da7cf0f4d72476915e20a",
+      "url": "https://www.nemweb.com.au/Reports/CURRENT/WebData/NEM/PRICEANDDEMAND/PRICE_AND_DEMAND_202405_NSW1.CSV"
+    },
+    "data/raw/PRICE_AND_DEMAND_202406_NSW1.CSV": {
+      "bytes": 399787,
+      "kind": "aemo_price_and_demand",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:19.098456+00:00",
+      "response_headers": {
+        "Content-Type": "text/csv",
+        "ETag": null,
+        "Last-Modified": "Thu, 19 Nov 2026 02:22:08 GMT"
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:19.098467+00:00",
+      "sha256": "7eb1db210f04e7e0c5e790469ef5c243267e05dacf77e386d6f9ea574e7e2f3f",
+      "url": "https://www.nemweb.com.au/Reports/CURRENT/WebData/NEM/PRICEANDDEMAND/PRICE_AND_DEMAND_202406_NSW1.CSV"
+    },
+    "data/raw/PRICE_AND_DEMAND_202407_NSW1.CSV": {
+      "bytes": 412277,
+      "kind": "aemo_price_and_demand",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:20.651990+00:00",
+      "response_headers": {
+        "Content-Type": "text/csv",
+        "ETag": null,
+        "Last-Modified": "Thu, 19 Nov 2026 02:22:09 GMT"
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:20.652006+00:00",
+      "sha256": "c5058ee196504d812e7745aabcf60af20d47c25448e02321fbd53462ed4b6bfe",
+      "url": "https://www.nemweb.com.au/Reports/CURRENT/WebData/NEM/PRICEANDDEMAND/PRICE_AND_DEMAND_202407_NSW1.CSV"
+    },
+    "data/raw/PRICE_AND_DEMAND_202408_NSW1.CSV": {
+      "bytes": 411872,
+      "kind": "aemo_price_and_demand",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:22.234957+00:00",
+      "response_headers": {
+        "Content-Type": "text/csv",
+        "ETag": null,
+        "Last-Modified": "Thu, 19 Nov 2026 02:22:11 GMT"
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:22.234979+00:00",
+      "sha256": "4723dc699684da802ecdbaa6dda5cfeb6e7dd03710758cb142991873a551cdbb",
+      "url": "https://www.nemweb.com.au/Reports/CURRENT/WebData/NEM/PRICEANDDEMAND/PRICE_AND_DEMAND_202408_NSW1.CSV"
+    },
+    "data/raw/PRICE_AND_DEMAND_202409_NSW1.CSV": {
+      "bytes": 394419,
+      "kind": "aemo_price_and_demand",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:23.824664+00:00",
+      "response_headers": {
+        "Content-Type": "text/csv",
+        "ETag": null,
+        "Last-Modified": "Thu, 19 Nov 2026 02:22:13 GMT"
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:23.824677+00:00",
+      "sha256": "60c4c36d12c0ca6e72ecfd7d8a6508a6703abde24e2ef11d35cd4ae1e0435ee1",
+      "url": "https://www.nemweb.com.au/Reports/CURRENT/WebData/NEM/PRICEANDDEMAND/PRICE_AND_DEMAND_202409_NSW1.CSV"
+    },
+    "data/raw/PRICE_AND_DEMAND_202410_NSW1.CSV": {
+      "bytes": 406230,
+      "kind": "aemo_price_and_demand",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:25.424335+00:00",
+      "response_headers": {
+        "Content-Type": "text/csv",
+        "ETag": null,
+        "Last-Modified": "Thu, 19 Nov 2026 02:22:14 GMT"
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:25.424357+00:00",
+      "sha256": "49902457386583ab759cf2a799be032a55902675d73d71b5e1e0b6be91b2dd27",
+      "url": "https://www.nemweb.com.au/Reports/CURRENT/WebData/NEM/PRICEANDDEMAND/PRICE_AND_DEMAND_202410_NSW1.CSV"
+    },
+    "data/raw/PRICE_AND_DEMAND_202411_NSW1.CSV": {
+      "bytes": 398253,
+      "kind": "aemo_price_and_demand",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:26.979419+00:00",
+      "response_headers": {
+        "Content-Type": "text/csv",
+        "ETag": null,
+        "Last-Modified": "Thu, 19 Nov 2026 02:22:15 GMT"
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:26.979440+00:00",
+      "sha256": "8e612744398bef2a3f57b190c6be66c00462c757e02d0cdb0472cf4e49048715",
+      "url": "https://www.nemweb.com.au/Reports/CURRENT/WebData/NEM/PRICEANDDEMAND/PRICE_AND_DEMAND_202411_NSW1.CSV"
+    },
     "data/raw/PRICE_AND_DEMAND_202412_NSW1.CSV": {
       "bytes": 412737,
       "kind": "aemo_price_and_demand",
@@ -24,6 +360,482 @@
       "sha256": "975e8603457f1370f818c880e18a8a7f0c09794410a04d83a0b6f677dca9906a",
       "url": "https://www.nemweb.com.au/Reports/CURRENT/WebData/NEM/PRICEANDDEMAND/PRICE_AND_DEMAND_202501_NSW1.CSV"
     },
+    "data/raw/PRICE_AND_DEMAND_202502_NSW1.CSV": {
+      "bytes": 371497,
+      "kind": "aemo_price_and_demand",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:30.400284+00:00",
+      "response_headers": {
+        "Content-Type": "text/csv",
+        "ETag": null,
+        "Last-Modified": "Thu, 19 Nov 2026 02:22:19 GMT"
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:30.400300+00:00",
+      "sha256": "2fe774a2dc257900ea734278de663dac63b95e5967a5b5e2384aa4d5df17a146",
+      "url": "https://www.nemweb.com.au/Reports/CURRENT/WebData/NEM/PRICEANDDEMAND/PRICE_AND_DEMAND_202502_NSW1.CSV"
+    },
+    "data/raw/PRICE_AND_DEMAND_202503_NSW1.CSV": {
+      "bytes": 410996,
+      "kind": "aemo_price_and_demand",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:31.936470+00:00",
+      "response_headers": {
+        "Content-Type": "text/csv",
+        "ETag": null,
+        "Last-Modified": "Thu, 19 Nov 2026 02:22:21 GMT"
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:31.936491+00:00",
+      "sha256": "bc5589d85400e2ce9dcbf93232ca17676280f3b0d6369a208c37efb923a04986",
+      "url": "https://www.nemweb.com.au/Reports/CURRENT/WebData/NEM/PRICEANDDEMAND/PRICE_AND_DEMAND_202503_NSW1.CSV"
+    },
+    "data/raw/PRICE_AND_DEMAND_202504_NSW1.CSV": {
+      "bytes": 399110,
+      "kind": "aemo_price_and_demand",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:33.549190+00:00",
+      "response_headers": {
+        "Content-Type": "text/csv",
+        "ETag": null,
+        "Last-Modified": "Thu, 19 Nov 2026 02:22:24 GMT"
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:33.549205+00:00",
+      "sha256": "164a09c6a1047767f23f15eb2ffdbfca4ada76b4cfef6f69e23a4cc8c9a25949",
+      "url": "https://www.nemweb.com.au/Reports/CURRENT/WebData/NEM/PRICEANDDEMAND/PRICE_AND_DEMAND_202504_NSW1.CSV"
+    },
+    "data/raw/PRICE_AND_DEMAND_202505_NSW1.CSV": {
+      "bytes": 412893,
+      "kind": "aemo_price_and_demand",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:35.173932+00:00",
+      "response_headers": {
+        "Content-Type": "text/csv",
+        "ETag": null,
+        "Last-Modified": "Thu, 19 Nov 2026 02:22:25 GMT"
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:35.173955+00:00",
+      "sha256": "76132a704b56a633eccbdd4377998f7e23be636c77290082ad043684e8c4becb",
+      "url": "https://www.nemweb.com.au/Reports/CURRENT/WebData/NEM/PRICEANDDEMAND/PRICE_AND_DEMAND_202505_NSW1.CSV"
+    },
+    "data/raw/PRICE_AND_DEMAND_202506_NSW1.CSV": {
+      "bytes": 402086,
+      "kind": "aemo_price_and_demand",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:38.383663+00:00",
+      "response_headers": {
+        "Content-Type": "text/csv",
+        "ETag": null,
+        "Last-Modified": "Thu, 19 Nov 2026 02:22:27 GMT"
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:38.383677+00:00",
+      "sha256": "e84113497898ea664896f3d18f14c1244c9cb66dc939ed36ca8e0e27e0339383",
+      "url": "https://www.nemweb.com.au/Reports/CURRENT/WebData/NEM/PRICEANDDEMAND/PRICE_AND_DEMAND_202506_NSW1.CSV"
+    },
+    "data/raw/PRICE_AND_DEMAND_202507_NSW1.CSV": {
+      "bytes": 414010,
+      "kind": "aemo_price_and_demand",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:40.363648+00:00",
+      "response_headers": {
+        "Content-Type": "text/csv",
+        "ETag": null,
+        "Last-Modified": "Thu, 19 Nov 2026 02:22:29 GMT"
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:40.363668+00:00",
+      "sha256": "caeb430a075a74c53ac98b8021756f61fc1dd0c0c20c72cf61b3b7a846649ccc",
+      "url": "https://www.nemweb.com.au/Reports/CURRENT/WebData/NEM/PRICEANDDEMAND/PRICE_AND_DEMAND_202507_NSW1.CSV"
+    },
+    "data/raw/PRICE_AND_DEMAND_202508_NSW1.CSV": {
+      "bytes": 413388,
+      "kind": "aemo_price_and_demand",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:41.924156+00:00",
+      "response_headers": {
+        "Content-Type": "text/csv",
+        "ETag": null,
+        "Last-Modified": "Thu, 19 Nov 2026 02:22:30 GMT"
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:41.924171+00:00",
+      "sha256": "7c5309b9cc14c4835f30e694c4599ec16be395e2cc69e1415358e375b2d64051",
+      "url": "https://www.nemweb.com.au/Reports/CURRENT/WebData/NEM/PRICEANDDEMAND/PRICE_AND_DEMAND_202508_NSW1.CSV"
+    },
+    "data/raw/PRICE_AND_DEMAND_202509_NSW1.CSV": {
+      "bytes": 398558,
+      "kind": "aemo_price_and_demand",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:43.447786+00:00",
+      "response_headers": {
+        "Content-Type": "text/csv",
+        "ETag": null,
+        "Last-Modified": "Thu, 19 Nov 2026 02:22:32 GMT"
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:43.447808+00:00",
+      "sha256": "2216c9a6d76c16c76d3af1b459cef3b4d1e64a2ff79d8a4caabe156056f318b2",
+      "url": "https://www.nemweb.com.au/Reports/CURRENT/WebData/NEM/PRICEANDDEMAND/PRICE_AND_DEMAND_202509_NSW1.CSV"
+    },
+    "data/raw/PRICE_AND_DEMAND_202510_NSW1.CSV": {
+      "bytes": 412723,
+      "kind": "aemo_price_and_demand",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:44.992102+00:00",
+      "response_headers": {
+        "Content-Type": "text/csv",
+        "ETag": null,
+        "Last-Modified": "Thu, 19 Nov 2026 02:22:35 GMT"
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:44.992115+00:00",
+      "sha256": "d0b438c469bff79b8a93d23c0ce87335f2b73159bebf41acfb7e722202e19303",
+      "url": "https://www.nemweb.com.au/Reports/CURRENT/WebData/NEM/PRICEANDDEMAND/PRICE_AND_DEMAND_202510_NSW1.CSV"
+    },
+    "data/raw/PRICE_AND_DEMAND_202511_NSW1.CSV": {
+      "bytes": 398127,
+      "kind": "aemo_price_and_demand",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:46.742813+00:00",
+      "response_headers": {
+        "Content-Type": "text/csv",
+        "ETag": null,
+        "Last-Modified": "Thu, 19 Nov 2026 02:22:37 GMT"
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:46.742834+00:00",
+      "sha256": "11ce9a97a9ec6748eabe9fe436e4f90245a3da1fd39fb445261a824bbbf20572",
+      "url": "https://www.nemweb.com.au/Reports/CURRENT/WebData/NEM/PRICEANDDEMAND/PRICE_AND_DEMAND_202511_NSW1.CSV"
+    },
+    "data/raw/open_meteo_era5_sydney_local_202301.json": {
+      "bytes": 24983,
+      "kind": "open_meteo_reanalysis",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:39:49.116496+00:00",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": null,
+        "Last-Modified": null
+      },
+      "retrieved_at_utc": "2026-11-25T23:39:49.116509+00:00",
+      "sha256": "83b8ba9d552ddd77dc2d854e7b335c4013829becac6c24347aee9cebf7bcf6b1",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-33.87&longitude=151.21&start_date=2022-12-31&end_date=2023-01-31&hourly=shortwave_radiation%2Ccloud_cover%2Ctemperature_2m&timezone=GMT&models=era5"
+    },
+    "data/raw/open_meteo_era5_sydney_local_202302.json": {
+      "bytes": 22578,
+      "kind": "open_meteo_reanalysis",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:39:50.691530+00:00",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": null,
+        "Last-Modified": null
+      },
+      "retrieved_at_utc": "2026-11-25T23:39:50.691543+00:00",
+      "sha256": "3bf4e5eebf03284226c157e63f27583e6c07b18c5bd239ae2f7be00820e77e7f",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-33.87&longitude=151.21&start_date=2023-01-31&end_date=2023-02-28&hourly=shortwave_radiation%2Ccloud_cover%2Ctemperature_2m&timezone=GMT&models=era5"
+    },
+    "data/raw/open_meteo_era5_sydney_local_202303.json": {
+      "bytes": 24747,
+      "kind": "open_meteo_reanalysis",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:39:52.465725+00:00",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": null,
+        "Last-Modified": null
+      },
+      "retrieved_at_utc": "2026-11-25T23:39:52.465737+00:00",
+      "sha256": "e5c5145d9a7a73cf7924a95ba1c081b86f3e353a9c1c62ed5852fca01d722829",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-33.87&longitude=151.21&start_date=2023-02-28&end_date=2023-03-31&hourly=shortwave_radiation%2Ccloud_cover%2Ctemperature_2m&timezone=GMT&models=era5"
+    },
+    "data/raw/open_meteo_era5_sydney_local_202304.json": {
+      "bytes": 23967,
+      "kind": "open_meteo_reanalysis",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:39:54.073717+00:00",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": null,
+        "Last-Modified": null
+      },
+      "retrieved_at_utc": "2026-11-25T23:39:54.073737+00:00",
+      "sha256": "4539d2d1f3117f543124180caa6e58dbdd3ab11af1292ccb74c56a2addf21340",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-33.87&longitude=151.21&start_date=2023-03-31&end_date=2023-04-30&hourly=shortwave_radiation%2Ccloud_cover%2Ctemperature_2m&timezone=GMT&models=era5"
+    },
+    "data/raw/open_meteo_era5_sydney_local_202305.json": {
+      "bytes": 24160,
+      "kind": "open_meteo_reanalysis",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:39:55.701486+00:00",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": null,
+        "Last-Modified": null
+      },
+      "retrieved_at_utc": "2026-11-25T23:39:55.701541+00:00",
+      "sha256": "1546ef50a7ef65448d276400566354fccfdd6b4da9ec63a45bfb3c0aeeb6c78a",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-33.87&longitude=151.21&start_date=2023-04-30&end_date=2023-05-31&hourly=shortwave_radiation%2Ccloud_cover%2Ctemperature_2m&timezone=GMT&models=era5"
+    },
+    "data/raw/open_meteo_era5_sydney_local_202306.json": {
+      "bytes": 23394,
+      "kind": "open_meteo_reanalysis",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:39:57.258793+00:00",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": null,
+        "Last-Modified": null
+      },
+      "retrieved_at_utc": "2026-11-25T23:39:57.258804+00:00",
+      "sha256": "ee40f89d30257ebf63c6043a5ae4e4f51d919fc8bd17ad1b5b91a5eb32196952",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-33.87&longitude=151.21&start_date=2023-05-31&end_date=2023-06-30&hourly=shortwave_radiation%2Ccloud_cover%2Ctemperature_2m&timezone=GMT&models=era5"
+    },
+    "data/raw/open_meteo_era5_sydney_local_202307.json": {
+      "bytes": 24068,
+      "kind": "open_meteo_reanalysis",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:39:58.902713+00:00",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": null,
+        "Last-Modified": null
+      },
+      "retrieved_at_utc": "2026-11-25T23:39:58.902726+00:00",
+      "sha256": "3f52b7763640124447ca2b16401399b75f16c6ff22665f1eef365b9c4c501d42",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-33.87&longitude=151.21&start_date=2023-06-30&end_date=2023-07-31&hourly=shortwave_radiation%2Ccloud_cover%2Ctemperature_2m&timezone=GMT&models=era5"
+    },
+    "data/raw/open_meteo_era5_sydney_local_202308.json": {
+      "bytes": 24357,
+      "kind": "open_meteo_reanalysis",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:01.626372+00:00",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": null,
+        "Last-Modified": null
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:01.626388+00:00",
+      "sha256": "61b59c3754c2fcb7d7873bfd6671eaf2c954eb5ed3f50c481874fa2ded4096db",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-33.87&longitude=151.21&start_date=2023-07-31&end_date=2023-08-31&hourly=shortwave_radiation%2Ccloud_cover%2Ctemperature_2m&timezone=GMT&models=era5"
+    },
+    "data/raw/open_meteo_era5_sydney_local_202309.json": {
+      "bytes": 23558,
+      "kind": "open_meteo_reanalysis",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:04.145222+00:00",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": null,
+        "Last-Modified": null
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:04.145237+00:00",
+      "sha256": "8fbe8b8bca05ff25dbca4bf063fa59767af32934eb3307c384dee0f51f9be73e",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-33.87&longitude=151.21&start_date=2023-08-31&end_date=2023-09-30&hourly=shortwave_radiation%2Ccloud_cover%2Ctemperature_2m&timezone=GMT&models=era5"
+    },
+    "data/raw/open_meteo_era5_sydney_local_202310.json": {
+      "bytes": 24649,
+      "kind": "open_meteo_reanalysis",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:05.693532+00:00",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": null,
+        "Last-Modified": null
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:05.693548+00:00",
+      "sha256": "5e57c823be3650247145ce67bfdd699b01af4934ccf16fddd4dce976982c9a67",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-33.87&longitude=151.21&start_date=2023-09-30&end_date=2023-10-31&hourly=shortwave_radiation%2Ccloud_cover%2Ctemperature_2m&timezone=GMT&models=era5"
+    },
+    "data/raw/open_meteo_era5_sydney_local_202311.json": {
+      "bytes": 24271,
+      "kind": "open_meteo_reanalysis",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:07.334540+00:00",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": null,
+        "Last-Modified": null
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:07.334552+00:00",
+      "sha256": "43b1bce58848b95ee91b540eada25a99e373572ebdc14b8abd241ac26e169f47",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-33.87&longitude=151.21&start_date=2023-10-31&end_date=2023-11-30&hourly=shortwave_radiation%2Ccloud_cover%2Ctemperature_2m&timezone=GMT&models=era5"
+    },
+    "data/raw/open_meteo_era5_sydney_local_202312.json": {
+      "bytes": 25033,
+      "kind": "open_meteo_reanalysis",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:09.170838+00:00",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": null,
+        "Last-Modified": null
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:09.170854+00:00",
+      "sha256": "dd90c2a548eedee84adc20c83099337843f9a5aa2ec6b2302031d4b00c458774",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-33.87&longitude=151.21&start_date=2023-11-30&end_date=2023-12-31&hourly=shortwave_radiation%2Ccloud_cover%2Ctemperature_2m&timezone=GMT&models=era5"
+    },
+    "data/raw/open_meteo_era5_sydney_local_202401.json": {
+      "bytes": 25089,
+      "kind": "open_meteo_reanalysis",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:12.071330+00:00",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": null,
+        "Last-Modified": null
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:12.071344+00:00",
+      "sha256": "75723a9fd3039b5614e8a5ee8de6dcf396135ade5719efccebb7ff64f8fcefa4",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-33.87&longitude=151.21&start_date=2023-12-31&end_date=2024-01-31&hourly=shortwave_radiation%2Ccloud_cover%2Ctemperature_2m&timezone=GMT&models=era5"
+    },
+    "data/raw/open_meteo_era5_sydney_local_202402.json": {
+      "bytes": 23478,
+      "kind": "open_meteo_reanalysis",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:13.859548+00:00",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": null,
+        "Last-Modified": null
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:13.859571+00:00",
+      "sha256": "7a71e7f4f1060741cc5826955fe27bbe9b3f8ecae4f4d0d667b874cdc7210491",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-33.87&longitude=151.21&start_date=2024-01-31&end_date=2024-02-29&hourly=shortwave_radiation%2Ccloud_cover%2Ctemperature_2m&timezone=GMT&models=era5"
+    },
+    "data/raw/open_meteo_era5_sydney_local_202403.json": {
+      "bytes": 24773,
+      "kind": "open_meteo_reanalysis",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:15.448522+00:00",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": null,
+        "Last-Modified": null
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:15.448542+00:00",
+      "sha256": "79899ac65a48e912d478057863c152779e701b1d25abd00d6e804b2064b59588",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-33.87&longitude=151.21&start_date=2024-02-29&end_date=2024-03-31&hourly=shortwave_radiation%2Ccloud_cover%2Ctemperature_2m&timezone=GMT&models=era5"
+    },
+    "data/raw/open_meteo_era5_sydney_local_202404.json": {
+      "bytes": 23937,
+      "kind": "open_meteo_reanalysis",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:17.252478+00:00",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": null,
+        "Last-Modified": null
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:17.252488+00:00",
+      "sha256": "1d2d0f881bedf9f6c153c4e29d4738797512ccfcffcb78276813e30c6d45ca62",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-33.87&longitude=151.21&start_date=2024-03-31&end_date=2024-04-30&hourly=shortwave_radiation%2Ccloud_cover%2Ctemperature_2m&timezone=GMT&models=era5"
+    },
+    "data/raw/open_meteo_era5_sydney_local_202405.json": {
+      "bytes": 24571,
+      "kind": "open_meteo_reanalysis",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:18.991024+00:00",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": null,
+        "Last-Modified": null
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:18.991035+00:00",
+      "sha256": "475ca4f6073b2e432633156cd0d2aca30cb24755536ff8a015cbb71878982b2d",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-33.87&longitude=151.21&start_date=2024-04-30&end_date=2024-05-31&hourly=shortwave_radiation%2Ccloud_cover%2Ctemperature_2m&timezone=GMT&models=era5"
+    },
+    "data/raw/open_meteo_era5_sydney_local_202406.json": {
+      "bytes": 23608,
+      "kind": "open_meteo_reanalysis",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:20.568913+00:00",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": null,
+        "Last-Modified": null
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:20.568932+00:00",
+      "sha256": "30a2a4522706ac60c72fb085513bad2dad61651bc8894178e5b52b1621130bdf",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-33.87&longitude=151.21&start_date=2024-05-31&end_date=2024-06-30&hourly=shortwave_radiation%2Ccloud_cover%2Ctemperature_2m&timezone=GMT&models=era5"
+    },
+    "data/raw/open_meteo_era5_sydney_local_202407.json": {
+      "bytes": 24320,
+      "kind": "open_meteo_reanalysis",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:22.151489+00:00",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": null,
+        "Last-Modified": null
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:22.151501+00:00",
+      "sha256": "e90a9f724cc6031b8b0bd47e53f82a3fb8895b4ebd3f4c4f0c06d084a5885270",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-33.87&longitude=151.21&start_date=2024-06-30&end_date=2024-07-31&hourly=shortwave_radiation%2Ccloud_cover%2Ctemperature_2m&timezone=GMT&models=era5"
+    },
+    "data/raw/open_meteo_era5_sydney_local_202408.json": {
+      "bytes": 24514,
+      "kind": "open_meteo_reanalysis",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:23.743132+00:00",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": null,
+        "Last-Modified": null
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:23.743153+00:00",
+      "sha256": "27955a955b0be52f33a21960466978544cd0f24617bab9b68cfc2a50902bf986",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-33.87&longitude=151.21&start_date=2024-07-31&end_date=2024-08-31&hourly=shortwave_radiation%2Ccloud_cover%2Ctemperature_2m&timezone=GMT&models=era5"
+    },
+    "data/raw/open_meteo_era5_sydney_local_202409.json": {
+      "bytes": 23696,
+      "kind": "open_meteo_reanalysis",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:25.339235+00:00",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": null,
+        "Last-Modified": null
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:25.339251+00:00",
+      "sha256": "e72056d08c08dc09f7aa5f1affd82704303c44da3c7613f239ffe5f516bd432a",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-33.87&longitude=151.21&start_date=2024-08-31&end_date=2024-09-30&hourly=shortwave_radiation%2Ccloud_cover%2Ctemperature_2m&timezone=GMT&models=era5"
+    },
+    "data/raw/open_meteo_era5_sydney_local_202410.json": {
+      "bytes": 24861,
+      "kind": "open_meteo_reanalysis",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:26.903499+00:00",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": null,
+        "Last-Modified": null
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:26.903520+00:00",
+      "sha256": "4100149fef47d7d5aeb18843d92126db17c9d444a7a79bb52f7753b178f27bf2",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-33.87&longitude=151.21&start_date=2024-09-30&end_date=2024-10-31&hourly=shortwave_radiation%2Ccloud_cover%2Ctemperature_2m&timezone=GMT&models=era5"
+    },
+    "data/raw/open_meteo_era5_sydney_local_202411.json": {
+      "bytes": 24288,
+      "kind": "open_meteo_reanalysis",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:28.526322+00:00",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": null,
+        "Last-Modified": null
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:28.526336+00:00",
+      "sha256": "734431ad0abc65c690265f7223c07046982601bca4d42d94db6ae664c5e36c13",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-33.87&longitude=151.21&start_date=2024-10-31&end_date=2024-11-30&hourly=shortwave_radiation%2Ccloud_cover%2Ctemperature_2m&timezone=GMT&models=era5"
+    },
+    "data/raw/open_meteo_era5_sydney_local_202412.json": {
+      "bytes": 24882,
+      "kind": "open_meteo_reanalysis",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:30.197694+00:00",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": null,
+        "Last-Modified": null
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:30.197715+00:00",
+      "sha256": "cfb16572e485acad0e11eec71acd996969190fbd4ca2a956f5069db34dee461c",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-33.87&longitude=151.21&start_date=2024-11-30&end_date=2024-12-31&hourly=shortwave_radiation%2Ccloud_cover%2Ctemperature_2m&timezone=GMT&models=era5"
+    },
     "data/raw/open_meteo_era5_sydney_local_202501.json": {
       "bytes": 25065,
       "kind": "open_meteo_reanalysis",
@@ -37,6 +849,146 @@
       "retrieved_at_utc": "2026-11-25T22:55:29.907652+00:00",
       "sha256": "8ff173139dc933c3c56a4a695b47c8c96f2d1bdefebd7771895e9fa1dda95758",
       "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-33.87&longitude=151.21&start_date=2024-12-31&end_date=2025-01-31&hourly=shortwave_radiation%2Ccloud_cover%2Ctemperature_2m&timezone=GMT&models=era5"
+    },
+    "data/raw/open_meteo_era5_sydney_local_202502.json": {
+      "bytes": 22606,
+      "kind": "open_meteo_reanalysis",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:31.860671+00:00",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": null,
+        "Last-Modified": null
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:31.860685+00:00",
+      "sha256": "3b0ac8e5f1e4c8f188e82aba1a2c6a54bca57b4082211372c79f6d8c07ba05cc",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-33.87&longitude=151.21&start_date=2025-01-31&end_date=2025-02-28&hourly=shortwave_radiation%2Ccloud_cover%2Ctemperature_2m&timezone=GMT&models=era5"
+    },
+    "data/raw/open_meteo_era5_sydney_local_202503.json": {
+      "bytes": 24939,
+      "kind": "open_meteo_reanalysis",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:33.473806+00:00",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": null,
+        "Last-Modified": null
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:33.473825+00:00",
+      "sha256": "2c649e7b8c029b689c0abb37875d10ffa95d892f4f9a1b318db90c035ba14cf2",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-33.87&longitude=151.21&start_date=2025-02-28&end_date=2025-03-31&hourly=shortwave_radiation%2Ccloud_cover%2Ctemperature_2m&timezone=GMT&models=era5"
+    },
+    "data/raw/open_meteo_era5_sydney_local_202504.json": {
+      "bytes": 23908,
+      "kind": "open_meteo_reanalysis",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:35.067088+00:00",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": null,
+        "Last-Modified": null
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:35.067104+00:00",
+      "sha256": "f4acf82636202c2737631334f9199d27be976d2ac448ef99247568ff3dcc91ab",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-33.87&longitude=151.21&start_date=2025-03-31&end_date=2025-04-30&hourly=shortwave_radiation%2Ccloud_cover%2Ctemperature_2m&timezone=GMT&models=era5"
+    },
+    "data/raw/open_meteo_era5_sydney_local_202505.json": {
+      "bytes": 24745,
+      "kind": "open_meteo_reanalysis",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:37.075702+00:00",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": null,
+        "Last-Modified": null
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:37.075724+00:00",
+      "sha256": "dfbf85e67c7145d28cb44d52f26c320932882aba7ab50ec1976ca19222aaa65c",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-33.87&longitude=151.21&start_date=2025-04-30&end_date=2025-05-31&hourly=shortwave_radiation%2Ccloud_cover%2Ctemperature_2m&timezone=GMT&models=era5"
+    },
+    "data/raw/open_meteo_era5_sydney_local_202506.json": {
+      "bytes": 23383,
+      "kind": "open_meteo_reanalysis",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:40.269593+00:00",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": null,
+        "Last-Modified": null
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:40.269604+00:00",
+      "sha256": "25690a30e9c51f92b354e78d67479af622ccc01d1cd64f8c6bfca554e3e27def",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-33.87&longitude=151.21&start_date=2025-05-31&end_date=2025-06-30&hourly=shortwave_radiation%2Ccloud_cover%2Ctemperature_2m&timezone=GMT&models=era5"
+    },
+    "data/raw/open_meteo_era5_sydney_local_202507.json": {
+      "bytes": 24259,
+      "kind": "open_meteo_reanalysis",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:41.857456+00:00",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": null,
+        "Last-Modified": null
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:41.857468+00:00",
+      "sha256": "c2a02c905dfac8927383b1fd9d7596ac74750f6552e67923f895392e455b189f",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-33.87&longitude=151.21&start_date=2025-06-30&end_date=2025-07-31&hourly=shortwave_radiation%2Ccloud_cover%2Ctemperature_2m&timezone=GMT&models=era5"
+    },
+    "data/raw/open_meteo_era5_sydney_local_202508.json": {
+      "bytes": 24528,
+      "kind": "open_meteo_reanalysis",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:43.383817+00:00",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": null,
+        "Last-Modified": null
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:43.383831+00:00",
+      "sha256": "81a81f34d4fb0963052cf45e3ed74fbb545641ef2f49d8e4006d42293e69d983",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-33.87&longitude=151.21&start_date=2025-07-31&end_date=2025-08-31&hourly=shortwave_radiation%2Ccloud_cover%2Ctemperature_2m&timezone=GMT&models=era5"
+    },
+    "data/raw/open_meteo_era5_sydney_local_202509.json": {
+      "bytes": 23723,
+      "kind": "open_meteo_reanalysis",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:44.910916+00:00",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": null,
+        "Last-Modified": null
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:44.910934+00:00",
+      "sha256": "055e8b451c90787c00204b8fb39b95787650ecd77970604523ae8e0c8f2870cf",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-33.87&longitude=151.21&start_date=2025-08-31&end_date=2025-09-30&hourly=shortwave_radiation%2Ccloud_cover%2Ctemperature_2m&timezone=GMT&models=era5"
+    },
+    "data/raw/open_meteo_era5_sydney_local_202510.json": {
+      "bytes": 24782,
+      "kind": "open_meteo_reanalysis",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:46.630086+00:00",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": null,
+        "Last-Modified": null
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:46.630106+00:00",
+      "sha256": "6384e2a9bbac3ada208a56c3fe7f0dd6258dce33b1bd354b7281f7f6e1c783e7",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-33.87&longitude=151.21&start_date=2025-09-30&end_date=2025-10-31&hourly=shortwave_radiation%2Ccloud_cover%2Ctemperature_2m&timezone=GMT&models=era5"
+    },
+    "data/raw/open_meteo_era5_sydney_local_202511.json": {
+      "bytes": 24074,
+      "kind": "open_meteo_reanalysis",
+      "origin": "downloaded",
+      "recorded_at_utc": "2026-11-25T23:40:48.262312+00:00",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": null,
+        "Last-Modified": null
+      },
+      "retrieved_at_utc": "2026-11-25T23:40:48.262323+00:00",
+      "sha256": "121da338c4cbd5c7bd04ce601769b7cd007587e524798cd7731fdb65160ba634",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-33.87&longitude=151.21&start_date=2025-10-31&end_date=2025-11-30&hourly=shortwave_radiation%2Ccloud_cover%2Ctemperature_2m&timezone=GMT&models=era5"
     },
     "data/raw/sydney_weather_2025-01-12_20.json": {
       "bytes": 7362,
