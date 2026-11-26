@@ -1,0 +1,32 @@
+{
+  "selection_rule": "Realised evaluation prices only; no forecast-error selection",
+  "normal": "Earliest two nearly complete days with all prices in [0, 0.25) AUD/kWh",
+  "negative": "Two nearly complete days with most negative-price intervals",
+  "spike": "Two nearly complete days with highest positive price",
+  "selected_dates": {
+    "normal": [
+      "2025-07-05",
+      "2025-07-06"
+    ],
+    "negative": [
+      "2025-11-30",
+      "2025-11-12"
+    ],
+    "spike": [
+      "2025-10-10",
+      "2025-11-25"
+    ]
+  },
+  "files": [
+    "plots/forecasting/xgb_v1/learning_curves.png",
+    "plots/forecasting/xgb_v1/prediction_vs_actual.png",
+    "plots/forecasting/xgb_v1/residual_distributions.png",
+    "plots/forecasting/xgb_v1/gain_feature_importance.png",
+    "plots/forecasting/xgb_v1/day_normal_2025-07-05.png",
+    "plots/forecasting/xgb_v1/day_normal_2025-07-06.png",
+    "plots/forecasting/xgb_v1/day_negative_2025-11-30.png",
+    "plots/forecasting/xgb_v1/day_negative_2025-11-12.png",
+    "plots/forecasting/xgb_v1/day_spike_2025-10-10.png",
+    "plots/forecasting/xgb_v1/day_spike_2025-11-25.png"
+  ]
+}

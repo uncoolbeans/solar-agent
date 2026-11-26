@@ -46,9 +46,13 @@ python -m solaralpha.plot_terminal_sensitivity
 python -m solaralpha.inspect_terminal_holds --hours 1 --value 0.40
 python -m solaralpha.historical_pipeline --start-month 2023-01 --end-month 2025-11 --process-only
 python -m solaralpha.price_forecasting.run
+python -m solaralpha.price_forecasting.xgb_v1
+python -m solaralpha.price_forecasting.xgb_plots
 ```
 
 The forecasting command requires the expanded 2023–November 2025 historical cache and optional Matplotlib from `requirements-forecast.txt` (`python -m pip install -r requirements-forecast.txt`). It produces train/validation CSV.gz files and baseline metrics in `data/features/`, plus PNG plots in `plots/forecasting/`. It never reads the held-out December 2025–February 2026 dates. Feature timing and the publication-delay assumption are documented in [data/FEATURE_DICTIONARY.md](data/FEATURE_DICTIONARY.md), with results in [data/README.md](data/README.md). This offline package is not connected to MPC.
+
+For the fixed XGBoost V1 experiment, install pinned binary dependencies into the **existing** project environment with `.\.venv\Scripts\python.exe -m pip install --only-binary=:all: -r requirements-ml.txt` on Windows. Then run the two XGBoost commands above. They fit on 2023–2024, use January–June 2025 only for early stopping, and evaluate July–November 2025. They save the model and audit metadata in `data/models/price_xgb_v1/` and PNGs in `plots/forecasting/xgb_v1/`. The December 2025–February 2026 held-out period remains untouched; XGBoost is not wired into the simulator or MPC. See [forecasting results](data/FORECASTING_RESULTS.md) for metrics and limitations.
 
 The historical replay reads local files in `data/raw/`. If they are missing, run `python -m solaralpha.fetch_historical_sample` to download the pinned sample described in [data/README.md](data/README.md). Charts continue to be saved in `plots/`.
 
