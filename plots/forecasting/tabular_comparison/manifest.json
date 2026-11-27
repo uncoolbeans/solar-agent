@@ -1,0 +1,49 @@
+{
+  "evaluation_status": "Reused development evaluation, not independent test",
+  "matched_row_count": 44040,
+  "model_names": [
+    "V1",
+    "V2-A",
+    "V2-B",
+    "V2-C",
+    "V2-D",
+    "persistence",
+    "daily_seasonal",
+    "train_median",
+    "hour_of_week_median",
+    "ridge",
+    "lasso",
+    "random_forest",
+    "lightgbm",
+    "catboost"
+  ],
+  "days_selected_from_realised_prices_only": {
+    "normal": [
+      "2025-07-05",
+      "2025-07-06"
+    ],
+    "negative": [
+      "2025-11-30",
+      "2025-11-12"
+    ],
+    "spike": [
+      "2025-10-10",
+      "2025-11-25"
+    ]
+  },
+  "notes": "Clipped axes are labelled; raw metrics include all extreme prices. Native importance measures differ by model and are not causal.",
+  "files": [
+    "plots/forecasting/tabular_comparison/leaderboard_mae_rmse.png",
+    "plots/forecasting/tabular_comparison/event_detection.png",
+    "plots/forecasting/tabular_comparison/predictions_and_residuals.png",
+    "plots/forecasting/tabular_comparison/monthly_hourly_mae.png",
+    "plots/forecasting/tabular_comparison/day_normal_2025-07-05.png",
+    "plots/forecasting/tabular_comparison/day_normal_2025-07-06.png",
+    "plots/forecasting/tabular_comparison/day_negative_2025-11-30.png",
+    "plots/forecasting/tabular_comparison/day_negative_2025-11-12.png",
+    "plots/forecasting/tabular_comparison/day_spike_2025-10-10.png",
+    "plots/forecasting/tabular_comparison/day_spike_2025-11-25.png",
+    "plots/forecasting/tabular_comparison/accuracy_vs_inference.png",
+    "plots/forecasting/tabular_comparison/feature_importance.png"
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "configuration": {
+    "criterion": "squared_error",
+    "max_depth": 12,
+    "max_features": 0.7,
+    "min_samples_leaf": 20,
+    "n_estimators": 50,
+    "n_jobs": 1,
+    "random_state": 42
+  },
+  "feature_files": {
+    "train": {
+      "bytes": 28605143,
+      "path": "data/features/train_one_hour_price.csv.gz",
+      "sha256": "5718a363f345ac9dd584140cc8773311195f060775ebac3a2b0a5f96defc2e06"
+    },
+    "validation": {
+      "bytes": 13522315,
+      "path": "data/features/validation_one_hour_price.csv.gz",
+      "sha256": "d606e2c0c465576eb38ae26548c0cf8d399ee9fc7212e1df7b71749e1980f58b"
+    }
+  },
+  "feature_order": [
+    "hour_sin",
+    "hour_cos",
+    "weekday_sin",
+    "weekday_cos",
+    "local_month",
+    "local_day_of_month",
+    "local_day_of_year",
+    "is_weekend",
+    "is_dst",
+    "local_fold",
+    "price_lag_5m_aud_per_kwh",
+    "price_lag_15m_aud_per_kwh",
+    "price_lag_30m_aud_per_kwh",
+    "price_lag_60m_aud_per_kwh",
+    "price_lag_180m_aud_per_kwh",
+    "price_lag_360m_aud_per_kwh",
+    "price_lag_720m_aud_per_kwh",
+    "price_lag_1440m_aud_per_kwh",
+    "price_trailing_60m_mean_aud_per_kwh",
+    "price_trailing_60m_std_aud_per_kwh",
+    "price_trailing_60m_min_aud_per_kwh",
+    "price_trailing_60m_max_aud_per_kwh",
+    "price_trailing_360m_mean_aud_per_kwh",
+    "price_trailing_360m_std_aud_per_kwh",
+    "price_trailing_360m_min_aud_per_kwh",
+    "price_trailing_360m_max_aud_per_kwh",
+    "price_trailing_1440m_mean_aud_per_kwh",
+    "price_trailing_1440m_std_aud_per_kwh",
+    "price_trailing_1440m_min_aud_per_kwh",
+    "price_trailing_1440m_max_aud_per_kwh",
+    "price_change_5m_vs_15m_aud_per_kwh",
+    "price_change_5m_vs_60m_aud_per_kwh",
+    "price_change_5m_vs_1440m_aud_per_kwh",
+    "demand_lag_5m_mw",
+    "demand_lag_15m_mw",
+    "demand_lag_60m_mw",
+    "demand_lag_1440m_mw",
+    "demand_change_5m_vs_15m_mw",
+    "demand_change_5m_vs_60m_mw",
+    "price_target_aligned_previous_day_aud_per_kwh",
+    "price_target_aligned_previous_week_aud_per_kwh"
+  ],
+  "fit_detail": {
+    "selection": "one fixed configuration; tuning MAE reported",
+    "tuning_mae": 0.06890266432062633
+  },
+  "model_sha256": "c51babc4ccff4cedda6205cea60b24cc1062c0a8cc011c9b37b173f0bc67d3a3",
+  "name": "random_forest",
+  "python": "3.14.7",
+  "training_seconds": 191.6413338999264,
+  "versions": {
+    "catboost": "1.2.10",
+    "lightgbm": "4.7.0",
+    "numpy": "2.5.5",
+    "scikit_learn": "1.9.1"
+  }
+}

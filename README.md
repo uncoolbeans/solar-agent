@@ -51,6 +51,8 @@ python -m solaralpha.price_forecasting.xgb_plots
 python -m solaralpha.price_forecasting.xgb_v2_diagnostics
 python -m solaralpha.price_forecasting.xgb_v2
 python -m solaralpha.price_forecasting.xgb_v2_plots
+python -m solaralpha.price_forecasting.tabular_comparison
+python -m solaralpha.price_forecasting.tabular_plots
 ```
 
 The forecasting command requires the expanded 2023–November 2025 historical cache and optional Matplotlib from `requirements-forecast.txt` (`python -m pip install -r requirements-forecast.txt`). It produces train/validation CSV.gz files and baseline metrics in `data/features/`, plus PNG plots in `plots/forecasting/`. It never reads the held-out December 2025–February 2026 dates. Feature timing and the publication-delay assumption are documented in [data/FEATURE_DICTIONARY.md](data/FEATURE_DICTIONARY.md), with results in [data/README.md](data/README.md). This offline package is not connected to MPC.
@@ -58,6 +60,8 @@ The forecasting command requires the expanded 2023–November 2025 historical ca
 For the fixed XGBoost V1 experiment, install pinned binary dependencies into the **existing** project environment with `.\.venv\Scripts\python.exe -m pip install --only-binary=:all: -r requirements-ml.txt` on Windows. Then run the two XGBoost commands above. They fit on 2023–2024, use January–June 2025 only for early stopping, and evaluate July–November 2025. They save the model and audit metadata in `data/models/price_xgb_v1/` and PNGs in `plots/forecasting/xgb_v1/`. The December 2025–February 2026 held-out period remains untouched; XGBoost is not wired into the simulator or MPC. See [forecasting results](data/FORECASTING_RESULTS.md) for metrics and limitations.
 
 The three V2 commands audit the **frozen V1**, fit four fixed loss/target variants, and generate comparison plots. V2 writes to `data/models/price_xgb_v2/` and `plots/forecasting/xgb_v2/`; it does not rewrite V1. January–June MAE selects the V2 candidate. July–November scores are labeled **reused development evaluation** because that partition was already inspected during V1 review. V2-A (direct absolute-error regression) has the lowest tuning MAE and lowers reused evaluation MAE from V1's $0.04324/kWh to $0.02947/kWh, while still missing every >=$1/kWh evaluation spike. Full diagnostics and event tradeoffs are in [forecasting results](data/FORECASTING_RESULTS.md). The held-out summer data remains untouched.
+
+The two tabular comparison commands fit Ridge, Lasso, Random Forest, LightGBM and CatBoost on the same 41 features, then compare them with all nine frozen V1/V2/baseline forecasts on matched rows. Install `requirements-ml.txt` into the **existing** virtual environment first; it pins Python 3.14.7/Windows-compatible LightGBM 4.7.0 and CatBoost 1.2.10 plus their resolved dependencies. Results, individual model artifacts and metadata are in `data/models/price_tabular_comparison/`; the machine-readable [forecasting leaderboard](data/models/forecasting_leaderboard.json) covers all 14 models, with plots in `plots/forecasting/tabular_comparison/`. July–November is reused development evaluation, and the held-out summer data remains untouched. See [forecasting results](data/FORECASTING_RESULTS.md) for methodology, scores and limits.
 
 The historical replay reads local files in `data/raw/`. If they are missing, run `python -m solaralpha.fetch_historical_sample` to download the pinned sample described in [data/README.md](data/README.md). Charts continue to be saved in `plots/`.
 
