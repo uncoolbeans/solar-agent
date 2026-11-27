@@ -1,0 +1,23 @@
+{
+  "gru": {
+    "batch_size": 512,
+    "batches": 4,
+    "elapsed_seconds": 0.48182620014995337,
+    "extrapolated_epoch_seconds": 49.14627241529524,
+    "parameters": 10001
+  },
+  "lstm": {
+    "batch_size": 512,
+    "batches": 4,
+    "elapsed_seconds": 0.2449002000503242,
+    "extrapolated_epoch_seconds": 24.97982040513307,
+    "parameters": 9633
+  },
+  "tcn": {
+    "batch_size": 512,
+    "batches": 4,
+    "elapsed_seconds": 0.3282543998211622,
+    "extrapolated_epoch_seconds": 33.48194878175855,
+    "parameters": 10081
+  }
+}

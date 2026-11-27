@@ -1,0 +1,8 @@
+﻿{
+    "measurement":  "Windows process sampled during neural training",
+    "pid":  43104,
+    "peak_working_set_mib":  574.8,
+    "working_set_mib":  526.35,
+    "cpu_seconds":  1777.296875,
+    "gpu_training_device":  "none; PyTorch CPU wheel"
+}

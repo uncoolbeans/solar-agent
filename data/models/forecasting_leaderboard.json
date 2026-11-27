@@ -1210,6 +1210,312 @@
           "true_positive": 0
         }
       }
+    },
+    {
+      "configuration": {
+        "architecture": {
+          "hidden_size": 32,
+          "layers": 1
+        },
+        "sequence_length": 72,
+        "training": {
+          "batch_size": 512,
+          "data_loader_workers": 0,
+          "device": "cpu",
+          "gradient_clip_norm": 1.0,
+          "learning_rate": 0.001,
+          "loss": "MAE",
+          "max_epochs": 8,
+          "minimum_mae_improvement_aud_per_kwh": 0.0001,
+          "optimizer": "AdamW",
+          "patience": 2,
+          "seed": 42,
+          "torch_threads": 4,
+          "weight_decay": 0.0001
+        }
+      },
+      "downstream_mpc_financial_evaluation": null,
+      "family": "lstm",
+      "loss_function": "MAE",
+      "model_artifact": "data/models/price_sequence_comparison/lstm/model.pt",
+      "model_bytes": 41213,
+      "multi_horizon": null,
+      "name": "lstm",
+      "parameter_count": 9633,
+      "reused_development_evaluation": {
+        "count": 44040,
+        "mae": 0.03130615996201225,
+        "mean_bias": -0.005078468206412867,
+        "median_absolute_error": 0.017010239058732987,
+        "negative_price": {
+          "actual_count": 8261,
+          "conditional_mae": 0.0251961389361294,
+          "f1": 0.6795378307864332,
+          "false_negative": 3703,
+          "false_positive": 596,
+          "precision": 0.8843616608459449,
+          "predicted_count": 5154,
+          "recall": 0.5517491829076383,
+          "true_positive": 4558
+        },
+        "rmse": 0.27094996924769893,
+        "spike": {
+          "actual_count": 14,
+          "conditional_mae": 12.54692393948538,
+          "f1": 0.0,
+          "false_negative": 14,
+          "false_positive": 0,
+          "precision": null,
+          "predicted_count": 0,
+          "recall": 0.0,
+          "true_positive": 0
+        }
+      },
+      "runtime": {
+        "evaluation_batch_microseconds_per_row": 12.868297002747736,
+        "evaluation_batch_seconds": 0.5667198000010103,
+        "evaluation_single_median_microseconds": 182.1999903768301,
+        "scope": "CPU; batch includes lazy window assembly and DataLoader collation; single uses preassembled window",
+        "single_observation_repeats": 50,
+        "training_seconds": 54.611722899833694
+      },
+      "target_type": "absolute_wholesale_price",
+      "tuning": {
+        "count": 50100,
+        "mae": 0.05707890857083941,
+        "mean_bias": -0.03484895102171379,
+        "median_absolute_error": 0.015713717366456985,
+        "negative_price": {
+          "actual_count": 4481,
+          "conditional_mae": 0.03434850723555593,
+          "f1": 0.590338860850757,
+          "false_negative": 2434,
+          "false_positive": 407,
+          "precision": 0.8341483292583537,
+          "predicted_count": 2454,
+          "recall": 0.4568176746261995,
+          "true_positive": 2047
+        },
+        "rmse": 0.5964404352455605,
+        "spike": {
+          "actual_count": 223,
+          "conditional_mae": 7.0595439412229375,
+          "f1": 0.0,
+          "false_negative": 223,
+          "false_positive": 0,
+          "precision": null,
+          "predicted_count": 0,
+          "recall": 0.0,
+          "true_positive": 0
+        }
+      }
+    },
+    {
+      "configuration": {
+        "architecture": {
+          "hidden_size": 40,
+          "layers": 1
+        },
+        "sequence_length": 72,
+        "training": {
+          "batch_size": 512,
+          "data_loader_workers": 0,
+          "device": "cpu",
+          "gradient_clip_norm": 1.0,
+          "learning_rate": 0.001,
+          "loss": "MAE",
+          "max_epochs": 8,
+          "minimum_mae_improvement_aud_per_kwh": 0.0001,
+          "optimizer": "AdamW",
+          "patience": 2,
+          "seed": 42,
+          "torch_threads": 4,
+          "weight_decay": 0.0001
+        }
+      },
+      "downstream_mpc_financial_evaluation": null,
+      "family": "gru",
+      "loss_function": "MAE",
+      "model_artifact": "data/models/price_sequence_comparison/gru/model.pt",
+      "model_bytes": 42813,
+      "multi_horizon": null,
+      "name": "gru",
+      "parameter_count": 10001,
+      "reused_development_evaluation": {
+        "count": 44040,
+        "mae": 0.03018634534718766,
+        "mean_bias": -0.006155291700790516,
+        "median_absolute_error": 0.01626654069662094,
+        "negative_price": {
+          "actual_count": 8261,
+          "conditional_mae": 0.024389184979578586,
+          "f1": 0.7083903492978033,
+          "false_negative": 3343,
+          "false_positive": 706,
+          "precision": 0.8744665718349929,
+          "predicted_count": 5624,
+          "recall": 0.595327442198281,
+          "true_positive": 4918
+        },
+        "rmse": 0.270555050741342,
+        "spike": {
+          "actual_count": 14,
+          "conditional_mae": 12.536036921479617,
+          "f1": 0.0,
+          "false_negative": 14,
+          "false_positive": 0,
+          "precision": null,
+          "predicted_count": 0,
+          "recall": 0.0,
+          "true_positive": 0
+        }
+      },
+      "runtime": {
+        "evaluation_batch_microseconds_per_row": 37.97247048216169,
+        "evaluation_batch_seconds": 1.6723076000344008,
+        "evaluation_single_median_microseconds": 1023.9498224109411,
+        "scope": "CPU; batch includes lazy window assembly and DataLoader collation; single uses preassembled window",
+        "single_observation_repeats": 50,
+        "training_seconds": 314.64472260000184
+      },
+      "target_type": "absolute_wholesale_price",
+      "tuning": {
+        "count": 50100,
+        "mae": 0.05598403705088881,
+        "mean_bias": -0.03264482306005191,
+        "median_absolute_error": 0.01483163622975349,
+        "negative_price": {
+          "actual_count": 4481,
+          "conditional_mae": 0.03471903766316246,
+          "f1": 0.6023885814156714,
+          "false_negative": 2413,
+          "false_positive": 317,
+          "precision": 0.8670859538784067,
+          "predicted_count": 2385,
+          "recall": 0.461504128542736,
+          "true_positive": 2068
+        },
+        "rmse": 0.5965588634300882,
+        "spike": {
+          "actual_count": 223,
+          "conditional_mae": 7.056011606060775,
+          "f1": 0.0,
+          "false_negative": 223,
+          "false_positive": 0,
+          "precision": null,
+          "predicted_count": 0,
+          "recall": 0.0,
+          "true_positive": 0
+        }
+      }
+    },
+    {
+      "configuration": {
+        "architecture": {
+          "channels": 24,
+          "dilations": [
+            1,
+            2,
+            4,
+            8,
+            16,
+            32,
+            64
+          ],
+          "kernel_size": 2
+        },
+        "sequence_length": 72,
+        "training": {
+          "batch_size": 512,
+          "data_loader_workers": 0,
+          "device": "cpu",
+          "gradient_clip_norm": 1.0,
+          "learning_rate": 0.001,
+          "loss": "MAE",
+          "max_epochs": 8,
+          "minimum_mae_improvement_aud_per_kwh": 0.0001,
+          "optimizer": "AdamW",
+          "patience": 2,
+          "seed": 42,
+          "torch_threads": 4,
+          "weight_decay": 0.0001
+        }
+      },
+      "downstream_mpc_financial_evaluation": null,
+      "family": "tcn",
+      "loss_function": "MAE",
+      "model_artifact": "data/models/price_sequence_comparison/tcn/model.pt",
+      "model_bytes": 46333,
+      "multi_horizon": null,
+      "name": "tcn",
+      "parameter_count": 10081,
+      "reused_development_evaluation": {
+        "count": 44040,
+        "mae": 0.03232494047164909,
+        "mean_bias": -0.007299772636556199,
+        "median_absolute_error": 0.017463325033187867,
+        "negative_price": {
+          "actual_count": 8261,
+          "conditional_mae": 0.02819168211477488,
+          "f1": 0.6989355581127734,
+          "false_negative": 3402,
+          "false_positive": 784,
+          "precision": 0.8610668084352295,
+          "predicted_count": 5643,
+          "recall": 0.5881854497034258,
+          "true_positive": 4859
+        },
+        "rmse": 0.27611957515933877,
+        "spike": {
+          "actual_count": 14,
+          "conditional_mae": 12.541598043618203,
+          "f1": 0.0,
+          "false_negative": 14,
+          "false_positive": 5,
+          "precision": 0.0,
+          "predicted_count": 5,
+          "recall": 0.0,
+          "true_positive": 0
+        }
+      },
+      "runtime": {
+        "evaluation_batch_microseconds_per_row": 28.978024526278436,
+        "evaluation_batch_seconds": 1.2761922001373023,
+        "evaluation_single_median_microseconds": 497.0500012859702,
+        "scope": "CPU; batch includes lazy window assembly and DataLoader collation; single uses preassembled window",
+        "single_observation_repeats": 50,
+        "training_seconds": 110.21240149997175
+      },
+      "target_type": "absolute_wholesale_price",
+      "tuning": {
+        "count": 50100,
+        "mae": 0.05676633124462478,
+        "mean_bias": -0.030112003957650766,
+        "median_absolute_error": 0.015619407184123989,
+        "negative_price": {
+          "actual_count": 4481,
+          "conditional_mae": 0.035835309238393405,
+          "f1": 0.5716851242143072,
+          "false_negative": 2571,
+          "false_positive": 291,
+          "precision": 0.8677873693775556,
+          "predicted_count": 2201,
+          "recall": 0.42624414193260435,
+          "true_positive": 1910
+        },
+        "rmse": 0.5829633538846923,
+        "spike": {
+          "actual_count": 223,
+          "conditional_mae": 6.845899662705259,
+          "f1": 0.22142857142857142,
+          "false_negative": 192,
+          "false_positive": 26,
+          "precision": 0.543859649122807,
+          "predicted_count": 57,
+          "recall": 0.13901345291479822,
+          "true_positive": 31
+        }
+      }
     }
   ],
   "feature_files": {
@@ -1269,7 +1575,12 @@
   ],
   "forecast_horizon_minutes": 60,
   "model_selection": "Jan-Jun 2025 MAE only",
-  "schema_version": 1,
+  "schema_version": 2,
+  "sequence_comparison": {
+    "first_train_warmup_exclusions": 71,
+    "input_rows": 72,
+    "original_14_model_sha256": "38515a0bb16caefd9d629a7932e174451ceea05a98b1a9333751f39b07adb6ca"
+  },
   "split_counts": {
     "development": 2028,
     "evaluate": 44040,

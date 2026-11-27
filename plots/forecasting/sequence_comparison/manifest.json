@@ -1,0 +1,49 @@
+{
+  "evaluation_status": "Reused July-November 2025 development evaluation",
+  "matched_rows": 44040,
+  "model_names": [
+    "V1",
+    "V2-A",
+    "V2-B",
+    "V2-C",
+    "V2-D",
+    "persistence",
+    "daily_seasonal",
+    "train_median",
+    "hour_of_week_median",
+    "ridge",
+    "lasso",
+    "random_forest",
+    "lightgbm",
+    "catboost",
+    "lstm",
+    "gru",
+    "tcn"
+  ],
+  "representative_days_selected_using_actual_prices_only": {
+    "normal": [
+      "2025-07-05",
+      "2025-07-06"
+    ],
+    "negative": [
+      "2025-11-30",
+      "2025-11-12"
+    ],
+    "spike": [
+      "2025-10-10",
+      "2025-11-25"
+    ]
+  },
+  "display_clipping": "Distribution figures clip plotted values only; metrics retain extremes",
+  "files": [
+    "plots/forecasting/sequence_comparison/learning_curves.png",
+    "plots/forecasting/sequence_comparison/predictions_and_residuals.png",
+    "plots/forecasting/sequence_comparison/seventeen_model_mae.png",
+    "plots/forecasting/sequence_comparison/day_normal_2025-07-05.png",
+    "plots/forecasting/sequence_comparison/day_normal_2025-07-06.png",
+    "plots/forecasting/sequence_comparison/day_negative_2025-11-30.png",
+    "plots/forecasting/sequence_comparison/day_negative_2025-11-12.png",
+    "plots/forecasting/sequence_comparison/day_spike_2025-10-10.png",
+    "plots/forecasting/sequence_comparison/day_spike_2025-11-25.png"
+  ]
+}
