@@ -128,3 +128,16 @@ The default downloader fetches and processes **only Sydney-local January 2025**.
 ```
 
 The processed UTC-ordered five-minute CSV, quality report, summary statistics and old-replay comparison are in `data/processed/`. The two diagnostic SVGs are in `plots/`. See [data/DATA_DICTIONARY.md](data/DATA_DICTIONARY.md) for units, availability and chronological train/validation/test boundaries, and [data/SOURCE_RESEARCH.md](data/SOURCE_RESEARCH.md) for possible future renewable and issued-forecast feeds. This section documents the earlier smoke test; the train/validation expansion and first baselines are described above and in [data/FORECASTING_RESULTS.md](data/FORECASTING_RESULTS.md).
+
+## AEMO forecast archive feasibility
+
+The offline [AEMO forecast feasibility report](data/AEMO_FORECAST_FEASIBILITY.md) documents official P5MIN and 30-minute predispatch archives, a January 2025 raw-file smoke test, timestamp and publication limitations, and proposed future features. It finds that P5MIN has no forecast for the existing exact five-minute target starting at `t+60` on the sampled decisions. The 30-minute monthly tables do not preserve the issued vintages required for a safe historical join. No forecast model, MPC agent or 17-model leaderboard entry was changed.
+
+To reproduce the bounded smoke test with the existing Python environment (standard library only):
+
+```powershell
+.\.venv\Scripts\python.exe -c "from solaralpha.aemo_forecast_archive import fetch_tables; fetch_tables()"
+.\.venv\Scripts\python.exe -m solaralpha.aemo_forecast_coverage
+.\.venv\Scripts\python.exe -m solaralpha.aemo_forecast_diagnostic
+.\.venv\Scripts\python.exe -m unittest discover -s tests -q
+```

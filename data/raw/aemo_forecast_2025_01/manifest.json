@@ -1,0 +1,44 @@
+{
+  "files": {
+    "P5MIN_REGIONSOLUTION": {
+      "bytes": 50992440,
+      "path": "data/raw/aemo_forecast_2025_01/P5MIN_REGIONSOLUTION.zip",
+      "response_headers": {
+        "Content-Length": "50992440",
+        "Content-Type": "application/x-zip-compressed",
+        "ETag": null,
+        "Last-Modified": "Fri, 17 Apr 2026 23:45:46 GMT"
+      },
+      "retrieved_at_utc": "2026-11-27T05:54:29.428006+00:00",
+      "sha256": "e0a1e874872c7c30152e3472df837c7bcba503bff2bb3721b3eb3812cb652e4d",
+      "url": "https://www.nemweb.com.au/Data_Archive/Wholesale_Electricity/MMSDM/2025/MMSDM_2025_01/MMSDM_Historical_Data_SQLLoader/DATA/PUBLIC_ARCHIVE%23P5MIN_REGIONSOLUTION%23FILE01%23202501010000.zip"
+    },
+    "PREDISPATCHPRICE": {
+      "bytes": 103507,
+      "path": "data/raw/aemo_forecast_2025_01/PREDISPATCHPRICE.zip",
+      "response_headers": {
+        "Content-Length": "103507",
+        "Content-Type": "application/x-zip-compressed",
+        "ETag": null,
+        "Last-Modified": "Fri, 17 Apr 2026 23:33:04 GMT"
+      },
+      "retrieved_at_utc": "2026-11-27T05:54:29.508661+00:00",
+      "sha256": "32bc5bc70639558607415c843c7a7d5b3deb6e2460f7fc140bd45f5748641701",
+      "url": "https://www.nemweb.com.au/Data_Archive/Wholesale_Electricity/MMSDM/2025/MMSDM_2025_01/MMSDM_Historical_Data_SQLLoader/DATA/PUBLIC_ARCHIVE%23PREDISPATCHPRICE%23FILE01%23202501010000.zip"
+    },
+    "PREDISPATCHREGIONSUM": {
+      "bytes": 973067,
+      "path": "data/raw/aemo_forecast_2025_01/PREDISPATCHREGIONSUM.zip",
+      "response_headers": {
+        "Content-Length": "973067",
+        "Content-Type": "application/x-zip-compressed",
+        "ETag": null,
+        "Last-Modified": "Fri, 17 Apr 2026 23:43:44 GMT"
+      },
+      "retrieved_at_utc": "2026-11-27T05:54:29.643319+00:00",
+      "sha256": "d0e471b0050bf00087ba91f8c36b904d5f8f39e519debc64241ac69ce5518aea",
+      "url": "https://www.nemweb.com.au/Data_Archive/Wholesale_Electricity/MMSDM/2025/MMSDM_2025_01/MMSDM_Historical_Data_SQLLoader/DATA/PUBLIC_ARCHIVE%23PREDISPATCHREGIONSUM%23FILE01%23202501010000.zip"
+    }
+  },
+  "schema_version": 1
+}
