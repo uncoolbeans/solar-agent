@@ -62,6 +62,11 @@ python -m solaralpha.price_forecasting.multi_horizon verify
 python -m solaralpha.price_forecasting.multi_horizon baseline-times
 python -m solaralpha.price_forecasting.multi_horizon_plots
 python -m solaralpha.price_forecasting.multi_horizon_report
+python -m solaralpha.price_forecasting.horizon_conditioned design
+python -m solaralpha.price_forecasting.horizon_conditioned train
+python -m solaralpha.price_forecasting.horizon_conditioned evaluate
+python -m solaralpha.price_forecasting.horizon_conditioned_plots
+python -m solaralpha.price_forecasting.horizon_conditioned_report
 ```
 
 The forecasting command requires the expanded 2023–November 2025 historical cache and optional Matplotlib from `requirements-forecast.txt` (`python -m pip install -r requirements-forecast.txt`). It produces train/validation CSV.gz files and baseline metrics in `data/features/`, plus PNG plots in `plots/forecasting/`. It never reads the held-out December 2025–February 2026 dates. Feature timing and the publication-delay assumption are documented in [data/FEATURE_DICTIONARY.md](data/FEATURE_DICTIONARY.md), with results in [data/README.md](data/README.md). This offline package is not connected to MPC.
@@ -85,6 +90,12 @@ The replay compares self-consumption, a threshold rule using the previous comple
 The four multi-horizon commands above build versioned labels, train ten independent direct XGBoost V2-A regressors, verify the frozen +60-minute V2-A result on its original eligible rows, and make plots. Use the existing pinned `requirements-ml.txt` environment. Each target is the NSW1 price for the **five-minute interval starting** at decision time plus 0, 5, 15, 30, 60, 120, 180, 360, 540 or 715 minutes. The +0-minute settlement price is unknown at decision time and is only a training/evaluation label. All models consume the same frozen 41 feature columns, which use completed observations strictly before the decision. Their two seasonal input columns remain anchored to the old +60-minute clock time; each horizon's previous-day baseline separately uses the observation 288 intervals before its own target, which is safely before the decision. That UTC 24-hour rule shifts relative to Sydney wall time on daylight-saving transition days.
 
 The new labels and manifest are in `data/features/multi_horizon_v1/`; the models, metadata, predictions and scores are in `data/models/price_multi_horizon_v1/`; plots are in `plots/forecasting/multi_horizon_v1/`. The source feature files, original one-hour model and 17-model leaderboard are preserved. The source feature-origin universe already excludes the first training week without weekly history, 12 training origins whose old +60-minute label crossed into 2025, and the final 12 validation origins without an old +60-minute label. The new manifest reports horizon-specific eligibility and the intersection of all ten horizons. Training and January–June tuning use eligible rows for each horizon; comparative July–November plots and tables use the same common decision origins at all horizons. July–November remains reused development evaluation, and December 2025–February 2026 is untouched. These ten sparse forecasts are **not** a validated 144-point five-minute trajectory for MPC.
+
+## Horizon-conditioned price comparison
+
+The shared offline model learns `predicted_price = f(the same 41 historical features, forecast_horizon_minutes)` at the ten trained horizons only. Each common training decision contributes ten rows, one per horizon, in a single `float32` matrix. The current interval's settlement price and all other targets remain labels, never input columns. The original two seasonal feature columns retain their +60-minute clock alignment at every horizon. The `design` command records the exact V2-A tree settings, target/feature fingerprints and memory estimate before allocating the expanded matrix. The `train` command fits one absolute-error XGBoost ensemble using equal-horizon mean tuning MAE for checkpoint selection. The `evaluate` command checks frozen direct predictions, chooses a persistence/direct/shared hybrid using January–June tuning only, then scores the reused July–November development period. Plots and the detailed report compare only the ten trained, sparse offsets; this is not a validated 144-point MPC forecast.
+
+Models, metadata, a frozen hybrid selection and per-horizon predictions are under `data/models/price_horizon_conditioned_v1/`. [Detailed comparison tables](data/HORIZON_CONDITIONED_RESULTS.md) and Matplotlib figures are generated separately. The original direct models, 17-model one-hour leaderboard, simulator and controller remain separate. The December 2025–February 2026 held-out period is untouched. No AEMO predispatch data enter the shared model. This experiment uses the already-pinned NumPy and XGBoost packages from `requirements-ml.txt`; no environment changes were needed.
 
 ## First trading controller
 

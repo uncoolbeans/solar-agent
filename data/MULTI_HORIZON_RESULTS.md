@@ -246,3 +246,22 @@ Conditional subsets differ in size across horizons because target times shift. T
 | 715 | zero_to_10c | 20787 | 0.02510 | 0.07661 |
 
 Models/predictions: `models/price_multi_horizon_v1/`. Figures: `../plots/forecasting/multi_horizon_v1/`. Original +60-minute V2-A verification and the common-row score are in `results.json`.
+
+## Subsequent shared horizon-conditioned comparison
+
+One absolute-error XGBoost model uses the same 41 features plus a numerical horizon in minutes. The direct models above remain unchanged. Choices for the provisional hybrid were frozen using common January–June tuning MAE before reused July–November scoring. The table uses the same 43,909 common evaluation origins at every offset; all errors are AUD/kWh.
+
+| Horizon min | Tuning-only hybrid choice | Direct MAE | Shared MAE | Hybrid MAE |
+| ---: | --- | ---: | ---: | ---: |
+| 0 | persistence | 0.01734 | 0.01920 | 0.01797 |
+| 5 | persistence | 0.01953 | 0.02056 | 0.02199 |
+| 15 | direct | 0.02218 | 0.02304 | 0.02218 |
+| 30 | direct | 0.02531 | 0.02594 | 0.02531 |
+| 60 | direct | 0.02950 | 0.03076 | 0.02950 |
+| 120 | direct | 0.03386 | 0.03681 | 0.03386 |
+| 180 | direct | 0.03653 | 0.04105 | 0.03653 |
+| 360 | direct | 0.04067 | 0.04553 | 0.04067 |
+| 540 | direct | 0.04184 | 0.04564 | 0.04184 |
+| 715 | direct | 0.04191 | 0.04320 | 0.04191 |
+
+The mean of ten common-origin MAEs is direct 0.03087, shared 0.03317, hybrid 0.03118. Shared is more compact but has higher overall MAE at all ten trained offsets. [Full shared comparison](HORIZON_CONDITIONED_RESULTS.md) includes RMSE, event and onset scores, monthly/conditional errors, importance, latency and memory. The ten forecasts remain sparse; no untrained intermediate horizon was validated.

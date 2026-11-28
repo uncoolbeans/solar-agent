@@ -1,0 +1,100 @@
+{
+  "frozen_before_reused_evaluation": true,
+  "horizons": {
+    "0": {
+      "chosen": "persistence",
+      "common_tune_count": 49838,
+      "common_tune_mae": {
+        "direct": 0.041272806253266396,
+        "persistence": 0.03297108709048446,
+        "shared": 0.04377740581953093
+      }
+    },
+    "120": {
+      "chosen": "direct",
+      "common_tune_count": 49838,
+      "common_tune_mae": {
+        "direct": 0.05920404424050619,
+        "persistence": 0.09405618224340094,
+        "shared": 0.06265772344414268
+      }
+    },
+    "15": {
+      "chosen": "direct",
+      "common_tune_count": 49838,
+      "common_tune_mae": {
+        "direct": 0.04760937635842816,
+        "persistence": 0.048489421657914054,
+        "shared": 0.048778507078363724
+      }
+    },
+    "180": {
+      "chosen": "direct",
+      "common_tune_count": 49838,
+      "common_tune_mae": {
+        "direct": 0.06190374426384158,
+        "persistence": 0.11252921710174144,
+        "shared": 0.06675929016490459
+      }
+    },
+    "30": {
+      "chosen": "direct",
+      "common_tune_count": 49838,
+      "common_tune_mae": {
+        "direct": 0.05136090087034359,
+        "persistence": 0.057279073139412204,
+        "shared": 0.05195157083608885
+      }
+    },
+    "360": {
+      "chosen": "direct",
+      "common_tune_count": 49838,
+      "common_tune_mae": {
+        "direct": 0.06548538594987183,
+        "persistence": 0.1372057104249652,
+        "shared": 0.06986110177489621
+      }
+    },
+    "5": {
+      "chosen": "persistence",
+      "common_tune_count": 49838,
+      "common_tune_mae": {
+        "direct": 0.04376314524987709,
+        "persistence": 0.03895286121929117,
+        "shared": 0.045584442806680454
+      }
+    },
+    "540": {
+      "chosen": "direct",
+      "common_tune_count": 49838,
+      "common_tune_mae": {
+        "direct": 0.06579089642314359,
+        "persistence": 0.141676187128569,
+        "shared": 0.06966868007150702
+      }
+    },
+    "60": {
+      "chosen": "direct",
+      "common_tune_count": 49838,
+      "common_tune_mae": {
+        "direct": 0.05502020273039329,
+        "persistence": 0.07240998469908184,
+        "shared": 0.05655375234526879
+      }
+    },
+    "715": {
+      "chosen": "direct",
+      "common_tune_count": 49838,
+      "common_tune_mae": {
+        "direct": 0.06550272777781276,
+        "persistence": 0.13742801885212108,
+        "shared": 0.06726016468202745
+      }
+    }
+  },
+  "selection_rule": "lowest common-origin January-June 2025 tuning MAE among persistence, direct, shared; ties prefer persistence then direct then shared",
+  "source_fingerprints": {
+    "direct_results_sha256": "470b2aa55be0a759cf9a859e838958450908f0c73dfc6d69ef663efd411a2b4d",
+    "one_hour_leaderboard_sha256": "ddbe701b6732244c223ef65a984b98b9fe6b4c88629cc5b10330020e4b0039cd"
+  }
+}

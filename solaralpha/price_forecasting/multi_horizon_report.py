@@ -1,6 +1,7 @@
 """Render comprehensive matched multi-horizon metrics from saved JSON."""
 
 import json
+from hashlib import sha256
 
 from solaralpha.historical_pipeline import ROOT
 from .multi_horizon import HORIZONS, MODEL_DIR, MODEL_NAMES
@@ -61,6 +62,22 @@ def make_report(output_path=OUTPUT):
             if models:
                 lines.append(f"| {h} | {label} | {models['xgboost']['count']} | {_number(models['xgboost']['mae'], 5)} | {_number(models['persistence']['mae'], 5)} |")
     lines += ["", "Models/predictions: `models/price_multi_horizon_v1/`. Figures: `../plots/forecasting/multi_horizon_v1/`. Original +60-minute V2-A verification and the common-row score are in `results.json`.", ""]
+    conditioned_path = ROOT / "data" / "models" / "price_horizon_conditioned_v1" / "results.json"
+    if conditioned_path.exists():
+        conditioned = json.loads(conditioned_path.read_text(encoding="utf-8"))
+        if conditioned["source_fingerprints"]["direct_results_sha256"] != sha256(
+                (MODEL_DIR / "results.json").read_bytes()).hexdigest():
+            raise ValueError("Shared comparison does not match these frozen direct results")
+        lines += ["## Subsequent shared horizon-conditioned comparison", "",
+                  "One absolute-error XGBoost model uses the same 41 features plus a numerical horizon in minutes. The direct models above remain unchanged. Choices for the provisional hybrid were frozen using common January–June tuning MAE before reused July–November scoring. The table uses the same 43,909 common evaluation origins at every offset; all errors are AUD/kWh.", "",
+                  "| Horizon min | Tuning-only hybrid choice | Direct MAE | Shared MAE | Hybrid MAE |", "| ---: | --- | ---: | ---: | ---: |"]
+        for h in HORIZONS:
+            models = conditioned["horizons"][str(h)]["splits"]["evaluate"]["common"]["models"]
+            choice = conditioned["hybrid_selection"]["horizons"][str(h)]["chosen"]
+            lines.append(f"| {h} | {choice} | {_number(models['direct']['mae'], 5)} | {_number(models['shared']['mae'], 5)} | {_number(models['hybrid']['mae'], 5)} |")
+        lines += ["", "The mean of ten common-origin MAEs is " + ", ".join(
+            f"{name} {_number(conditioned['mean_common_mae']['evaluate'][name], 5)}"
+            for name in ("direct", "shared", "hybrid")) + ". Shared is more compact but has higher overall MAE at all ten trained offsets. [Full shared comparison](HORIZON_CONDITIONED_RESULTS.md) includes RMSE, event and onset scores, monthly/conditional errors, importance, latency and memory. The ten forecasts remain sparse; no untrained intermediate horizon was validated.", ""]
     output_path.write_text("\n".join(lines), encoding="utf-8")
     return output_path
 

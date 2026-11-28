@@ -1,0 +1,109 @@
+{
+  "common_counts": {
+    "evaluate": 43909,
+    "train": 208669,
+    "tune": 49838
+  },
+  "early_stopping_rounds": 50,
+  "feature_count": 42,
+  "feature_order": [
+    "hour_sin",
+    "hour_cos",
+    "weekday_sin",
+    "weekday_cos",
+    "local_month",
+    "local_day_of_month",
+    "local_day_of_year",
+    "is_weekend",
+    "is_dst",
+    "local_fold",
+    "price_lag_5m_aud_per_kwh",
+    "price_lag_15m_aud_per_kwh",
+    "price_lag_30m_aud_per_kwh",
+    "price_lag_60m_aud_per_kwh",
+    "price_lag_180m_aud_per_kwh",
+    "price_lag_360m_aud_per_kwh",
+    "price_lag_720m_aud_per_kwh",
+    "price_lag_1440m_aud_per_kwh",
+    "price_trailing_60m_mean_aud_per_kwh",
+    "price_trailing_60m_std_aud_per_kwh",
+    "price_trailing_60m_min_aud_per_kwh",
+    "price_trailing_60m_max_aud_per_kwh",
+    "price_trailing_360m_mean_aud_per_kwh",
+    "price_trailing_360m_std_aud_per_kwh",
+    "price_trailing_360m_min_aud_per_kwh",
+    "price_trailing_360m_max_aud_per_kwh",
+    "price_trailing_1440m_mean_aud_per_kwh",
+    "price_trailing_1440m_std_aud_per_kwh",
+    "price_trailing_1440m_min_aud_per_kwh",
+    "price_trailing_1440m_max_aud_per_kwh",
+    "price_change_5m_vs_15m_aud_per_kwh",
+    "price_change_5m_vs_60m_aud_per_kwh",
+    "price_change_5m_vs_1440m_aud_per_kwh",
+    "demand_lag_5m_mw",
+    "demand_lag_15m_mw",
+    "demand_lag_60m_mw",
+    "demand_lag_1440m_mw",
+    "demand_change_5m_vs_15m_mw",
+    "demand_change_5m_vs_60m_mw",
+    "price_target_aligned_previous_day_aud_per_kwh",
+    "price_target_aligned_previous_week_aud_per_kwh",
+    "forecast_horizon_minutes"
+  ],
+  "fixed_semantics": "Frozen price_target_aligned_previous_day/week inputs remain +60-minute aligned, even at other horizons.",
+  "held_out": "December 2025-February 2026 untouched",
+  "horizons_minutes": [
+    0,
+    5,
+    15,
+    30,
+    60,
+    120,
+    180,
+    360,
+    540,
+    715
+  ],
+  "memory_estimate": {
+    "evaluate": {
+      "examples": 439090,
+      "label_mib": 3.3499908447265625,
+      "matrix_mib": 70.34980773925781
+    },
+    "train": {
+      "examples": 2086690,
+      "label_mib": 15.920181274414062,
+      "matrix_mib": 334.3238067626953
+    },
+    "tune": {
+      "examples": 498380,
+      "label_mib": 3.802337646484375,
+      "matrix_mib": 79.84909057617188
+    }
+  },
+  "num_boost_round": 1000,
+  "parameters": {
+    "colsample_bytree": 0.8,
+    "eval_metric": "mae",
+    "learning_rate": 0.03,
+    "max_depth": 5,
+    "min_child_weight": 10,
+    "n_jobs": 4,
+    "objective": "reg:absoluteerror",
+    "random_state": 42,
+    "reg_alpha": 0.1,
+    "reg_lambda": 1.0,
+    "subsample": 0.8,
+    "tree_method": "hist"
+  },
+  "schema_version": 1,
+  "selection_metric": "arithmetic mean of ten per-horizon tuning MAEs on common origins",
+  "source_fingerprints": {
+    "direct_results_sha256": "470b2aa55be0a759cf9a859e838958450908f0c73dfc6d69ef663efd411a2b4d",
+    "one_hour_leaderboard_sha256": "ddbe701b6732244c223ef65a984b98b9fe6b4c88629cc5b10330020e4b0039cd"
+  },
+  "source_target_manifest_sha256": "f2c259528d46507de92026e47d082ae770ce926cf317219deeb6996595d16784",
+  "training_objective": "reg:absoluteerror",
+  "training_rows": "ten horizon-major blocks of common training origins",
+  "tuning_rows": "ten horizon-major blocks of common January-June 2025 tuning origins"
+}
