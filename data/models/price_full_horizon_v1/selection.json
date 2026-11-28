@@ -1,0 +1,1168 @@
+{
+  "choices": [
+    "persistence",
+    "persistence",
+    "persistence",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct"
+  ],
+  "direct_tune_sha256": "cd8f5f0d27fe12c60ec9248b2bd096021ef99b9653e738e3d79915693497aa08",
+  "fixed_choices": [
+    "persistence",
+    "persistence",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct",
+    "direct"
+  ],
+  "frozen_before_reused_evaluation": true,
+  "horizons_minutes": [
+    0,
+    5,
+    10,
+    15,
+    20,
+    25,
+    30,
+    35,
+    40,
+    45,
+    50,
+    55,
+    60,
+    65,
+    70,
+    75,
+    80,
+    85,
+    90,
+    95,
+    100,
+    105,
+    110,
+    115,
+    120,
+    125,
+    130,
+    135,
+    140,
+    145,
+    150,
+    155,
+    160,
+    165,
+    170,
+    175,
+    180,
+    185,
+    190,
+    195,
+    200,
+    205,
+    210,
+    215,
+    220,
+    225,
+    230,
+    235,
+    240,
+    245,
+    250,
+    255,
+    260,
+    265,
+    270,
+    275,
+    280,
+    285,
+    290,
+    295,
+    300,
+    305,
+    310,
+    315,
+    320,
+    325,
+    330,
+    335,
+    340,
+    345,
+    350,
+    355,
+    360,
+    365,
+    370,
+    375,
+    380,
+    385,
+    390,
+    395,
+    400,
+    405,
+    410,
+    415,
+    420,
+    425,
+    430,
+    435,
+    440,
+    445,
+    450,
+    455,
+    460,
+    465,
+    470,
+    475,
+    480,
+    485,
+    490,
+    495,
+    500,
+    505,
+    510,
+    515,
+    520,
+    525,
+    530,
+    535,
+    540,
+    545,
+    550,
+    555,
+    560,
+    565,
+    570,
+    575,
+    580,
+    585,
+    590,
+    595,
+    600,
+    605,
+    610,
+    615,
+    620,
+    625,
+    630,
+    635,
+    640,
+    645,
+    650,
+    655,
+    660,
+    665,
+    670,
+    675,
+    680,
+    685,
+    690,
+    695,
+    700,
+    705,
+    710,
+    715
+  ],
+  "rule": "lower common-origin tuning MAE per horizon; persistence wins exact ties",
+  "schema_version": 1,
+  "selection_period": "January-June 2025 common origins",
+  "target_manifest_sha256": "8a4afbecdd28009430bbf67cdeb813f2b9060ebedcf64a2b2177ec904cfb861d",
+  "tune_scores": {
+    "0": {
+      "direct": 0.04127280624481006,
+      "persistence": 0.03297108709048446,
+      "selected": "persistence"
+    },
+    "10": {
+      "direct": 0.046091652795992095,
+      "persistence": 0.04413128232147251,
+      "selected": "persistence"
+    },
+    "100": {
+      "direct": 0.05815581942059352,
+      "persistence": 0.08741155793646725,
+      "selected": "direct"
+    },
+    "105": {
+      "direct": 0.05841465683612602,
+      "persistence": 0.08909484674311513,
+      "selected": "direct"
+    },
+    "110": {
+      "direct": 0.05875406087023917,
+      "persistence": 0.09093853351194639,
+      "selected": "direct"
+    },
+    "115": {
+      "direct": 0.05899904787793478,
+      "persistence": 0.09259298368968735,
+      "selected": "direct"
+    },
+    "120": {
+      "direct": 0.05920404424687515,
+      "persistence": 0.09405618224340094,
+      "selected": "direct"
+    },
+    "125": {
+      "direct": 0.05956943163141717,
+      "persistence": 0.09603881137453929,
+      "selected": "direct"
+    },
+    "130": {
+      "direct": 0.059769907103089846,
+      "persistence": 0.0974692177435597,
+      "selected": "direct"
+    },
+    "135": {
+      "direct": 0.059946841744387566,
+      "persistence": 0.09911064213123233,
+      "selected": "direct"
+    },
+    "140": {
+      "direct": 0.06018469801105831,
+      "persistence": 0.10047891075097494,
+      "selected": "direct"
+    },
+    "145": {
+      "direct": 0.060313927659104816,
+      "persistence": 0.10204153861078549,
+      "selected": "direct"
+    },
+    "15": {
+      "direct": 0.04760937635205565,
+      "persistence": 0.048489421657914054,
+      "selected": "direct"
+    },
+    "150": {
+      "direct": 0.06063006025274495,
+      "persistence": 0.10353433107436143,
+      "selected": "direct"
+    },
+    "155": {
+      "direct": 0.060846394405037384,
+      "persistence": 0.10531035817950825,
+      "selected": "direct"
+    },
+    "160": {
+      "direct": 0.06106453452486898,
+      "persistence": 0.10669344780258067,
+      "selected": "direct"
+    },
+    "165": {
+      "direct": 0.06126428879313566,
+      "persistence": 0.10848458908818852,
+      "selected": "direct"
+    },
+    "170": {
+      "direct": 0.06147814183764106,
+      "persistence": 0.1099679792896361,
+      "selected": "direct"
+    },
+    "175": {
+      "direct": 0.061620990302963696,
+      "persistence": 0.11153431885804063,
+      "selected": "direct"
+    },
+    "180": {
+      "direct": 0.06190374426948962,
+      "persistence": 0.11252921710174144,
+      "selected": "direct"
+    },
+    "185": {
+      "direct": 0.062085100807789145,
+      "persistence": 0.11402759525647124,
+      "selected": "direct"
+    },
+    "190": {
+      "direct": 0.062245223160451287,
+      "persistence": 0.11484459195147435,
+      "selected": "direct"
+    },
+    "195": {
+      "direct": 0.06245713079584887,
+      "persistence": 0.11622765206189062,
+      "selected": "direct"
+    },
+    "20": {
+      "direct": 0.04903387878668861,
+      "persistence": 0.05105576900053211,
+      "selected": "direct"
+    },
+    "200": {
+      "direct": 0.06260713933664233,
+      "persistence": 0.1175516241291542,
+      "selected": "direct"
+    },
+    "205": {
+      "direct": 0.06282202819100093,
+      "persistence": 0.11879686171758211,
+      "selected": "direct"
+    },
+    "210": {
+      "direct": 0.06295397396091941,
+      "persistence": 0.11996715184835281,
+      "selected": "direct"
+    },
+    "215": {
+      "direct": 0.0631363949860354,
+      "persistence": 0.12074082292815319,
+      "selected": "direct"
+    },
+    "220": {
+      "direct": 0.06330494607722335,
+      "persistence": 0.12165817033843293,
+      "selected": "direct"
+    },
+    "225": {
+      "direct": 0.06336649648250832,
+      "persistence": 0.12247630007310331,
+      "selected": "direct"
+    },
+    "230": {
+      "direct": 0.06351557409943516,
+      "persistence": 0.12327625512324263,
+      "selected": "direct"
+    },
+    "235": {
+      "direct": 0.06363609417965899,
+      "persistence": 0.12431240627321748,
+      "selected": "direct"
+    },
+    "240": {
+      "direct": 0.0636579289327356,
+      "persistence": 0.12509352369349563,
+      "selected": "direct"
+    },
+    "245": {
+      "direct": 0.06370450201098757,
+      "persistence": 0.12601604267392805,
+      "selected": "direct"
+    },
+    "25": {
+      "direct": 0.050166219029508456,
+      "persistence": 0.053546970183517464,
+      "selected": "direct"
+    },
+    "250": {
+      "direct": 0.06384070015616146,
+      "persistence": 0.1269068579044023,
+      "selected": "direct"
+    },
+    "255": {
+      "direct": 0.06387170163683689,
+      "persistence": 0.12759574350219993,
+      "selected": "direct"
+    },
+    "260": {
+      "direct": 0.06389316529551922,
+      "persistence": 0.1282002597334716,
+      "selected": "direct"
+    },
+    "265": {
+      "direct": 0.06415153830511286,
+      "persistence": 0.128716872163391,
+      "selected": "direct"
+    },
+    "270": {
+      "direct": 0.06407774056892622,
+      "persistence": 0.12936097184238313,
+      "selected": "direct"
+    },
+    "275": {
+      "direct": 0.06407695456021867,
+      "persistence": 0.12988377071130056,
+      "selected": "direct"
+    },
+    "280": {
+      "direct": 0.0642497728352176,
+      "persistence": 0.13038604387080222,
+      "selected": "direct"
+    },
+    "285": {
+      "direct": 0.06438293072760821,
+      "persistence": 0.1308954800488518,
+      "selected": "direct"
+    },
+    "290": {
+      "direct": 0.06437496697134176,
+      "persistence": 0.13143259951761072,
+      "selected": "direct"
+    },
+    "295": {
+      "direct": 0.06436573215327701,
+      "persistence": 0.13147296691073215,
+      "selected": "direct"
+    },
+    "30": {
+      "direct": 0.05136090087804695,
+      "persistence": 0.057279073139412204,
+      "selected": "direct"
+    },
+    "300": {
+      "direct": 0.06454803768885493,
+      "persistence": 0.13242610648818817,
+      "selected": "direct"
+    },
+    "305": {
+      "direct": 0.06445667100823557,
+      "persistence": 0.1329041371045227,
+      "selected": "direct"
+    },
+    "310": {
+      "direct": 0.06452861320244735,
+      "persistence": 0.1333513924166942,
+      "selected": "direct"
+    },
+    "315": {
+      "direct": 0.06470755684933764,
+      "persistence": 0.13377604048103378,
+      "selected": "direct"
+    },
+    "320": {
+      "direct": 0.06467738782395369,
+      "persistence": 0.1342263482891349,
+      "selected": "direct"
+    },
+    "325": {
+      "direct": 0.06486196222526483,
+      "persistence": 0.13464579589269837,
+      "selected": "direct"
+    },
+    "330": {
+      "direct": 0.06494028063039696,
+      "persistence": 0.13507872999849305,
+      "selected": "direct"
+    },
+    "335": {
+      "direct": 0.0649472263135202,
+      "persistence": 0.13546651141649288,
+      "selected": "direct"
+    },
+    "340": {
+      "direct": 0.06511834072288789,
+      "persistence": 0.13587573769869057,
+      "selected": "direct"
+    },
+    "345": {
+      "direct": 0.0653176434343041,
+      "persistence": 0.13629654471594518,
+      "selected": "direct"
+    },
+    "35": {
+      "direct": 0.05216532905015554,
+      "persistence": 0.06069833214302798,
+      "selected": "direct"
+    },
+    "350": {
+      "direct": 0.06526572828327723,
+      "persistence": 0.13668943187892468,
+      "selected": "direct"
+    },
+    "355": {
+      "direct": 0.065400416851116,
+      "persistence": 0.1370817732704567,
+      "selected": "direct"
+    },
+    "360": {
+      "direct": 0.06548538595027958,
+      "persistence": 0.1372057104249652,
+      "selected": "direct"
+    },
+    "365": {
+      "direct": 0.06558746373780394,
+      "persistence": 0.13777610169391483,
+      "selected": "direct"
+    },
+    "370": {
+      "direct": 0.06554006816213889,
+      "persistence": 0.13813759472056453,
+      "selected": "direct"
+    },
+    "375": {
+      "direct": 0.06577150099470848,
+      "persistence": 0.1384514849244009,
+      "selected": "direct"
+    },
+    "380": {
+      "direct": 0.06563961882739644,
+      "persistence": 0.13878153709063695,
+      "selected": "direct"
+    },
+    "385": {
+      "direct": 0.0658499728093261,
+      "persistence": 0.1390795095262324,
+      "selected": "direct"
+    },
+    "390": {
+      "direct": 0.06579646173937728,
+      "persistence": 0.13934348520019676,
+      "selected": "direct"
+    },
+    "395": {
+      "direct": 0.06565614532423411,
+      "persistence": 0.13961193056583113,
+      "selected": "direct"
+    },
+    "40": {
+      "direct": 0.05288211519268217,
+      "persistence": 0.06213502941441131,
+      "selected": "direct"
+    },
+    "400": {
+      "direct": 0.06573590725093204,
+      "persistence": 0.13988915877870398,
+      "selected": "direct"
+    },
+    "405": {
+      "direct": 0.06567723211202928,
+      "persistence": 0.1401580092517143,
+      "selected": "direct"
+    },
+    "410": {
+      "direct": 0.0658650836090355,
+      "persistence": 0.1404542133645857,
+      "selected": "direct"
+    },
+    "415": {
+      "direct": 0.06589510040480691,
+      "persistence": 0.14074447259516976,
+      "selected": "direct"
+    },
+    "420": {
+      "direct": 0.0656524650300905,
+      "persistence": 0.1409504397311788,
+      "selected": "direct"
+    },
+    "425": {
+      "direct": 0.06615190326638486,
+      "persistence": 0.14115184588266994,
+      "selected": "direct"
+    },
+    "430": {
+      "direct": 0.06578992977776006,
+      "persistence": 0.1413498616559058,
+      "selected": "direct"
+    },
+    "435": {
+      "direct": 0.06577804496478086,
+      "persistence": 0.14156850946896699,
+      "selected": "direct"
+    },
+    "440": {
+      "direct": 0.06579000580120942,
+      "persistence": 0.14173519432697607,
+      "selected": "direct"
+    },
+    "445": {
+      "direct": 0.06565767523164631,
+      "persistence": 0.14188908252096508,
+      "selected": "direct"
+    },
+    "45": {
+      "direct": 0.053460674655663974,
+      "persistence": 0.06618134148664635,
+      "selected": "direct"
+    },
+    "450": {
+      "direct": 0.06569991629752958,
+      "persistence": 0.14201259410168635,
+      "selected": "direct"
+    },
+    "455": {
+      "direct": 0.0658332751750972,
+      "persistence": 0.14212414051083327,
+      "selected": "direct"
+    },
+    "460": {
+      "direct": 0.06576310261632722,
+      "persistence": 0.14222425467679584,
+      "selected": "direct"
+    },
+    "465": {
+      "direct": 0.06594821202855645,
+      "persistence": 0.14231278070167808,
+      "selected": "direct"
+    },
+    "470": {
+      "direct": 0.06579681340366327,
+      "persistence": 0.14241735773160466,
+      "selected": "direct"
+    },
+    "475": {
+      "direct": 0.06576085076242869,
+      "persistence": 0.14247842158309493,
+      "selected": "direct"
+    },
+    "480": {
+      "direct": 0.06547476781032416,
+      "persistence": 0.14246249357133406,
+      "selected": "direct"
+    },
+    "485": {
+      "direct": 0.0657978449368837,
+      "persistence": 0.14252065682491238,
+      "selected": "direct"
+    },
+    "490": {
+      "direct": 0.06614143388858809,
+      "persistence": 0.14253123590245523,
+      "selected": "direct"
+    },
+    "495": {
+      "direct": 0.06559079235133972,
+      "persistence": 0.1425698592412341,
+      "selected": "direct"
+    },
+    "5": {
+      "direct": 0.0437631452272354,
+      "persistence": 0.03895286121929117,
+      "selected": "persistence"
+    },
+    "50": {
+      "direct": 0.054008020401879055,
+      "persistence": 0.06812304259625496,
+      "selected": "direct"
+    },
+    "500": {
+      "direct": 0.0660819729481727,
+      "persistence": 0.14255194338185087,
+      "selected": "direct"
+    },
+    "505": {
+      "direct": 0.06588932084661575,
+      "persistence": 0.14250353453949632,
+      "selected": "direct"
+    },
+    "510": {
+      "direct": 0.06573102177906384,
+      "persistence": 0.14243375485144308,
+      "selected": "direct"
+    },
+    "515": {
+      "direct": 0.06568990653355503,
+      "persistence": 0.142355808703087,
+      "selected": "direct"
+    },
+    "520": {
+      "direct": 0.0659428848387712,
+      "persistence": 0.1422635279106888,
+      "selected": "direct"
+    },
+    "525": {
+      "direct": 0.06600481784004845,
+      "persistence": 0.1421535732601088,
+      "selected": "direct"
+    },
+    "530": {
+      "direct": 0.06597189479965938,
+      "persistence": 0.14199627721691227,
+      "selected": "direct"
+    },
+    "535": {
+      "direct": 0.06595373134738192,
+      "persistence": 0.14185324218867354,
+      "selected": "direct"
+    },
+    "540": {
+      "direct": 0.06579089642526169,
+      "persistence": 0.141676187128569,
+      "selected": "direct"
+    },
+    "545": {
+      "direct": 0.06577513105762227,
+      "persistence": 0.1415284187578397,
+      "selected": "direct"
+    },
+    "55": {
+      "direct": 0.054427090446750204,
+      "persistence": 0.06937298021002627,
+      "selected": "direct"
+    },
+    "550": {
+      "direct": 0.06574061043471341,
+      "persistence": 0.14133658421296516,
+      "selected": "direct"
+    },
+    "555": {
+      "direct": 0.0657530700383109,
+      "persistence": 0.14105036024972645,
+      "selected": "direct"
+    },
+    "560": {
+      "direct": 0.06569026846053756,
+      "persistence": 0.14076531670729298,
+      "selected": "direct"
+    },
+    "565": {
+      "direct": 0.06571527397741259,
+      "persistence": 0.14056382467487297,
+      "selected": "direct"
+    },
+    "570": {
+      "direct": 0.065656376639537,
+      "persistence": 0.14035944106811393,
+      "selected": "direct"
+    },
+    "575": {
+      "direct": 0.06576084701618443,
+      "persistence": 0.14020353152110648,
+      "selected": "direct"
+    },
+    "580": {
+      "direct": 0.06573867417915724,
+      "persistence": 0.14001590300234262,
+      "selected": "direct"
+    },
+    "585": {
+      "direct": 0.06572938869200137,
+      "persistence": 0.13984209646601914,
+      "selected": "direct"
+    },
+    "590": {
+      "direct": 0.06571234784809551,
+      "persistence": 0.13963944968568134,
+      "selected": "direct"
+    },
+    "595": {
+      "direct": 0.0656866616364658,
+      "persistence": 0.1394660791671539,
+      "selected": "direct"
+    },
+    "60": {
+      "direct": 0.055020202740844605,
+      "persistence": 0.07240998469908184,
+      "selected": "direct"
+    },
+    "600": {
+      "direct": 0.06574644410262714,
+      "persistence": 0.13928871210113214,
+      "selected": "direct"
+    },
+    "605": {
+      "direct": 0.06557207126544566,
+      "persistence": 0.139136888989491,
+      "selected": "direct"
+    },
+    "610": {
+      "direct": 0.06553557448001465,
+      "persistence": 0.13897390592645903,
+      "selected": "direct"
+    },
+    "615": {
+      "direct": 0.06557874233840849,
+      "persistence": 0.13884527937976757,
+      "selected": "direct"
+    },
+    "620": {
+      "direct": 0.06558400615727397,
+      "persistence": 0.13873082695168285,
+      "selected": "direct"
+    },
+    "625": {
+      "direct": 0.06562954898548991,
+      "persistence": 0.1386279299723776,
+      "selected": "direct"
+    },
+    "630": {
+      "direct": 0.0656193945523963,
+      "persistence": 0.13851964652884552,
+      "selected": "direct"
+    },
+    "635": {
+      "direct": 0.06560398302336952,
+      "persistence": 0.13844289323818199,
+      "selected": "direct"
+    },
+    "640": {
+      "direct": 0.06551793748338458,
+      "persistence": 0.1383888039901117,
+      "selected": "direct"
+    },
+    "645": {
+      "direct": 0.06551003880024454,
+      "persistence": 0.13831220260454624,
+      "selected": "direct"
+    },
+    "65": {
+      "direct": 0.05546237154326367,
+      "persistence": 0.07474852956749864,
+      "selected": "direct"
+    },
+    "650": {
+      "direct": 0.06555008630429165,
+      "persistence": 0.13817433692762418,
+      "selected": "direct"
+    },
+    "655": {
+      "direct": 0.06558670632114146,
+      "persistence": 0.13810002736050775,
+      "selected": "direct"
+    },
+    "660": {
+      "direct": 0.06562748507162612,
+      "persistence": 0.1380292111211232,
+      "selected": "direct"
+    },
+    "665": {
+      "direct": 0.06554914255097041,
+      "persistence": 0.13795586307121877,
+      "selected": "direct"
+    },
+    "670": {
+      "direct": 0.06562924750330082,
+      "persistence": 0.1379042681010177,
+      "selected": "direct"
+    },
+    "675": {
+      "direct": 0.06567963129542011,
+      "persistence": 0.13785352409412843,
+      "selected": "direct"
+    },
+    "680": {
+      "direct": 0.06554450439149048,
+      "persistence": 0.13775730615158302,
+      "selected": "direct"
+    },
+    "685": {
+      "direct": 0.06556548565211182,
+      "persistence": 0.13769008495801616,
+      "selected": "direct"
+    },
+    "690": {
+      "direct": 0.0654319104595353,
+      "persistence": 0.1376191073942899,
+      "selected": "direct"
+    },
+    "695": {
+      "direct": 0.06539758307252841,
+      "persistence": 0.1375606829032367,
+      "selected": "direct"
+    },
+    "70": {
+      "direct": 0.055887936900802015,
+      "persistence": 0.07687750888630161,
+      "selected": "direct"
+    },
+    "700": {
+      "direct": 0.06541321569248092,
+      "persistence": 0.13751737197452196,
+      "selected": "direct"
+    },
+    "705": {
+      "direct": 0.06547468560307433,
+      "persistence": 0.13750091182239915,
+      "selected": "direct"
+    },
+    "710": {
+      "direct": 0.06537569899105942,
+      "persistence": 0.13742476993064406,
+      "selected": "direct"
+    },
+    "715": {
+      "direct": 0.06550272776555477,
+      "persistence": 0.13742801885212108,
+      "selected": "direct"
+    },
+    "75": {
+      "direct": 0.056199878470207805,
+      "persistence": 0.07862942668874424,
+      "selected": "direct"
+    },
+    "80": {
+      "direct": 0.056639491385132586,
+      "persistence": 0.08030070460968473,
+      "selected": "direct"
+    },
+    "85": {
+      "direct": 0.056924147960906314,
+      "persistence": 0.08140732702450246,
+      "selected": "direct"
+    },
+    "90": {
+      "direct": 0.05725378250017872,
+      "persistence": 0.08405269883105153,
+      "selected": "direct"
+    },
+    "95": {
+      "direct": 0.057818156071946486,
+      "persistence": 0.08542523381959778,
+      "selected": "direct"
+    }
+  }
+}

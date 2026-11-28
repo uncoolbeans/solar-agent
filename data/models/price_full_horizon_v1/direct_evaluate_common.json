@@ -1,0 +1,9 @@
+{
+  "array_sha256": "24dc86d045080fa8be8912fcaa059805f12c04f534937e83e286828a4cb6f757",
+  "direct_model_fingerprint": "4af9f096bc900422053a47ab637de84390bd0086697331e4ff31e67075e10237",
+  "shape": [
+    43909,
+    144
+  ],
+  "target_manifest_sha256": "8a4afbecdd28009430bbf67cdeb813f2b9060ebedcf64a2b2177ec904cfb861d"
+}

@@ -1,0 +1,14 @@
+{
+  "selected_by_equal_horizon_tune_mae": "hybrid_tuned",
+  "tune_mean_mae": {
+    "daily_seasonal": 0.09798954323257354,
+    "direct": 0.06277418952189583,
+    "hour_of_week_median": 0.0734476369506646,
+    "hybrid_fixed": 0.06268313394438006,
+    "hybrid_tuned": 0.06266952026052923,
+    "persistence": 0.12190283715452999,
+    "tcn": 0.06578999235836434,
+    "train_median": 0.08309763204588422
+  },
+  "written_before_reused_evaluation": true
+}

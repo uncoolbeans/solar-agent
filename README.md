@@ -75,6 +75,16 @@ python -m solaralpha.price_forecasting.multi_output_experiment train --model tcn
 python -m solaralpha.price_forecasting.multi_output_experiment evaluate
 python -m solaralpha.price_forecasting.multi_output_plots
 python -m solaralpha.price_forecasting.multi_output_report
+python -c "from solaralpha.price_forecasting.full_horizon_dataset import build_targets; build_targets()"
+python -m solaralpha.price_forecasting.full_horizon_tcn design
+python -m solaralpha.price_forecasting.full_horizon_direct --start 0 --stop 48
+python -m solaralpha.price_forecasting.full_horizon_direct --start 48 --stop 96
+python -m solaralpha.price_forecasting.full_horizon_direct --start 96 --stop 144
+python -m solaralpha.price_forecasting.full_horizon_tcn train
+python -m solaralpha.price_forecasting.full_horizon_evaluation freeze
+python -m solaralpha.price_forecasting.full_horizon_evaluation evaluate
+python -m solaralpha.price_forecasting.full_horizon_plots
+python -m solaralpha.price_forecasting.full_horizon_report
 ```
 
 The forecasting command requires the expanded 2023–November 2025 historical cache and optional Matplotlib from `requirements-forecast.txt` (`python -m pip install -r requirements-forecast.txt`). It produces train/validation CSV.gz files and baseline metrics in `data/features/`, plus PNG plots in `plots/forecasting/`. It never reads the held-out December 2025–February 2026 dates. Feature timing and the publication-delay assumption are documented in [data/FEATURE_DICTIONARY.md](data/FEATURE_DICTIONARY.md), with results in [data/README.md](data/README.md). This offline package is not connected to MPC.
@@ -112,6 +122,14 @@ The three offline sequence models reuse the frozen 41 decision-time-safe feature
 Commands above fit and evaluate the models in a separate `data/models/price_multi_output_neural_v1/` directory, with [detailed results](data/MULTI_OUTPUT_RESULTS.md) and plots in `plots/forecasting/multi_output_neural_v1/`. A separate `data/models/multi_horizon_leaderboard.json` compares ten-horizon approaches; the 17-model one-hour leaderboard and its checkpoints are unchanged. July–November 2025 remains reused development evaluation. The held-out summer period, MPC and hardware are not accessed. The ten outputs are sparse and do not validate a full 144-price trajectory.
 
 On common origins, TCN is the strongest new neural model by the equal-horizon January–June tuning MAE (0.05442 AUD/kWh), nearly tied with the frozen hybrid (0.05438). Direct XGBoost remains ahead on the reused July–November period (0.03087 versus TCN 0.03255). LSTM and GRU score 0.03142 and 0.03140 on that reused period. These scores do not establish a new independently tested model choice; details, including event detection and matched +60-minute single-output comparisons, are in the report.
+
+## Complete 144-point price benchmark
+
+The offline [fixed design](data/FULL_HORIZON_EXPERIMENT_SPEC.md) extends the exact five-minute interval-start target grid to all offsets from +0 through +715 minutes. The frozen 41 inputs and original +60-aligned seasonal columns are unchanged; +0 is a label only. Ten compatible direct XGBoost models are reused, while the other 134 train in resumable ranges with the same V2-A configuration. The compact causal TCN keeps its 72 × 41 input and uses a new unrestricted 144-price output head. A tuning-selected hybrid and a fixed +0/+5 persistence hybrid are scored on the same full-horizon common origins. The [detailed report](data/FULL_HORIZON_RESULTS.md), separate `data/models/full_horizon_leaderboard.json` and `data/models/price_full_horizon_v1/` hold metrics, trajectories, selections and source fingerprints. The forecasting interface in `solaralpha.price_forecasting.full_horizon_interface` validates ordered UTC timestamps and finite AUD/kWh outputs, and reports whether the latest completed reading is stale. A caller must inspect `input_valid` before using a forecast; this interface is not connected to MPC.
+
+On 43,909 identical reused July–November origins, the equal-horizon mean MAE is **0.03804 direct XGBoost**, **0.03809 tuning-selected hybrid**, **0.03806 fixed hybrid** and **0.04080 TCN** AUD/kWh. The tuning-selected hybrid uses persistence at +0/+5/+10, but its small January–June tuning gain over direct reverses on reused evaluation. Both learned models compress realised 12-hour price ranges and miss new extreme spike onsets. The TCN is much smaller and faster for a prepared full trajectory, while direct has lower average price error. These remain offline development findings; the held-out summer period and MPC are untouched. All **127 tests pass**.
+
+The full-horizon generated `.npy` arrays and comparison `.npz` archives are stored with Git LFS. On a fresh clone, run `git lfs install` and `git lfs pull` to retrieve their contents before reproducing the benchmark.
 
 ## First trading controller
 

@@ -1,0 +1,54 @@
+{
+  "common_evaluation_origins": 43909,
+  "entries": [
+    {
+      "name": "persistence",
+      "reused_evaluation_mean_mae": 0.0777716276856082,
+      "tune_mean_mae": 0.12190283715452999
+    },
+    {
+      "name": "daily_seasonal",
+      "reused_evaluation_mean_mae": 0.052904779729098815,
+      "tune_mean_mae": 0.09798954323257354
+    },
+    {
+      "name": "train_median",
+      "reused_evaluation_mean_mae": 0.0606057854407221,
+      "tune_mean_mae": 0.08309763204588422
+    },
+    {
+      "name": "hour_of_week_median",
+      "reused_evaluation_mean_mae": 0.04871194057438237,
+      "tune_mean_mae": 0.0734476369506646
+    },
+    {
+      "name": "direct",
+      "reused_evaluation_mean_mae": 0.038038382227850435,
+      "tune_mean_mae": 0.06277418952189583
+    },
+    {
+      "name": "hybrid_tuned",
+      "reused_evaluation_mean_mae": 0.038087405297097594,
+      "tune_mean_mae": 0.06266952026052923
+    },
+    {
+      "name": "hybrid_fixed",
+      "reused_evaluation_mean_mae": 0.03805986306083359,
+      "tune_mean_mae": 0.06268313394438006
+    },
+    {
+      "name": "tcn",
+      "reused_evaluation_mean_mae": 0.04080475380005021,
+      "tune_mean_mae": 0.06578999235836434
+    }
+  ],
+  "prior_leaderboard_sha256": {
+    "one_hour_leaderboard": "ddbe701b6732244c223ef65a984b98b9fe6b4c88629cc5b10330020e4b0039cd",
+    "sparse_direct_results": "470b2aa55be0a759cf9a859e838958450908f0c73dfc6d69ef663efd411a2b4d",
+    "sparse_multi_horizon_leaderboard": "b4b53e7fe8aefc7ab33da1684463a0730b1c1b1f2cf6db582062b56734e5f685",
+    "sparse_multi_output_results": "c0f4dd27c9cc64e20e29f9b9c9cf43e7ebb993ee6e6b4b5f4977a7c3c18f8ce5"
+  },
+  "schema_version": 1,
+  "selected_by_tuning": "hybrid_tuned",
+  "task": "144 ordered five-minute interval-start NSW1 price forecasts"
+}
