@@ -1,0 +1,92 @@
+{
+  "common_evaluation_origins": 43909,
+  "entries": [
+    {
+      "model_artifact": null,
+      "name": "persistence",
+      "reused_evaluation_mean_mae": 0.05370702625287649,
+      "tune_mean_mae": 0.08729977435569813
+    },
+    {
+      "model_artifact": null,
+      "name": "daily_seasonal",
+      "reused_evaluation_mean_mae": 0.05293966387301009,
+      "tune_mean_mae": 0.09797264097676471
+    },
+    {
+      "model_artifact": null,
+      "name": "train_median",
+      "reused_evaluation_mean_mae": 0.060591802682821286,
+      "tune_mean_mae": 0.08301358138368313
+    },
+    {
+      "model_artifact": null,
+      "name": "hour_of_week_median",
+      "reused_evaluation_mean_mae": 0.04870651795759412,
+      "tune_mean_mae": 0.07338415900517678
+    },
+    {
+      "model_artifact": null,
+      "name": "direct",
+      "reused_evaluation_mean_mae": 0.0308679098503471,
+      "tune_mean_mae": 0.05569132301174844
+    },
+    {
+      "model_artifact": null,
+      "name": "shared",
+      "reused_evaluation_mean_mae": 0.03317379544662437,
+      "tune_mean_mae": 0.0582852639062591
+    },
+    {
+      "model_artifact": null,
+      "name": "hybrid",
+      "reused_evaluation_mean_mae": 0.031177233846185985,
+      "tune_mean_mae": 0.05438012269241166
+    },
+    {
+      "model_artifact": "data/models/price_multi_output_neural_v1/lstm/model.pt",
+      "name": "multi_lstm",
+      "reused_evaluation_mean_mae": 0.03141660124947339,
+      "tune_mean_mae": 0.05653560392020973
+    },
+    {
+      "model_artifact": "data/models/price_multi_output_neural_v1/gru/model.pt",
+      "name": "multi_gru",
+      "reused_evaluation_mean_mae": 0.03139779823025553,
+      "tune_mean_mae": 0.056976717056514914
+    },
+    {
+      "model_artifact": "data/models/price_multi_output_neural_v1/tcn/model.pt",
+      "name": "multi_tcn",
+      "reused_evaluation_mean_mae": 0.03255309820007288,
+      "tune_mean_mae": 0.05442275141719523
+    }
+  ],
+  "one_hour_leaderboard_unchanged_sha256": "ddbe701b6732244c223ef65a984b98b9fe6b4c88629cc5b10330020e4b0039cd",
+  "schema_version": 1,
+  "selection": {
+    "frozen_before_reused_evaluation": true,
+    "selected_all_approaches": "hybrid",
+    "selected_neural": "multi_tcn",
+    "selection_rule": "lowest equal-horizon mean January-June common-origin tuning MAE",
+    "tune_mean_mae": {
+      "daily_seasonal": 0.09797264097676471,
+      "direct": 0.05569132301174844,
+      "hour_of_week_median": 0.07338415900517678,
+      "hybrid": 0.05438012269241166,
+      "multi_gru": 0.056976717056514914,
+      "multi_lstm": 0.0565356039202097,
+      "multi_tcn": 0.05442275141719555,
+      "persistence": 0.08729977435569813,
+      "shared": 0.0582852639062591,
+      "train_median": 0.08301358138368313
+    }
+  },
+  "source_hashes": {
+    "direct_results": "470b2aa55be0a759cf9a859e838958450908f0c73dfc6d69ef663efd411a2b4d",
+    "one_hour_leaderboard": "ddbe701b6732244c223ef65a984b98b9fe6b4c88629cc5b10330020e4b0039cd",
+    "shared_results": "8d1ad15a016f1230dfc94d72569e73d6484d9efb9f597e63c6cb3f538c50da68",
+    "single_results": "aada0607bb9c4d4d57dd819f50dc80cadc4a4599698afa4bf29bf0a7e77b9152"
+  },
+  "task": "ten sparse five-minute interval-start NSW1 price horizons"
+}

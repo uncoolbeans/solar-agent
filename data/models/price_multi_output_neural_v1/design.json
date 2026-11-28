@@ -1,0 +1,122 @@
+{
+  "architecture": {
+    "gru": {
+      "body": {
+        "hidden_size": 40,
+        "layers": 1
+      },
+      "input_shape": [
+        72,
+        41
+      ],
+      "output_shape": [
+        10
+      ],
+      "receptive_field": null,
+      "trainable_parameters": 10370
+    },
+    "lstm": {
+      "body": {
+        "hidden_size": 32,
+        "layers": 1
+      },
+      "input_shape": [
+        72,
+        41
+      ],
+      "output_shape": [
+        10
+      ],
+      "receptive_field": null,
+      "trainable_parameters": 9930
+    },
+    "tcn": {
+      "body": {
+        "channels": 24,
+        "dilations": [
+          1,
+          2,
+          4,
+          8,
+          16,
+          32,
+          64
+        ],
+        "kernel_size": 2
+      },
+      "input_shape": [
+        72,
+        41
+      ],
+      "output_shape": [
+        10
+      ],
+      "receptive_field": 128,
+      "trainable_parameters": 10306
+    }
+  },
+  "bridge_source_sha256": "a041a91958ce67324c59907130475b17f78f352e16b2b5daa2bb73563859aa58",
+  "common_counts": {
+    "evaluate": 43909,
+    "train": 208598,
+    "tune": 49838
+  },
+  "feature_files": {
+    "train": {
+      "bytes": 28605143,
+      "path": "data/features/train_one_hour_price.csv.gz",
+      "sha256": "5718a363f345ac9dd584140cc8773311195f060775ebac3a2b0a5f96defc2e06"
+    },
+    "validation": {
+      "bytes": 13522315,
+      "path": "data/features/validation_one_hour_price.csv.gz",
+      "sha256": "d606e2c0c465576eb38ae26548c0cf8d399ee9fc7212e1df7b71749e1980f58b"
+    }
+  },
+  "fixed_feature_semantics": "+60-aligned historical daily/weekly price input columns are unchanged",
+  "held_out": "December 2025-February 2026 untouched",
+  "horizons_minutes": [
+    0,
+    5,
+    15,
+    30,
+    60,
+    120,
+    180,
+    360,
+    540,
+    715
+  ],
+  "input_shape": [
+    72,
+    41
+  ],
+  "loss": "equal-weight mean absolute error across ten horizons and examples",
+  "output_shape": [
+    10
+  ],
+  "scaler_fit": "original 208,800 training feature rows only",
+  "schema_version": 1,
+  "selection": "minimum mean of ten common January-June tuning horizon MAEs; 0.0001 minimum improvement, patience 2",
+  "sequence_exclusions": {
+    "evaluate": 0,
+    "train": 71,
+    "tune": 0
+  },
+  "target_manifest_sha256": "f2c259528d46507de92026e47d082ae770ce926cf317219deeb6996595d16784",
+  "training": {
+    "batch_size": 512,
+    "data_loader_workers": 0,
+    "device": "cpu",
+    "gradient_clip_norm": 1.0,
+    "learning_rate": 0.001,
+    "loss": "MAE",
+    "max_epochs": 8,
+    "minimum_mae_improvement_aud_per_kwh": 0.0001,
+    "optimizer": "AdamW",
+    "patience": 2,
+    "seed": 42,
+    "torch_threads": 4,
+    "weight_decay": 0.0001
+  }
+}

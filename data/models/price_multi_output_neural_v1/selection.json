@@ -1,0 +1,18 @@
+{
+  "frozen_before_reused_evaluation": true,
+  "selected_all_approaches": "hybrid",
+  "selected_neural": "multi_tcn",
+  "selection_rule": "lowest equal-horizon mean January-June common-origin tuning MAE",
+  "tune_mean_mae": {
+    "daily_seasonal": 0.09797264097676471,
+    "direct": 0.05569132301174844,
+    "hour_of_week_median": 0.07338415900517678,
+    "hybrid": 0.05438012269241166,
+    "multi_gru": 0.056976717056514914,
+    "multi_lstm": 0.0565356039202097,
+    "multi_tcn": 0.05442275141719555,
+    "persistence": 0.08729977435569813,
+    "shared": 0.0582852639062591,
+    "train_median": 0.08301358138368313
+  }
+}

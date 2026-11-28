@@ -67,6 +67,14 @@ python -m solaralpha.price_forecasting.horizon_conditioned train
 python -m solaralpha.price_forecasting.horizon_conditioned evaluate
 python -m solaralpha.price_forecasting.horizon_conditioned_plots
 python -m solaralpha.price_forecasting.horizon_conditioned_report
+python -m solaralpha.price_forecasting.multi_output_experiment design
+python -m solaralpha.price_forecasting.multi_output_experiment benchmark
+python -m solaralpha.price_forecasting.multi_output_experiment train --model lstm
+python -m solaralpha.price_forecasting.multi_output_experiment train --model gru
+python -m solaralpha.price_forecasting.multi_output_experiment train --model tcn
+python -m solaralpha.price_forecasting.multi_output_experiment evaluate
+python -m solaralpha.price_forecasting.multi_output_plots
+python -m solaralpha.price_forecasting.multi_output_report
 ```
 
 The forecasting command requires the expanded 2023–November 2025 historical cache and optional Matplotlib from `requirements-forecast.txt` (`python -m pip install -r requirements-forecast.txt`). It produces train/validation CSV.gz files and baseline metrics in `data/features/`, plus PNG plots in `plots/forecasting/`. It never reads the held-out December 2025–February 2026 dates. Feature timing and the publication-delay assumption are documented in [data/FEATURE_DICTIONARY.md](data/FEATURE_DICTIONARY.md), with results in [data/README.md](data/README.md). This offline package is not connected to MPC.
@@ -96,6 +104,14 @@ The new labels and manifest are in `data/features/multi_horizon_v1/`; the models
 The shared offline model learns `predicted_price = f(the same 41 historical features, forecast_horizon_minutes)` at the ten trained horizons only. Each common training decision contributes ten rows, one per horizon, in a single `float32` matrix. The current interval's settlement price and all other targets remain labels, never input columns. The original two seasonal feature columns retain their +60-minute clock alignment at every horizon. The `design` command records the exact V2-A tree settings, target/feature fingerprints and memory estimate before allocating the expanded matrix. The `train` command fits one absolute-error XGBoost ensemble using equal-horizon mean tuning MAE for checkpoint selection. The `evaluate` command checks frozen direct predictions, chooses a persistence/direct/shared hybrid using January–June tuning only, then scores the reused July–November development period. Plots and the detailed report compare only the ten trained, sparse offsets; this is not a validated 144-point MPC forecast.
 
 Models, metadata, a frozen hybrid selection and per-horizon predictions are under `data/models/price_horizon_conditioned_v1/`. [Detailed comparison tables](data/HORIZON_CONDITIONED_RESULTS.md) and Matplotlib figures are generated separately. The original direct models, 17-model one-hour leaderboard, simulator and controller remain separate. The December 2025–February 2026 held-out period is untouched. No AEMO predispatch data enter the shared model. This experiment uses the already-pinned NumPy and XGBoost packages from `requirements-ml.txt`; no environment changes were needed.
+
+## Ten-output sequence price experiment
+
+The three offline sequence models reuse the frozen 41 decision-time-safe features and lazily slice 72-row historical windows. Each LSTM, GRU or causal TCN now emits ten unrestricted prices at the representative offsets +0 through +715 minutes. The unknown +0 settlement and all other future prices are labels only. The two historical seasonal input columns retain their original +60-minute alignment. The [fixed multi-output design](data/MULTI_OUTPUT_EXPERIMENT_SPEC.md) records mathematics, architecture sizes, chronological split checks, training-only scaling and CPU training settings. Its machine-readable `design.json` was saved before training.
+
+Commands above fit and evaluate the models in a separate `data/models/price_multi_output_neural_v1/` directory, with [detailed results](data/MULTI_OUTPUT_RESULTS.md) and plots in `plots/forecasting/multi_output_neural_v1/`. A separate `data/models/multi_horizon_leaderboard.json` compares ten-horizon approaches; the 17-model one-hour leaderboard and its checkpoints are unchanged. July–November 2025 remains reused development evaluation. The held-out summer period, MPC and hardware are not accessed. The ten outputs are sparse and do not validate a full 144-price trajectory.
+
+On common origins, TCN is the strongest new neural model by the equal-horizon January–June tuning MAE (0.05442 AUD/kWh), nearly tied with the frozen hybrid (0.05438). Direct XGBoost remains ahead on the reused July–November period (0.03087 versus TCN 0.03255). LSTM and GRU score 0.03142 and 0.03140 on that reused period. These scores do not establish a new independently tested model choice; details, including event detection and matched +60-minute single-output comparisons, are in the report.
 
 ## First trading controller
 
