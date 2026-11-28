@@ -1,0 +1,31 @@
+{
+  "files": {
+    "PREDISPATCHPRICE": {
+      "bytes": 5789370,
+      "path": "data/raw/aemo_predisp_all_2025_01/PREDISPATCHPRICE_ALL.zip",
+      "response_headers": {
+        "Content-Length": "5789370",
+        "Content-Type": "application/x-zip-compressed",
+        "ETag": null,
+        "Last-Modified": "Sat, 18 Apr 2026 00:07:10 GMT"
+      },
+      "retrieved_at_utc": "2026-11-27T10:40:23.498507+00:00",
+      "sha256": "b403c4e5e7c4a202f5794d0ae59ecd900a3c0ec5516cd57315e30a2301b154ac",
+      "url": "https://nemweb.com.au/Data_Archive/Wholesale_Electricity/MMSDM/2025/MMSDM_2025_01/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/PUBLIC_ARCHIVE%23PREDISPATCHPRICE%23ALL%23FILE01%23202501010000.zip"
+    },
+    "PREDISPATCHREGIONSUM": {
+      "bytes": 49075675,
+      "path": "data/raw/aemo_predisp_all_2025_01/PREDISPATCHREGIONSUM_ALL.zip",
+      "response_headers": {
+        "Content-Length": "49075675",
+        "Content-Type": "application/x-zip-compressed",
+        "ETag": null,
+        "Last-Modified": "Fri, 17 Apr 2026 23:22:06 GMT"
+      },
+      "retrieved_at_utc": "2026-11-27T10:40:56.655689+00:00",
+      "sha256": "5ba0cbdb343b5f44155315666b89c3034f6b541718728b35ff64d74ed4f93b9e",
+      "url": "https://nemweb.com.au/Data_Archive/Wholesale_Electricity/MMSDM/2025/MMSDM_2025_01/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/PUBLIC_ARCHIVE%23PREDISPATCHREGIONSUM%23ALL%23FILE01%23202501010000.zip"
+    }
+  },
+  "schema_version": 1
+}

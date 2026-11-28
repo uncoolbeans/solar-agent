@@ -131,7 +131,9 @@ The processed UTC-ordered five-minute CSV, quality report, summary statistics an
 
 ## AEMO forecast archive feasibility
 
-The offline [AEMO forecast feasibility report](data/AEMO_FORECAST_FEASIBILITY.md) documents official P5MIN and 30-minute predispatch archives, a January 2025 raw-file smoke test, timestamp and publication limitations, and proposed future features. It finds that P5MIN has no forecast for the existing exact five-minute target starting at `t+60` on the sampled decisions. The 30-minute monthly tables do not preserve the issued vintages required for a safe historical join. No forecast model, MPC agent or 17-model leaderboard entry was changed.
+The offline [AEMO forecast feasibility report](data/AEMO_FORECAST_FEASIBILITY.md) documents official P5MIN and 30-minute predispatch archives, a January 2025 raw-file smoke test, timestamp and publication limitations, and proposed future features. It finds that P5MIN has no forecast for the existing exact five-minute target starting at `t+60` on the sampled decisions. The ordinary `DATA/` monthly 30-minute tables do not preserve issued vintages. No forecast model, MPC agent or 17-model leaderboard entry was changed.
+
+The follow-up [matched horizon report](data/AEMO_HORIZON_RESULTS.md) identifies a separate complete predispatch archive that *does* preserve half-hour forecast vintages. It scores exact P5MIN targets from 0 to 60 minutes and complete predispatch against explicit realised half-hour averages for 1, 3, 6 and 12 hours. All scores are exploratory and conditional on assumed publication delays; neither the exact +60-minute P5MIN gap nor the 17-model leaderboard changed.
 
 To reproduce the bounded smoke test with the existing Python environment (standard library only):
 

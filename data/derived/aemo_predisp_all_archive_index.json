@@ -1,0 +1,426 @@
+{
+  "checked_at_utc": "2026-11-27T10:42:31.799795+00:00",
+  "months": [
+    {
+      "index_url": "https://nemweb.com.au/Data_Archive/Wholesale_Electricity/MMSDM/2023/MMSDM_2023_01/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/",
+      "month": "2023-01",
+      "tables": {
+        "PREDISPATCHPRICE": [
+          "PUBLIC_DVD_PREDISPATCHPRICE_202301010000.zip"
+        ],
+        "PREDISPATCHREGIONSUM": [
+          "PUBLIC_DVD_PREDISPATCHREGIONSUM_202301010000.zip"
+        ]
+      }
+    },
+    {
+      "index_url": "https://nemweb.com.au/Data_Archive/Wholesale_Electricity/MMSDM/2023/MMSDM_2023_02/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/",
+      "month": "2023-02",
+      "tables": {
+        "PREDISPATCHPRICE": [
+          "PUBLIC_DVD_PREDISPATCHPRICE_202302010000.zip"
+        ],
+        "PREDISPATCHREGIONSUM": [
+          "PUBLIC_DVD_PREDISPATCHREGIONSUM_202302010000.zip"
+        ]
+      }
+    },
+    {
+      "index_url": "https://nemweb.com.au/Data_Archive/Wholesale_Electricity/MMSDM/2023/MMSDM_2023_03/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/",
+      "month": "2023-03",
+      "tables": {
+        "PREDISPATCHPRICE": [
+          "PUBLIC_DVD_PREDISPATCHPRICE_202303010000.zip"
+        ],
+        "PREDISPATCHREGIONSUM": [
+          "PUBLIC_DVD_PREDISPATCHREGIONSUM_202303010000.zip"
+        ]
+      }
+    },
+    {
+      "index_url": "https://nemweb.com.au/Data_Archive/Wholesale_Electricity/MMSDM/2023/MMSDM_2023_04/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/",
+      "month": "2023-04",
+      "tables": {
+        "PREDISPATCHPRICE": [
+          "PUBLIC_DVD_PREDISPATCHPRICE_202304010000.zip"
+        ],
+        "PREDISPATCHREGIONSUM": [
+          "PUBLIC_DVD_PREDISPATCHREGIONSUM_202304010000.zip"
+        ]
+      }
+    },
+    {
+      "index_url": "https://nemweb.com.au/Data_Archive/Wholesale_Electricity/MMSDM/2023/MMSDM_2023_05/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/",
+      "month": "2023-05",
+      "tables": {
+        "PREDISPATCHPRICE": [
+          "PUBLIC_DVD_PREDISPATCHPRICE_202305010000.zip"
+        ],
+        "PREDISPATCHREGIONSUM": [
+          "PUBLIC_DVD_PREDISPATCHREGIONSUM_202305010000.zip"
+        ]
+      }
+    },
+    {
+      "index_url": "https://nemweb.com.au/Data_Archive/Wholesale_Electricity/MMSDM/2023/MMSDM_2023_06/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/",
+      "month": "2023-06",
+      "tables": {
+        "PREDISPATCHPRICE": [
+          "PUBLIC_DVD_PREDISPATCHPRICE_202306010000.zip"
+        ],
+        "PREDISPATCHREGIONSUM": [
+          "PUBLIC_DVD_PREDISPATCHREGIONSUM_202306010000.zip"
+        ]
+      }
+    },
+    {
+      "index_url": "https://nemweb.com.au/Data_Archive/Wholesale_Electricity/MMSDM/2023/MMSDM_2023_07/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/",
+      "month": "2023-07",
+      "tables": {
+        "PREDISPATCHPRICE": [
+          "PUBLIC_DVD_PREDISPATCHPRICE_202307010000.zip"
+        ],
+        "PREDISPATCHREGIONSUM": [
+          "PUBLIC_DVD_PREDISPATCHREGIONSUM_202307010000.zip"
+        ]
+      }
+    },
+    {
+      "index_url": "https://nemweb.com.au/Data_Archive/Wholesale_Electricity/MMSDM/2023/MMSDM_2023_08/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/",
+      "month": "2023-08",
+      "tables": {
+        "PREDISPATCHPRICE": [
+          "PUBLIC_DVD_PREDISPATCHPRICE_202308010000.zip"
+        ],
+        "PREDISPATCHREGIONSUM": [
+          "PUBLIC_DVD_PREDISPATCHREGIONSUM_202308010000.zip"
+        ]
+      }
+    },
+    {
+      "index_url": "https://nemweb.com.au/Data_Archive/Wholesale_Electricity/MMSDM/2023/MMSDM_2023_09/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/",
+      "month": "2023-09",
+      "tables": {
+        "PREDISPATCHPRICE": [
+          "PUBLIC_DVD_PREDISPATCHPRICE_202309010000.zip"
+        ],
+        "PREDISPATCHREGIONSUM": [
+          "PUBLIC_DVD_PREDISPATCHREGIONSUM_202309010000.zip"
+        ]
+      }
+    },
+    {
+      "index_url": "https://nemweb.com.au/Data_Archive/Wholesale_Electricity/MMSDM/2023/MMSDM_2023_10/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/",
+      "month": "2023-10",
+      "tables": {
+        "PREDISPATCHPRICE": [
+          "PUBLIC_DVD_PREDISPATCHPRICE_202310010000.zip"
+        ],
+        "PREDISPATCHREGIONSUM": [
+          "PUBLIC_DVD_PREDISPATCHREGIONSUM_202310010000.zip"
+        ]
+      }
+    },
+    {
+      "index_url": "https://nemweb.com.au/Data_Archive/Wholesale_Electricity/MMSDM/2023/MMSDM_2023_11/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/",
+      "month": "2023-11",
+      "tables": {
+        "PREDISPATCHPRICE": [
+          "PUBLIC_DVD_PREDISPATCHPRICE_202311010000.zip"
+        ],
+        "PREDISPATCHREGIONSUM": [
+          "PUBLIC_DVD_PREDISPATCHREGIONSUM_202311010000.zip"
+        ]
+      }
+    },
+    {
+      "index_url": "https://nemweb.com.au/Data_Archive/Wholesale_Electricity/MMSDM/2023/MMSDM_2023_12/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/",
+      "month": "2023-12",
+      "tables": {
+        "PREDISPATCHPRICE": [
+          "PUBLIC_DVD_PREDISPATCHPRICE_202312010000.zip"
+        ],
+        "PREDISPATCHREGIONSUM": [
+          "PUBLIC_DVD_PREDISPATCHREGIONSUM_202312010000.zip"
+        ]
+      }
+    },
+    {
+      "index_url": "https://nemweb.com.au/Data_Archive/Wholesale_Electricity/MMSDM/2024/MMSDM_2024_01/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/",
+      "month": "2024-01",
+      "tables": {
+        "PREDISPATCHPRICE": [
+          "PUBLIC_DVD_PREDISPATCHPRICE_202401010000.zip"
+        ],
+        "PREDISPATCHREGIONSUM": [
+          "PUBLIC_DVD_PREDISPATCHREGIONSUM_202401010000.zip"
+        ]
+      }
+    },
+    {
+      "index_url": "https://nemweb.com.au/Data_Archive/Wholesale_Electricity/MMSDM/2024/MMSDM_2024_02/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/",
+      "month": "2024-02",
+      "tables": {
+        "PREDISPATCHPRICE": [
+          "PUBLIC_DVD_PREDISPATCHPRICE_202402010000.zip"
+        ],
+        "PREDISPATCHREGIONSUM": [
+          "PUBLIC_DVD_PREDISPATCHREGIONSUM_202402010000.zip"
+        ]
+      }
+    },
+    {
+      "index_url": "https://nemweb.com.au/Data_Archive/Wholesale_Electricity/MMSDM/2024/MMSDM_2024_03/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/",
+      "month": "2024-03",
+      "tables": {
+        "PREDISPATCHPRICE": [
+          "PUBLIC_DVD_PREDISPATCHPRICE_202403010000.zip"
+        ],
+        "PREDISPATCHREGIONSUM": [
+          "PUBLIC_DVD_PREDISPATCHREGIONSUM_202403010000.zip"
+        ]
+      }
+    },
+    {
+      "index_url": "https://nemweb.com.au/Data_Archive/Wholesale_Electricity/MMSDM/2024/MMSDM_2024_04/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/",
+      "month": "2024-04",
+      "tables": {
+        "PREDISPATCHPRICE": [
+          "PUBLIC_DVD_PREDISPATCHPRICE_202404010000.zip"
+        ],
+        "PREDISPATCHREGIONSUM": [
+          "PUBLIC_DVD_PREDISPATCHREGIONSUM_202404010000.zip"
+        ]
+      }
+    },
+    {
+      "index_url": "https://nemweb.com.au/Data_Archive/Wholesale_Electricity/MMSDM/2024/MMSDM_2024_05/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/",
+      "month": "2024-05",
+      "tables": {
+        "PREDISPATCHPRICE": [
+          "PUBLIC_DVD_PREDISPATCHPRICE_202405010000.zip"
+        ],
+        "PREDISPATCHREGIONSUM": [
+          "PUBLIC_DVD_PREDISPATCHREGIONSUM_202405010000.zip"
+        ]
+      }
+    },
+    {
+      "index_url": "https://nemweb.com.au/Data_Archive/Wholesale_Electricity/MMSDM/2024/MMSDM_2024_06/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/",
+      "month": "2024-06",
+      "tables": {
+        "PREDISPATCHPRICE": [
+          "PUBLIC_DVD_PREDISPATCHPRICE_202406010000.zip"
+        ],
+        "PREDISPATCHREGIONSUM": [
+          "PUBLIC_DVD_PREDISPATCHREGIONSUM_202406010000.zip"
+        ]
+      }
+    },
+    {
+      "index_url": "https://nemweb.com.au/Data_Archive/Wholesale_Electricity/MMSDM/2024/MMSDM_2024_07/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/",
+      "month": "2024-07",
+      "tables": {
+        "PREDISPATCHPRICE": [
+          "PUBLIC_DVD_PREDISPATCHPRICE_202407010000.zip"
+        ],
+        "PREDISPATCHREGIONSUM": [
+          "PUBLIC_DVD_PREDISPATCHREGIONSUM_202407010000.zip"
+        ]
+      }
+    },
+    {
+      "index_url": "https://nemweb.com.au/Data_Archive/Wholesale_Electricity/MMSDM/2024/MMSDM_2024_08/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/",
+      "month": "2024-08",
+      "tables": {
+        "PREDISPATCHPRICE": [
+          "PUBLIC_ARCHIVE#PREDISPATCHPRICE#ALL#FILE01#202408010000.zip"
+        ],
+        "PREDISPATCHREGIONSUM": [
+          "PUBLIC_ARCHIVE#PREDISPATCHREGIONSUM#ALL#FILE01#202408010000.zip"
+        ]
+      }
+    },
+    {
+      "index_url": "https://nemweb.com.au/Data_Archive/Wholesale_Electricity/MMSDM/2024/MMSDM_2024_09/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/",
+      "month": "2024-09",
+      "tables": {
+        "PREDISPATCHPRICE": [
+          "PUBLIC_ARCHIVE#PREDISPATCHPRICE#ALL#FILE01#202409010000.zip"
+        ],
+        "PREDISPATCHREGIONSUM": [
+          "PUBLIC_ARCHIVE#PREDISPATCHREGIONSUM#ALL#FILE01#202409010000.zip"
+        ]
+      }
+    },
+    {
+      "index_url": "https://nemweb.com.au/Data_Archive/Wholesale_Electricity/MMSDM/2024/MMSDM_2024_10/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/",
+      "month": "2024-10",
+      "tables": {
+        "PREDISPATCHPRICE": [
+          "PUBLIC_ARCHIVE#PREDISPATCHPRICE#ALL#FILE01#202410010000.zip"
+        ],
+        "PREDISPATCHREGIONSUM": [
+          "PUBLIC_ARCHIVE#PREDISPATCHREGIONSUM#ALL#FILE01#202410010000.zip"
+        ]
+      }
+    },
+    {
+      "index_url": "https://nemweb.com.au/Data_Archive/Wholesale_Electricity/MMSDM/2024/MMSDM_2024_11/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/",
+      "month": "2024-11",
+      "tables": {
+        "PREDISPATCHPRICE": [
+          "PUBLIC_ARCHIVE#PREDISPATCHPRICE#ALL#FILE01#202411010000.zip"
+        ],
+        "PREDISPATCHREGIONSUM": [
+          "PUBLIC_ARCHIVE#PREDISPATCHREGIONSUM#ALL#FILE01#202411010000.zip"
+        ]
+      }
+    },
+    {
+      "index_url": "https://nemweb.com.au/Data_Archive/Wholesale_Electricity/MMSDM/2024/MMSDM_2024_12/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/",
+      "month": "2024-12",
+      "tables": {
+        "PREDISPATCHPRICE": [
+          "PUBLIC_ARCHIVE#PREDISPATCHPRICE#ALL#FILE01#202412010000.zip"
+        ],
+        "PREDISPATCHREGIONSUM": [
+          "PUBLIC_ARCHIVE#PREDISPATCHREGIONSUM#ALL#FILE01#202412010000.zip"
+        ]
+      }
+    },
+    {
+      "index_url": "https://nemweb.com.au/Data_Archive/Wholesale_Electricity/MMSDM/2025/MMSDM_2025_01/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/",
+      "month": "2025-01",
+      "tables": {
+        "PREDISPATCHPRICE": [
+          "PUBLIC_ARCHIVE#PREDISPATCHPRICE#ALL#FILE01#202501010000.zip"
+        ],
+        "PREDISPATCHREGIONSUM": [
+          "PUBLIC_ARCHIVE#PREDISPATCHREGIONSUM#ALL#FILE01#202501010000.zip"
+        ]
+      }
+    },
+    {
+      "index_url": "https://nemweb.com.au/Data_Archive/Wholesale_Electricity/MMSDM/2025/MMSDM_2025_02/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/",
+      "month": "2025-02",
+      "tables": {
+        "PREDISPATCHPRICE": [
+          "PUBLIC_ARCHIVE#PREDISPATCHPRICE#ALL#FILE01#202502010000.zip"
+        ],
+        "PREDISPATCHREGIONSUM": [
+          "PUBLIC_ARCHIVE#PREDISPATCHREGIONSUM#ALL#FILE01#202502010000.zip"
+        ]
+      }
+    },
+    {
+      "index_url": "https://nemweb.com.au/Data_Archive/Wholesale_Electricity/MMSDM/2025/MMSDM_2025_03/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/",
+      "month": "2025-03",
+      "tables": {
+        "PREDISPATCHPRICE": [
+          "PUBLIC_ARCHIVE#PREDISPATCHPRICE#ALL#FILE01#202503010000.zip"
+        ],
+        "PREDISPATCHREGIONSUM": [
+          "PUBLIC_ARCHIVE#PREDISPATCHREGIONSUM#ALL#FILE01#202503010000.zip"
+        ]
+      }
+    },
+    {
+      "index_url": "https://nemweb.com.au/Data_Archive/Wholesale_Electricity/MMSDM/2025/MMSDM_2025_04/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/",
+      "month": "2025-04",
+      "tables": {
+        "PREDISPATCHPRICE": [
+          "PUBLIC_ARCHIVE#PREDISPATCHPRICE#ALL#FILE01#202504010000.zip"
+        ],
+        "PREDISPATCHREGIONSUM": [
+          "PUBLIC_ARCHIVE#PREDISPATCHREGIONSUM#ALL#FILE01#202504010000.zip"
+        ]
+      }
+    },
+    {
+      "index_url": "https://nemweb.com.au/Data_Archive/Wholesale_Electricity/MMSDM/2025/MMSDM_2025_05/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/",
+      "month": "2025-05",
+      "tables": {
+        "PREDISPATCHPRICE": [
+          "PUBLIC_ARCHIVE#PREDISPATCHPRICE#ALL#FILE01#202505010000.zip"
+        ],
+        "PREDISPATCHREGIONSUM": [
+          "PUBLIC_ARCHIVE#PREDISPATCHREGIONSUM#ALL#FILE01#202505010000.zip"
+        ]
+      }
+    },
+    {
+      "index_url": "https://nemweb.com.au/Data_Archive/Wholesale_Electricity/MMSDM/2025/MMSDM_2025_06/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/",
+      "month": "2025-06",
+      "tables": {
+        "PREDISPATCHPRICE": [
+          "PUBLIC_ARCHIVE#PREDISPATCHPRICE#ALL#FILE01#202506010000.zip"
+        ],
+        "PREDISPATCHREGIONSUM": [
+          "PUBLIC_ARCHIVE#PREDISPATCHREGIONSUM#ALL#FILE01#202506010000.zip"
+        ]
+      }
+    },
+    {
+      "index_url": "https://nemweb.com.au/Data_Archive/Wholesale_Electricity/MMSDM/2025/MMSDM_2025_07/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/",
+      "month": "2025-07",
+      "tables": {
+        "PREDISPATCHPRICE": [
+          "PUBLIC_ARCHIVE#PREDISPATCHPRICE#ALL#FILE01#202507010000.zip"
+        ],
+        "PREDISPATCHREGIONSUM": [
+          "PUBLIC_ARCHIVE#PREDISPATCHREGIONSUM#ALL#FILE01#202507010000.zip"
+        ]
+      }
+    },
+    {
+      "index_url": "https://nemweb.com.au/Data_Archive/Wholesale_Electricity/MMSDM/2025/MMSDM_2025_08/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/",
+      "month": "2025-08",
+      "tables": {
+        "PREDISPATCHPRICE": [
+          "PUBLIC_ARCHIVE#PREDISPATCHPRICE#ALL#FILE01#202508010000.zip"
+        ],
+        "PREDISPATCHREGIONSUM": [
+          "PUBLIC_ARCHIVE#PREDISPATCHREGIONSUM#ALL#FILE01#202508010000.zip"
+        ]
+      }
+    },
+    {
+      "index_url": "https://nemweb.com.au/Data_Archive/Wholesale_Electricity/MMSDM/2025/MMSDM_2025_09/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/",
+      "month": "2025-09",
+      "tables": {
+        "PREDISPATCHPRICE": [
+          "PUBLIC_ARCHIVE#PREDISPATCHPRICE#ALL#FILE01#202509010000.zip"
+        ],
+        "PREDISPATCHREGIONSUM": [
+          "PUBLIC_ARCHIVE#PREDISPATCHREGIONSUM#ALL#FILE01#202509010000.zip"
+        ]
+      }
+    },
+    {
+      "index_url": "https://nemweb.com.au/Data_Archive/Wholesale_Electricity/MMSDM/2025/MMSDM_2025_10/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/",
+      "month": "2025-10",
+      "tables": {
+        "PREDISPATCHPRICE": [
+          "PUBLIC_ARCHIVE#PREDISPATCHPRICE#ALL#FILE01#202510010000.zip"
+        ],
+        "PREDISPATCHREGIONSUM": [
+          "PUBLIC_ARCHIVE#PREDISPATCHREGIONSUM#ALL#FILE01#202510010000.zip"
+        ]
+      }
+    },
+    {
+      "index_url": "https://nemweb.com.au/Data_Archive/Wholesale_Electricity/MMSDM/2025/MMSDM_2025_11/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/",
+      "month": "2025-11",
+      "tables": {
+        "PREDISPATCHPRICE": [
+          "PUBLIC_ARCHIVE#PREDISPATCHPRICE#ALL#FILE01#202511010000.zip"
+        ],
+        "PREDISPATCHREGIONSUM": [
+          "PUBLIC_ARCHIVE#PREDISPATCHREGIONSUM#ALL#FILE01#202511010000.zip"
+        ]
+      }
+    }
+  ],
+  "scope": "index-only, 2023-01..2025-11; no archived table payloads"
+}
