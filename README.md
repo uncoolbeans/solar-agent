@@ -20,7 +20,7 @@ Simulation-first solar and battery trading experiments for a Sydney household. T
 | `solaralpha/terminal_sensitivity.py`, `solaralpha/inspect_terminal_holds.py` | Offline terminal-value sweep and interval diagnostics |
 | `solaralpha/perfect_foresight.py`, `solaralpha/perfect_foresight_experiment.py` | Offline whole-episode MILP and six-policy comparison |
 | `solaralpha/historical_pipeline.py`, `solaralpha/pipeline_diagnostics.py` | Resumable historical ingestion, validation, and development-week diagnostics |
-| `solaralpha/price_forecasting/` | Offline one-hour price features, simple forecasting baselines, and validation plots |
+| `solaralpha/price_forecasting/` | Offline one-hour and ten-horizon price experiments, baselines, and plots |
 | `solaralpha/fetch_historical_sample.py` | Fetches the fixed historical input snapshots if absent |
 | `tests/` | Standard-library unit tests |
 | `data/`, `plots/` | Historical inputs and generated SVG charts |
@@ -56,6 +56,12 @@ python -m solaralpha.price_forecasting.tabular_plots
 python -m solaralpha.price_forecasting.sequence_experiment --benchmark
 python -m solaralpha.price_forecasting.sequence_experiment --model all
 python -m solaralpha.price_forecasting.sequence_plots
+python -m solaralpha.price_forecasting.multi_horizon build
+python -m solaralpha.price_forecasting.multi_horizon train
+python -m solaralpha.price_forecasting.multi_horizon verify
+python -m solaralpha.price_forecasting.multi_horizon baseline-times
+python -m solaralpha.price_forecasting.multi_horizon_plots
+python -m solaralpha.price_forecasting.multi_horizon_report
 ```
 
 The forecasting command requires the expanded 2023–November 2025 historical cache and optional Matplotlib from `requirements-forecast.txt` (`python -m pip install -r requirements-forecast.txt`). It produces train/validation CSV.gz files and baseline metrics in `data/features/`, plus PNG plots in `plots/forecasting/`. It never reads the held-out December 2025–February 2026 dates. Feature timing and the publication-delay assumption are documented in [data/FEATURE_DICTIONARY.md](data/FEATURE_DICTIONARY.md), with results in [data/README.md](data/README.md). This offline package is not connected to MPC.
@@ -73,6 +79,12 @@ The historical replay reads local files in `data/raw/`. If they are missing, run
 The replay compares self-consumption, a threshold rule using the previous completed price, and a price-blind evening export schedule (17:00–20:00 Sydney time). Its tariffs, solar generation, and household demand are still illustrative or modeled as described in [data/README.md](data/README.md).
 
 `solaralpha.decision_time` demonstrates the agent-facing path: a policy receives current SOC and clock time plus only the previous completed interval's solar, load, and modeled prices. The original replay policies remain reference benchmarks; some use recorded current-interval solar/load. Future simulated trading agents should use the filtered runner.
+
+## First independent multi-horizon price experiment
+
+The four multi-horizon commands above build versioned labels, train ten independent direct XGBoost V2-A regressors, verify the frozen +60-minute V2-A result on its original eligible rows, and make plots. Use the existing pinned `requirements-ml.txt` environment. Each target is the NSW1 price for the **five-minute interval starting** at decision time plus 0, 5, 15, 30, 60, 120, 180, 360, 540 or 715 minutes. The +0-minute settlement price is unknown at decision time and is only a training/evaluation label. All models consume the same frozen 41 feature columns, which use completed observations strictly before the decision. Their two seasonal input columns remain anchored to the old +60-minute clock time; each horizon's previous-day baseline separately uses the observation 288 intervals before its own target, which is safely before the decision. That UTC 24-hour rule shifts relative to Sydney wall time on daylight-saving transition days.
+
+The new labels and manifest are in `data/features/multi_horizon_v1/`; the models, metadata, predictions and scores are in `data/models/price_multi_horizon_v1/`; plots are in `plots/forecasting/multi_horizon_v1/`. The source feature files, original one-hour model and 17-model leaderboard are preserved. The source feature-origin universe already excludes the first training week without weekly history, 12 training origins whose old +60-minute label crossed into 2025, and the final 12 validation origins without an old +60-minute label. The new manifest reports horizon-specific eligibility and the intersection of all ten horizons. Training and January–June tuning use eligible rows for each horizon; comparative July–November plots and tables use the same common decision origins at all horizons. July–November remains reused development evaluation, and December 2025–February 2026 is untouched. These ten sparse forecasts are **not** a validated 144-point five-minute trajectory for MPC.
 
 ## First trading controller
 

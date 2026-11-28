@@ -1,0 +1,90 @@
+{
+  "common_counts": {
+    "evaluate": 43909,
+    "train": 208669,
+    "tune": 49838
+  },
+  "eligible_counts": {
+    "evaluate": {
+      "0": 44040,
+      "120": 44028,
+      "15": 44040,
+      "180": 44016,
+      "30": 44040,
+      "360": 43980,
+      "5": 44040,
+      "540": 43944,
+      "60": 44040,
+      "715": 43909
+    },
+    "train": {
+      "0": 208800,
+      "120": 208788,
+      "15": 208800,
+      "180": 208776,
+      "30": 208800,
+      "360": 208740,
+      "5": 208800,
+      "540": 208704,
+      "60": 208800,
+      "715": 208669
+    },
+    "tune": {
+      "0": 50124,
+      "120": 50076,
+      "15": 50118,
+      "180": 50052,
+      "30": 50112,
+      "360": 49980,
+      "5": 50122,
+      "540": 49908,
+      "60": 50100,
+      "715": 49838
+    }
+  },
+  "feature_count": 41,
+  "feature_files": {
+    "train": {
+      "bytes": 28605143,
+      "path": "data/features/train_one_hour_price.csv.gz",
+      "sha256": "5718a363f345ac9dd584140cc8773311195f060775ebac3a2b0a5f96defc2e06"
+    },
+    "validation": {
+      "bytes": 13522315,
+      "path": "data/features/validation_one_hour_price.csv.gz",
+      "sha256": "d606e2c0c465576eb38ae26548c0cf8d399ee9fc7212e1df7b71749e1980f58b"
+    }
+  },
+  "feature_note": "The two frozen seasonal input columns remain aligned to +60 minutes at every horizon; the baseline is aligned separately.",
+  "feature_origins": {
+    "train": 208800,
+    "validation": 96180
+  },
+  "files": {
+    "train": {
+      "bytes": 7337992,
+      "path": "data/features/multi_horizon_v1/train_targets.csv.gz",
+      "sha256": "0de9e1d10d81b8560669b3b4c3fdd751db3ad0f636378250dee515226b1867bd"
+    },
+    "validation": {
+      "bytes": 3490284,
+      "path": "data/features/multi_horizon_v1/validation_targets.csv.gz",
+      "sha256": "534b3df1152ea080476ee9de87ed381382372f8874691ff0851232a05397438d"
+    }
+  },
+  "horizons_minutes": [
+    0,
+    5,
+    15,
+    30,
+    60,
+    120,
+    180,
+    360,
+    540,
+    715
+  ],
+  "schema_version": 1,
+  "seasonal_rule": "target interval start minus 24 hours UTC (288 five-minute intervals)",
+  "source_last_interval_start_utc": "2025-11-30T12:55:00+00:00"
+}
